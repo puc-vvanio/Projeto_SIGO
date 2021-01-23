@@ -46,6 +46,21 @@ services:
     networks:
       - sigo.dmz
 
+  autenticacao.api:
+    image: ${DOCKER_REGISTRY-}autenticacaoapi
+    build:
+      context: .
+      dockerfile: src/Services/Autenticacao/Autenticacao.API/Dockerfile
+    depends_on:
+      - sqldata
+    ports:
+      - 9002:80
+      - 9003:443
+    links:
+      - sqldata
+    networks:
+      - sigo.dmz
+
 volumes:
   mysqldata:
 
