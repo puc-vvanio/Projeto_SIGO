@@ -24,7 +24,7 @@ namespace Sigo.Autenticacao.API
         private static void InsertData()
         {
 
-            using UsuarioContext context = null;
+            using AutenticacaoContext context = null;
             
             // Criar o banco de dados se não existir
             context.Database.EnsureCreated();

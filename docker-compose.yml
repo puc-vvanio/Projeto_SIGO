@@ -54,8 +54,8 @@ services:
     depends_on:
       - sqldata
     ports:
-      - 9002:80
-      - 9003:443
+      - 8000:80
+      - 8001:443
     links:
       - sqldata
     networks:

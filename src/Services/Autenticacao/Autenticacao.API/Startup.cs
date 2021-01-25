@@ -22,7 +22,10 @@ namespace Sigo.Autenticacao.API
         public void ConfigureServices(IServiceCollection services)
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContextPool<AcessoContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+            //string mySqlConnectionStr = "Server=localhost;Database=Seguranca;Uid=sysdba;Pwd=dbapwd;";
+
+
+            services.AddDbContextPool<AutenticacaoContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

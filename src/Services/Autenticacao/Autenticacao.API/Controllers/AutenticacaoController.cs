@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Sigo.Autenticacao.API.Infrasctructure;
 using Sigo.Autenticacao.API.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Sigo.Autenticacao.API.Controllers
@@ -11,9 +12,9 @@ namespace Sigo.Autenticacao.API.Controllers
     [ApiController]
     public class AutenticacaoController : ControllerBase
     {
-        private readonly UsuarioContext _context;
+        private readonly AutenticacaoContext _context;
 
-        public AutenticacaoController(UsuarioContext context)
+        public AutenticacaoController(AutenticacaoContext context)
         {
             _context = context;
         }
@@ -34,8 +35,27 @@ namespace Sigo.Autenticacao.API.Controllers
 
                         if (usuario != null)
                         {
-                            //var normaResposta = JsonConvert.SerializeObject(norma);
-                            return Ok(usuario);
+
+                            var acessos = _context.Acessos.FirstOrDefault(a => a.Id_Usuario == usuario.Id);
+
+                            if (acessos != null)
+                            {
+                                Autenticado autenticado = new Autenticado
+                                {
+                                    Email = usuario.Email,
+                                    Nome = usuario.Nome,
+                                    Token = "Token",
+                                    AcessosSistemas = new List<AcessosSistemas>
+                                    {
+                                        new AcessosSistemas{ Sistema = acessos.Sistema, Regra = acessos.Regra},
+                                        new AcessosSistemas{ Sistema = acessos.Sistema, Regra = acessos.Regra}
+                                    }
+                                };
+                                //var normaResposta = JsonConvert.SerializeObject(norma);
+                                return Ok(autenticado);                               
+                            }
+                            else
+                                return Ok("Usuario sem acesso a Sistema!");
                         }
                         else
                         {
@@ -58,7 +78,7 @@ namespace Sigo.Autenticacao.API.Controllers
             }
         }
 
-        private UsuarioContext context()
+        private AutenticacaoContext context()
         {
             throw new NotImplementedException();
         }

@@ -10,9 +10,9 @@ namespace Sigo.Autenticacao.API.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private readonly UsuarioContext _context;
+        private readonly AutenticacaoContext _context;
 
-        public UsuarioController(UsuarioContext context)
+        public UsuarioController(AutenticacaoContext context)
         {
             _context = context;
         }

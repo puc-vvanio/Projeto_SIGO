@@ -4,16 +4,18 @@ using Sigo.Autenticacao.API.Model;
 
 namespace Sigo.Autenticacao.API.Infrasctructure
 {
-    public class UsuarioContext : DbContext
+    public class AutenticacaoContext : DbContext
     {
-        public UsuarioContext(DbContextOptions<UsuarioContext> options) : base(options)
+        public AutenticacaoContext(DbContextOptions<AutenticacaoContext> options) : base(options)
         {
         }
+        public DbSet<Acesso> Acessos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new UsuarioEntityTypeConfiguration());
+
+            builder.ApplyConfiguration(new AutenticacaoEntityTypeConfiguration());
         }
     }
-}
+ }

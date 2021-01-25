@@ -8,7 +8,7 @@ using Sigo.Autenticacao.API.Infrasctructure;
 
 namespace Sigo.Autenticacao.API.Migrations
 {
-    [DbContext(typeof(AcessoContext))]
+    [DbContext(typeof(AutenticacaoContext))]
     partial class AcessoContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

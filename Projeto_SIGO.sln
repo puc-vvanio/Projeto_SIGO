@@ -27,7 +27,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Autenticacao", "Autenticacao", "{2F7F8E77-61E1-4872-B145-1D39F00CDCAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autenticacao.API", "src\Services\Autenticacao\Autenticacao.API\Autenticacao.API.csproj", "{B0436618-A62F-4B5E-BE4A-B788E288E1B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autenticacao.API", "src\Services\Autenticacao\Autenticacao.API\Autenticacao.API.csproj", "{B0436618-A62F-4B5E-BE4A-B788E288E1B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

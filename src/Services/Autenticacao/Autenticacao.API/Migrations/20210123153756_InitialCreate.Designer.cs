@@ -9,7 +9,7 @@ using Sigo.Autenticacao.API.Infrasctructure;
 
 namespace Sigo.Autenticacao.API.Migrations
 {
-    [DbContext(typeof(AcessoContext))]
+    [DbContext(typeof(AutenticacaoContext))]
     [Migration("20210123153756_InitialCreate")]
     partial class InitialCreate
     {
