@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Sigo.Autenticacao.API.Controllers
 {
+    /*
     [Route("api/v1/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
@@ -88,6 +89,6 @@ namespace Sigo.Autenticacao.API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-    }
+        }    
+    }*/
 }
