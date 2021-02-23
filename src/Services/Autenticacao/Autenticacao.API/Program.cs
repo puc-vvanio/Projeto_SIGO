@@ -24,6 +24,7 @@ namespace Sigo.Autenticacao.API
         private static void InsertData()
         {
 
+            /*
             using AutenticacaoContext context = null;
             
             // Criar o banco de dados se não existir
@@ -41,7 +42,8 @@ namespace Sigo.Autenticacao.API
             });            
 
             // Saves changes
-            context.SaveChanges();            
+            context.SaveChanges();    
+            */
         }
     }
 }

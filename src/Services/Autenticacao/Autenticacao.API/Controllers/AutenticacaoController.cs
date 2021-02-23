@@ -1,11 +1,15 @@
 ﻿using Autenticacao.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Routing;
 using Newtonsoft.Json;
 using Sigo.Autenticacao.API.Infrasctructure;
 using Sigo.Autenticacao.API.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Sigo.Autenticacao.API.Controllers
 {
@@ -20,6 +24,65 @@ namespace Sigo.Autenticacao.API.Controllers
             _context = context;
         }
 
+        // Usuario autenticado
+        [HttpGet]
+        [Route("authenticated")]
+        [Authorize]
+        public IActionResult Authenticated()
+        {
+            try
+            {
+                try
+                {
+                    var claimsIdentity = User.Identity as ClaimsIdentity;
+                    var email = claimsIdentity.FindFirst(ClaimTypes.Email).Value;
+                    var usuario = _context.Usuarios.FirstOrDefault(m => m.Email == email);
+
+                    if (usuario != null)
+                    {
+                        var acesso = _context.Acessos.Where(a => a.Id_Usuario == usuario.Id);
+
+                        if (acesso != null)
+                        {
+                            List<AcessosSistemas> acessosSistemas = new List<AcessosSistemas>();
+
+                            foreach (var item in acesso.ToList())
+                            {
+
+                                AcessosSistemas auxacesso = new AcessosSistemas();
+                                auxacesso.Sistema = item.Sistema;
+                                auxacesso.Regra = item.Regra;
+                                acessosSistemas.Add(auxacesso);
+                            }                          
+
+                            Autenticado autenticado = new Autenticado
+                            {
+                                Email = usuario.Email,
+                                Nome = usuario.Nome,
+                                AcessosSistemas = acessosSistemas
+                            };
+                            
+                            return Ok(autenticado);
+                        }
+                        else
+                            return Ok("Usuario sem acesso a Sistema!");
+                    }
+                    else
+                    {
+                        return Ok("Usuario/Senha não encontrada!");
+                    }                    
+                }
+                catch (Exception)
+                {
+                    return StatusCode(500, "Erro ao comunicar com a base de dados!");
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erro ao comunicar com a base de dados!");
+            }
+        }
+       
         // Post: api/<ValuesController>
         [HttpPost]
         public IActionResult Authenticate([FromBody] DadosAcesso model)
