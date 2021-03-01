@@ -46,6 +46,21 @@ services:
     networks:
       - sigo.dmz
 
+  consultorias.api:
+    image: ${DOCKER_REGISTRY-}consultoriasapi
+    build:
+      context: .
+      dockerfile: src/Services/Consultorias/Consultorias.API/Dockerfile
+    depends_on:
+      - sqldata
+    ports:
+      - 8000:80
+      - 8001:443
+    links:
+      - sqldata
+    networks:
+      - sigo.dmz
+
   autenticacao.api:
     image: ${DOCKER_REGISTRY-}autenticacaoapi
     build:
