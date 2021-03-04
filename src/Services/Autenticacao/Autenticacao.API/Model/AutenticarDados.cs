@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sigo.Autenticacao.API.Infrasctructure;
-using Sigo.Autenticacao.API.Model;
+﻿using System.Collections.Generic;
 
 namespace Sigo.Autenticacao.API.Model
 {
@@ -20,7 +16,8 @@ namespace Sigo.Autenticacao.API.Model
         public List<AcessosSistemas> AcessosSistemas { get; set; }
     }
 
-    public class AcessosSistemas    {
+    public class AcessosSistemas
+    {
         public string Sistema { get; set; }
         public string Regra { get; set; }
     }

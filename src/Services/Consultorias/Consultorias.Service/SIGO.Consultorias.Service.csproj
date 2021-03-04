@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>SIGO.Consultorias.Service</RootNamespace>
+    <AssemblyName>SIGO.Consultorias.Service</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Consultorias.Domain\SIGO.Consultorias.Domain.csproj" />
+    <ProjectReference Include="..\Consultorias.Infrastructure\SIGO.Consultorias.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,9 +1,7 @@
 ﻿using Autenticacao.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
-using Newtonsoft.Json;
 using Sigo.Autenticacao.API.Infrasctructure;
 using Sigo.Autenticacao.API.Model;
 using System;
@@ -53,7 +51,7 @@ namespace Sigo.Autenticacao.API.Controllers
                                 auxacesso.Sistema = item.Sistema;
                                 auxacesso.Regra = item.Regra;
                                 acessosSistemas.Add(auxacesso);
-                            }                          
+                            }
 
                             Autenticado autenticado = new Autenticado
                             {
@@ -61,7 +59,7 @@ namespace Sigo.Autenticacao.API.Controllers
                                 Nome = usuario.Nome,
                                 AcessosSistemas = acessosSistemas
                             };
-                            
+
                             return Ok(autenticado);
                         }
                         else
@@ -70,7 +68,7 @@ namespace Sigo.Autenticacao.API.Controllers
                     else
                     {
                         return Ok("Usuario/Senha não encontrada!");
-                    }                    
+                    }
                 }
                 catch (Exception)
                 {
@@ -82,7 +80,7 @@ namespace Sigo.Autenticacao.API.Controllers
                 return StatusCode(500, "Erro ao comunicar com a base de dados!");
             }
         }
-       
+
         // Post: api/<ValuesController>
         [HttpPost]
         public IActionResult Authenticate([FromBody] DadosAcesso model)
@@ -104,12 +102,12 @@ namespace Sigo.Autenticacao.API.Controllers
                             if (acesso != null)
                             {
                                 List<AcessosSistemas> acessosSistemas = new List<AcessosSistemas>();
-                                
+
                                 foreach (var item in acesso.ToList())
                                 {
-                                  
+
                                     AcessosSistemas auxacesso = new AcessosSistemas();
-                                    auxacesso.Sistema =  item.Sistema;
+                                    auxacesso.Sistema = item.Sistema;
                                     auxacesso.Regra = item.Regra;
                                     acessosSistemas.Add(auxacesso);
                                 }
@@ -131,7 +129,7 @@ namespace Sigo.Autenticacao.API.Controllers
                                     AcessosSistemas = acessosSistemas
                                 };
                                 //var normaResposta = JsonConvert.SerializeObject(norma);
-                                return Ok(autenticado);                               
+                                return Ok(autenticado);
                             }
                             else
                                 return Ok("Usuario sem acesso a Sistema!");

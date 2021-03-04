@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Sigo.Autenticacao.API.Infrasctructure;
-using System;
-using System.Linq;
-
-namespace Sigo.Autenticacao.API.Controllers
+﻿namespace Sigo.Autenticacao.API.Controllers
 {
     /*
     [Route("api/v1/[controller]")]

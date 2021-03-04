@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Sigo.Normas.API.Infrasctructure;
 using System;
 using System.Linq;

@@ -18,4 +18,4 @@ namespace Sigo.Autenticacao.API.Infrasctructure
             builder.ApplyConfiguration(new AutenticacaoEntityTypeConfiguration());
         }
     }
- }
+}

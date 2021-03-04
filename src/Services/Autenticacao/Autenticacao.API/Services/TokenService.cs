@@ -1,10 +1,10 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Sigo.Autenticacao.API.Model;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Sigo.Autenticacao.API.Model;
 
 namespace Autenticacao.Services
 {
@@ -15,7 +15,7 @@ namespace Autenticacao.Services
             //
             var tokenHandler = new JwtSecurityTokenHandler();
             //
-            var chavetoken = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Chavedeacesso");     
+            var chavetoken = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Chavedeacesso");
             var key = Encoding.ASCII.GetBytes(chavetoken.ToString());
             //
             var tokenDescriptor = new SecurityTokenDescriptor

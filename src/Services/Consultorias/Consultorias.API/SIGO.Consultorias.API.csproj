@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>d0e8e6e6-4847-4db1-a390-2cba355eb0df</UserSecretsId>
+    <UserSecretsId>87be019c-b92c-4a06-9339-7b88aa7f63a5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..\..</DockerfileContext>
+    <RootNamespace>SIGO.Consultorias.API</RootNamespace>
+    <AssemblyName>SIGO.Consultorias.API</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Consultorias.Domain\SIGO.Consultorias.Domain.csproj" />
+    <ProjectReference Include="..\Consultorias.Service\SIGO.Consultorias.Service.csproj" />
   </ItemGroup>
 
 </Project>
