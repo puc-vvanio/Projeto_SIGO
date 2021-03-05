@@ -15,6 +15,7 @@
   </ItemGroup>
   
   <ItemGroup>
+  	<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
   	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.2" NoWarn="NU1605" />
   	<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.2" NoWarn="NU1605" />
   	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />

@@ -31,6 +31,21 @@ services:
     networks:
       - sigo.dmz
 
+  autenticacao.api:
+    image: ${DOCKER_REGISTRY-}autenticacaoapi
+    build:
+      context: .
+      dockerfile: src/Services/Autenticacao/Autenticacao.API/Dockerfile
+    depends_on:
+      - sqldata
+    ports:
+      - 5000:80
+      - 5001:443
+    links:
+      - sqldata
+    networks:
+      - sigo.dmz
+
   normas.api:
     image: ${DOCKER_REGISTRY-}normasapi
     build:
@@ -56,21 +71,6 @@ services:
     ports:
       - 7000:80
       - 7001:443
-    links:
-      - sqldata
-    networks:
-      - sigo.dmz
-
-  autenticacao.api:
-    image: ${DOCKER_REGISTRY-}autenticacaoapi
-    build:
-      context: .
-      dockerfile: src/Services/Autenticacao/Autenticacao.API/Dockerfile
-    depends_on:
-      - sqldata
-    ports:
-      - 5000:80
-      - 5001:443
     links:
       - sqldata
     networks:
