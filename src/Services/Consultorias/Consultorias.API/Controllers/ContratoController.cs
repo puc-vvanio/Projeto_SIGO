@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SIGO.Consultorias.Domain.Interfaces.Services;
+using System.Threading.Tasks;
+using SIGO.Consultorias.Domain;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -7,15 +10,26 @@ namespace SIGO.Consultorias.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = Autorizacao.Grupo.ADMIN)]
     public class ContratoController : ControllerBase
     {
-        // GET: api/<ContratoController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IServiceContrato _contratoService;
+
+        public ContratoController(IServiceContrato contratoService)
         {
-            return new string[] { "value1", "value2" };
+            _contratoService = contratoService;
         }
 
+        // GET: api/<ContratoController>
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var contratos = await _contratoService.ObterContratos();
+
+            return Ok(contratos);
+        }
+
+        /*
         // GET api/<ContratoController>/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -40,5 +54,6 @@ namespace SIGO.Consultorias.API.Controllers
         public void Delete(int id)
         {
         }
+        */
     }
 }

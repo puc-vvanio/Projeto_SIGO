@@ -39,8 +39,8 @@ services:
     depends_on:
       - sqldata
     ports:
-      - 9000:80
-      - 9001:443
+      - 6000:80
+      - 6001:443
     links:
       - sqldata
     networks:
@@ -54,8 +54,8 @@ services:
     depends_on:
       - sqldata
     ports:
-      - 8000:80
-      - 8001:443
+      - 7000:80
+      - 7001:443
     links:
       - sqldata
     networks:
@@ -69,8 +69,8 @@ services:
     depends_on:
       - sqldata
     ports:
-      - 9100:80
-      - 9101:443
+      - 5000:80
+      - 5001:443
     links:
       - sqldata
     networks:
@@ -82,7 +82,3 @@ volumes:
 networks:
   sigo.dmz:
     driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
-         gateway: 10.5.0.1

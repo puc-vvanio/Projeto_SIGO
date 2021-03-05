@@ -6,13 +6,13 @@ namespace SIGO.Consultorias.Domain.Interfaces.Services
 {
     public interface IServiceContrato
     {
-        Task Salvar(Contrato contrato);
+        Task<Contrato> Salvar(Contrato contrato);
 
-        void Atualizar(Contrato contrato);
+        Task Atualizar(Contrato contrato);
 
-        Task Excluir(string guid);
+        Task Excluir(int id);
 
-        Task<Contrato> ObterContrato(string guid);
+        Task<Contrato> ObterContrato(int id);
 
         Task<List<Contrato>> ObterContratos();
     }

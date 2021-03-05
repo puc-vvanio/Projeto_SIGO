@@ -29,21 +29,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Autenticacao", "Autenticaca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autenticacao.API", "src\Services\Autenticacao\Autenticacao.API\Autenticacao.API.csproj", "{B0436618-A62F-4B5E-BE4A-B788E288E1B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.Consultorias.Domain", "src\Services\Consultorias\Consultorias.Domain\SIGO.Consultorias.Domain.csproj", "{A8C4193D-E729-4DE0-823B-70371186BE11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Consultorias.Domain", "src\Services\Consultorias\Consultorias.Domain\SIGO.Consultorias.Domain.csproj", "{A8C4193D-E729-4DE0-823B-70371186BE11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.Consultorias.API", "src\Services\Consultorias\Consultorias.API\SIGO.Consultorias.API.csproj", "{23D58ABF-069A-44BC-A667-9AC089D73C5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Consultorias.API", "src\Services\Consultorias\Consultorias.API\SIGO.Consultorias.API.csproj", "{23D58ABF-069A-44BC-A667-9AC089D73C5F}"
 	ProjectSection(ProjectDependencies) = postProject
+		{35F8381B-AC7E-4153-81B4-E4E8029C882E} = {35F8381B-AC7E-4153-81B4-E4E8029C882E}
 		{A8C4193D-E729-4DE0-823B-70371186BE11} = {A8C4193D-E729-4DE0-823B-70371186BE11}
 		{04D9FA92-E7CB-4CE4-8CEF-622638328E8B} = {04D9FA92-E7CB-4CE4-8CEF-622638328E8B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.Consultorias.Service", "src\Services\Consultorias\Consultorias.Service\SIGO.Consultorias.Service.csproj", "{04D9FA92-E7CB-4CE4-8CEF-622638328E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Consultorias.Service", "src\Services\Consultorias\Consultorias.Service\SIGO.Consultorias.Service.csproj", "{04D9FA92-E7CB-4CE4-8CEF-622638328E8B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{35F8381B-AC7E-4153-81B4-E4E8029C882E} = {35F8381B-AC7E-4153-81B4-E4E8029C882E}
 		{A8C4193D-E729-4DE0-823B-70371186BE11} = {A8C4193D-E729-4DE0-823B-70371186BE11}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.Consultorias.Infrastructure", "src\Services\Consultorias\Consultorias.Infrastructure\SIGO.Consultorias.Infrastructure.csproj", "{35F8381B-AC7E-4153-81B4-E4E8029C882E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Consultorias.Infrastructure", "src\Services\Consultorias\Consultorias.Infrastructure\SIGO.Consultorias.Infrastructure.csproj", "{35F8381B-AC7E-4153-81B4-E4E8029C882E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A8C4193D-E729-4DE0-823B-70371186BE11} = {A8C4193D-E729-4DE0-823B-70371186BE11}
 	EndProjectSection

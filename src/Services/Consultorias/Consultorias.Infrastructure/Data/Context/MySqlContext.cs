@@ -35,7 +35,15 @@ namespace SIGO.Consultorias.Infrastructure.Data.Context
                    DataCriacao = DateTime.Now,
                    Nome = "Consultoria 1",
                    Descricao = "Descrição Cosnsultoria 1"
-               });
+               },
+               new Consultoria
+               {
+                   Id = 2,
+                   DataCriacao = DateTime.Now,
+                   Nome = "Consultoria 2",
+                   Descricao = "Descrição Cosnsultoria 2"
+               }
+            );
 
             modelBuilder.Entity<Contrato>().HasData(
                new Contrato
@@ -46,7 +54,26 @@ namespace SIGO.Consultorias.Infrastructure.Data.Context
                    Nome = "Contrato 1",
                    Descricao = "Descrição Contrato 1",
                    ConsultoriaID = 1
-               });
+               },
+               new Contrato
+               {
+                   Id = 2,
+                   DataCriacao = DateTime.Now,
+                   Tipo = TipoContrato.Consultoria,
+                   Nome = "Contrato 2",
+                   Descricao = "Descrição Contrato 2",
+                   ConsultoriaID = 2
+               },
+               new Contrato
+               {
+                   Id = 3,
+                   DataCriacao = DateTime.Now,
+                   Tipo = TipoContrato.Outro,
+                   Nome = "Contrato 3",
+                   Descricao = "Descrição Contrato 3",
+                   ConsultoriaID = 2
+               }
+            );
         }
 
         public async Task<int> SaveChangesAsync()

@@ -18,6 +18,18 @@ namespace SIGO.Consultorias.Infrastructure.Data.Mapping
                    .HasColumnType("int")
                    .UseMySqlIdentityColumn()
                    .IsRequired();
+            modelBuilder.Property(ug => ug.DataCriacao)
+                   .HasColumnType("datetime")
+                   .IsRequired();
+            modelBuilder.Property(ug => ug.DataAtualizacao)
+                   .HasColumnType("datetime")
+                   .IsRequired(false);
+            modelBuilder.Property(ug => ug.DataExclusao)
+                   .HasColumnType("datetime")
+                   .IsRequired(false);
+            modelBuilder.Property(ug => ug.UltimoAcesso)
+                   .HasColumnType("datetime")
+                   .IsRequired(false);
 
             modelBuilder.Property(ug => ug.Tipo)
                   .HasColumnType("short")
@@ -31,16 +43,6 @@ namespace SIGO.Consultorias.Infrastructure.Data.Mapping
             modelBuilder.Property(ug => ug.ConsultoriaID)
                    .HasColumnType("int")
                    .IsRequired();
-
-            modelBuilder.Property(ug => ug.DataCriacao)
-                   .HasColumnType("datetime")
-                   .IsRequired();
-            modelBuilder.Property(ug => ug.DataAtualizacao)
-                   .HasColumnType("datetime")
-                   .IsRequired(false);
-            modelBuilder.Property(ug => ug.UltimoAcesso)
-                   .HasColumnType("datetime")
-                   .IsRequired(false);
 
             // Configure Primary Keys  
             modelBuilder.HasKey(ug => ug.Id)
