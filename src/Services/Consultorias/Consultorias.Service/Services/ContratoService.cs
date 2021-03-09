@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SIGO.Consultorias.Service.Services
 {
-    class ContratoService : IServiceContrato
+    public class ContratoService : IServiceContrato
     {
         private readonly IUnitOfWork _unitOfWork;
 

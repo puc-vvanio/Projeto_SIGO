@@ -19,7 +19,6 @@ namespace SIGO.Consultorias.Infrastructure.Data
         {
             _context = context;
             _dapperDbConnection = dapperDbConnection;
-            //_dapperDbConnection.OpenConnection();
 
             Contratos = new ContratoRepository(_context, _dapperDbConnection);
             Consultorias = new ConsultoriaRepository(_context, _dapperDbConnection);

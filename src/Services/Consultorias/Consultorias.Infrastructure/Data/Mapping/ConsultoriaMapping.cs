@@ -4,7 +4,7 @@ using SIGO.Consultorias.Domain.Entities;
 
 namespace SIGO.Consultorias.Infrastructure.Data.Mapping
 {
-    class ConsultoriaMapping : IEntityTypeConfiguration<Consultoria>
+    public class ConsultoriaMapping : IEntityTypeConfiguration<Consultoria>
     {
         public void Configure(EntityTypeBuilder<Consultoria> modelBuilder)
         {

@@ -19,6 +19,7 @@ namespace Sigo.Normas.API
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
         private static void InsertData()
         {
             /*

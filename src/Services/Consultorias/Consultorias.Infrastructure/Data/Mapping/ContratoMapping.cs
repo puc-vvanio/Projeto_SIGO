@@ -4,7 +4,7 @@ using SIGO.Consultorias.Domain.Entities;
 
 namespace SIGO.Consultorias.Infrastructure.Data.Mapping
 {
-    class ContratoMapping : IEntityTypeConfiguration<Contrato>
+    public class ContratoMapping : IEntityTypeConfiguration<Contrato>
     {
         public void Configure(EntityTypeBuilder<Contrato> modelBuilder)
         {
@@ -32,7 +32,7 @@ namespace SIGO.Consultorias.Infrastructure.Data.Mapping
                    .IsRequired(false);
 
             modelBuilder.Property(ug => ug.Tipo)
-                  .HasColumnType("short")
+                  .HasColumnType("int")
                   .IsRequired();
             modelBuilder.Property(ug => ug.Nome)
                    .HasColumnType("nvarchar(50)")

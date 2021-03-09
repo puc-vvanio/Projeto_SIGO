@@ -4,9 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SIGO.Consultorias.Domain.Interfaces;
+using SIGO.Consultorias.Domain.Interfaces.Repository;
+using SIGO.Consultorias.Domain.Interfaces.Services;
+using SIGO.Consultorias.Infrastructure.CrossCutting;
+using SIGO.Consultorias.Infrastructure.Data;
 using SIGO.Consultorias.Infrastructure.Data.Context;
+using SIGO.Consultorias.Infrastructure.Data.Repository;
+using SIGO.Consultorias.Service.Services;
 
 namespace SIGO.Consultorias.API
 {
@@ -23,15 +29,17 @@ namespace SIGO.Consultorias.API
         public void ConfigureServices(IServiceCollection services)
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
-            //services.AddDbContextPool<MySqlContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
-            services.AddDbContextPool<MySqlContext>(options => options
-                .UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr))
-                .UseLoggerFactory(LoggerFactory.Create(b => b
-                    .AddConsole()
-                    .AddFilter(level => true)))
-                .EnableSensitiveDataLogging());
+            //string mySqlConnectionStr = "server=localhost;port=3306;userid=sysdba;password=dbapwd;database=consultorias;Persist Security Info=False;Connect Timeout=300;";
+            //string mySqlConnectionStr = Configuration.GetConnectionString("MigrationConnection");
+            services.AddDbContextPool<MySqlContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddControllers();
+            
+            services.AddScoped<IDapperDbConnection, DapperDbConnection>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IServiceConsultoria, ConsultoriaService>();
+            services.AddScoped<IServiceContrato, ContratoService>();
+
             services.AddSwaggerGen(c =>
             {
                 //
