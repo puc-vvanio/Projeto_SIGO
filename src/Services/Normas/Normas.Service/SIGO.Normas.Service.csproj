@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>SIGO.Normas.Service</RootNamespace>
+    <AssemblyName>SIGO.Normas.Service</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Normas.Domain\SIGO.Normas.Domain.csproj" />
+    <ProjectReference Include="..\Normas.Infrastructure\SIGO.Normas.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -2,7 +2,7 @@
 
 namespace Sigo.Normas.API.Controllers
 {
-    public class HomeController : Controller
+    public class Normas : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()

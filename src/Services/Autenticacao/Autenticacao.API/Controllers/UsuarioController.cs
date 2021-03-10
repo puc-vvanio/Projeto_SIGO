@@ -1,33 +1,39 @@
-﻿namespace Sigo.Autenticacao.API.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using SIGO.Autenticacao.Domain.Interfaces.Services;
+using System;
+using System.Threading.Tasks;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace SIGO.Autenticacao.API.Controllers
 {
-    /*
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
+    //    [Authorize(Roles = Autorizacao.Grupo.ADMIN)]
     public class UsuarioController : ControllerBase
     {
-        private readonly AutenticacaoContext _context;
+        private readonly IServiceUsuario _usuarioService;
 
-        public UsuarioController(AutenticacaoContext context)
+        public UsuarioController(IServiceUsuario usuarioService)
         {
-            _context = context;
+            _usuarioService = usuarioService;
         }
 
-        // GET: api/<ValuesController>
+        // GET: api/<UsuarioController>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var listaDeUsuarios = _context.Usuarios.ToList();
+                var usuarios = await _usuarioService.ObterUsuarios();
 
-                if (listaDeUsuarios != null)
+                if (usuarios != null)
                 {
-                    //var resposta = JsonConvert.SerializeObject(listaDeNormas);
-                    return Ok(listaDeUsuarios);
+                    return Ok(usuarios);
                 }
                 else
                 {
-                    return Ok("Nenhuma usuario cadastrado!");
+                    return Ok("Nenhum usuario cadastrada!");
                 }
             }
             catch (Exception)
@@ -36,53 +42,31 @@
             }
         }
 
-        // GET api/<ValuesController>/5
+        /*
+        // GET api/<UsuarioController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public string Get(int id)
         {
-            try
-            {
-                if (id > 0)
-                {
-                    var usuario = _context.Usuarios.FirstOrDefault(m => m.Id == id);
-
-                    if (usuario != null)
-                    {
-                        //var normaResposta = JsonConvert.SerializeObject(norma);
-                        return Ok(usuario);
-                    }
-                    else
-                    {
-                        return Ok("Usuario não encontrada!");
-                    }
-                }
-                else
-                {
-                    return BadRequest("ID inválido! Tente novamente.");
-                }
-            }
-            catch (Exception)
-            {
-                return StatusCode(500, "Erro ao comunicar com a base de dados!");
-            }
+            return "value";
         }
 
-        // POST api/<ValuesController>
+        // POST api/<UsuarioController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<ValuesController>/5
+        // PUT api/<UsuarioController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<ValuesController>/5
+        // DELETE api/<UsuarioController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }    
-    }*/
+        }
+        */
+    }
 }

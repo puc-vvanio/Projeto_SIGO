@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Sigo.Autenticacao.API.Controllers
+namespace Sigo.Normas.API.Controllers
 {
-    public class HomeController : Controller
+    public class Autenticacao : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()

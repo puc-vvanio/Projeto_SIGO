@@ -5,36 +5,40 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Sigo.Autenticacao.API.Infrasctructure;
-using System.Collections.Generic;
-using System;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using SIGO.Autenticacao.Domain.Interfaces;
+using SIGO.Autenticacao.Domain.Interfaces.Services;
+using SIGO.Autenticacao.Infrastructure.CrossCutting;
+using SIGO.Autenticacao.Infrastructure.Data;
+using SIGO.Autenticacao.Infrastructure.Data.Context;
+using SIGO.Autenticacao.Service.Services;
 
-namespace Sigo.Autenticacao.API
+namespace SIGO.Autenticacao.API
 {
     public class Startup
     {
         private readonly string SIGO_API = "SIGO_API";
+
+        public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
-            //string mySqlConnectionStr = Configuration.GetConnectionString("MigrationtConnection"); 
-            //string mySqlConnectionStr = "server=localhost;port=3306;userid=sysdba;password=dbapwd;database=seguranca;Persist Security Info=False;Connect Timeout=300;";
-
-            services.AddDbContextPool<AutenticacaoContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+            //string mySqlConnectionStr = "server=localhost;port=3306;userid=sysdba;password=dbapwd;database=autenticacao;Persist Security Info=False;Connect Timeout=300;";
+            //string mySqlConnectionStr = Configuration.GetConnectionString("MigrationConnection");
+            services.AddDbContextPool<MySqlContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddControllers();
+
+            services.AddScoped<IDapperDbConnection, DapperDbConnection>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IServiceAutenticacao, Autenticacaoervice>();
+            services.AddScoped<IServiceUsuario, UsuarioService>();
 
             services.AddCors(options =>
             {
@@ -56,16 +60,17 @@ namespace Sigo.Autenticacao.API
                     new OpenApiInfo
                     {
                         Title = "SIGO.Autenticacao.API",
-                        Description = "API de Autenticacao do Sistema Integrado de Gestão e Operação",
+                        Description = "API de AutenticaÃ§Ã£o do Sistema Integrado de GestÃ£o e OperaÃ§Ã£o",
                         Version = "v1"
                     }
                 );
+                /*
                 // 
                 c.AddSecurityDefinition("Bearer",
                     new OpenApiSecurityScheme
                     {
-                        Description = "Cabeçalho de autorização JWT usando o esquema Bearer. \r\n\r\n " +
-                                      "Enter 'Bearer' [espaço] e o token gerado na entrada de texto abaixo. \r\n\r\n " +
+                        Description = "CabeÃ§alho de autorizaÃ§Ã£o JWT usando o esquema Bearer.. \r\n\r\n " +
+                                      "Enter 'Bearer' [espaÃ§o] e o token gerado na entrada de texto abaixo. \r\n\r\n " +
                                       "Example: \"Bearer TOKEN GERADO\"",
                         Name = "Authorization",
                         In = ParameterLocation.Header,
@@ -93,40 +98,9 @@ namespace Sigo.Autenticacao.API
                         }
                     }
                 );
-            });
-            //
-            var chavetoken = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Chavedeacesso").ToString();
-            var key = Encoding.ASCII.GetBytes(chavetoken);
-            //
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
+                */
             });
 
-            /*
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "SIGO.Autenticacao.API",
-                    Description = "API de Autenticacao do Sistema Integrado de Gestão e Operação",
-                    Version = "v1"
-                });
-            });
-            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -139,25 +113,18 @@ namespace Sigo.Autenticacao.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SIGO.Autenticacao.API v1"));
             }
 
+            app.UseHttpsRedirection();
+
             app.UseCors(SIGO_API);
 
-            //
-            app.UseHttpsRedirection();
-            //
             app.UseRouting();
-            //
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-            //
-            app.UseAuthentication();
+
             app.UseAuthorization();
-            //
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });           
+            });
         }
     }
 }
