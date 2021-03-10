@@ -93,9 +93,6 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Context
 
                     entry.Property("DataAtualizacao").CurrentValue = DateTime.Now;
 
-                    if (entry.Entity.GetType().GetProperty("GUID") != null)
-                        entry.Property("GUID").IsModified = false;
-
                     if (entry.Property("DataExclusao").CurrentValue != null)
                         entry.Property("DataExclusao").CurrentValue = DateTime.Now;
                 }

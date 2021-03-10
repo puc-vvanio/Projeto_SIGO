@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>SIGO.ProcessoIndustrial.Domain</RootNamespace>
+    <AssemblyName>SIGO.ProcessoIndustrial.Domain</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
+  </ItemGroup>
+
+</Project>

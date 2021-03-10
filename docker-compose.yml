@@ -75,6 +75,21 @@ services:
       - sqldata
     networks:
       - sigo.dmz
+      
+  processoindustrial.api:
+    image: ${DOCKER_REGISTRY-}processoindustrialapi
+    build:
+      context: .
+      dockerfile: src/Services/ProcessoIndustrial/ProcessoIndustrial.API/Dockerfile
+    depends_on:
+      - sqldata
+    ports:
+      - 9000:80
+      - 9001:443
+    links:
+      - sqldata
+    networks:
+      - sigo.dmz
 
 volumes:
   mysqldata:
