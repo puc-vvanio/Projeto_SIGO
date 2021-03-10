@@ -6,18 +6,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SIGO.Consultorias.Domain.Interfaces;
-using SIGO.Consultorias.Domain.Interfaces.Repository;
 using SIGO.Consultorias.Domain.Interfaces.Services;
 using SIGO.Consultorias.Infrastructure.CrossCutting;
 using SIGO.Consultorias.Infrastructure.Data;
 using SIGO.Consultorias.Infrastructure.Data.Context;
-using SIGO.Consultorias.Infrastructure.Data.Repository;
 using SIGO.Consultorias.Service.Services;
 
 namespace SIGO.Consultorias.API
 {
     public class Startup
     {
+        private readonly string SIGO_API = "SIGO_API";
+
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -34,11 +34,24 @@ namespace SIGO.Consultorias.API
             services.AddDbContextPool<MySqlContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddControllers();
-            
+
             services.AddScoped<IDapperDbConnection, DapperDbConnection>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IServiceConsultoria, ConsultoriaService>();
             services.AddScoped<IServiceContrato, ContratoService>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: SIGO_API,
+                    builder =>
+                    {
+                        builder
+                        //.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -101,6 +114,8 @@ namespace SIGO.Consultorias.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(SIGO_API);
 
             app.UseRouting();
 

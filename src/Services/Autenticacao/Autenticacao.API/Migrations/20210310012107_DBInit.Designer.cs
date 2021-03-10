@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sigo.Autenticacao.API.Infrasctructure;
 
 namespace Sigo.Autenticacao.API.Migrations
 {
     [DbContext(typeof(AutenticacaoContext))]
-    partial class AcessoContextModelSnapshot : ModelSnapshot
+    [Migration("20210310012107_DBInit")]
+    partial class DBInit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -16,6 +16,8 @@ namespace Sigo.Autenticacao.API
 {
     public class Startup
     {
+        private readonly string SIGO_API = "SIGO_API";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,13 +29,25 @@ namespace Sigo.Autenticacao.API
         public void ConfigureServices(IServiceCollection services)
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
-            //string mySqlConnectionStr = "Server=localhost;Database=Seguranca;Uid=sysdba;Pwd=dbapwd;";
-
-            services.AddCors();
+            //string mySqlConnectionStr = Configuration.GetConnectionString("MigrationtConnection"); 
+            //string mySqlConnectionStr = "server=localhost;port=3306;userid=sysdba;password=dbapwd;database=seguranca;Persist Security Info=False;Connect Timeout=300;";
 
             services.AddDbContextPool<AutenticacaoContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: SIGO_API,
+                    builder =>
+                    {
+                        builder
+                        //.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -50,8 +64,8 @@ namespace Sigo.Autenticacao.API
                 c.AddSecurityDefinition("Bearer",
                     new OpenApiSecurityScheme
                     {
-                        Description = "Cabeçalho de autorização JWT usando o esquema Bearer.. \r\n\r\n " +
-                                      "Enter 'Bearer' [spaço] e o token gerado na entrada de texto abaixo. \r\n\r\n " +
+                        Description = "Cabeçalho de autorização JWT usando o esquema Bearer. \r\n\r\n " +
+                                      "Enter 'Bearer' [espaço] e o token gerado na entrada de texto abaixo. \r\n\r\n " +
                                       "Example: \"Bearer TOKEN GERADO\"",
                         Name = "Authorization",
                         In = ParameterLocation.Header,
@@ -124,6 +138,8 @@ namespace Sigo.Autenticacao.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SIGO.Autenticacao.API v1"));
             }
+
+            app.UseCors(SIGO_API);
 
             //
             app.UseHttpsRedirection();
