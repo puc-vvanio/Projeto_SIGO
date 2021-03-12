@@ -37,7 +37,6 @@ namespace SIGO.Autenticacao.API
 
             services.AddScoped<IDapperDbConnection, DapperDbConnection>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IServiceAutenticacao, Autenticacaoervice>();
             services.AddScoped<IServiceUsuario, UsuarioService>();
 
             services.AddCors(options =>
@@ -48,8 +47,11 @@ namespace SIGO.Autenticacao.API
                     {
                         builder
                         //.WithOrigins("http://localhost:4200")
+                        .SetIsOriginAllowed(origin => true)
                         .AllowAnyHeader()
-                        .AllowAnyMethod();
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        ;
                     });
             });
 
@@ -60,7 +62,7 @@ namespace SIGO.Autenticacao.API
                     new OpenApiInfo
                     {
                         Title = "SIGO.Autenticacao.API",
-                        Description = "API de Autenticação do Sistema Integrado de Gestão e Operação",
+                        Description = "API de Autenticação e Autorização do Sistema Integrado de Gestão e Operação",
                         Version = "v1"
                     }
                 );

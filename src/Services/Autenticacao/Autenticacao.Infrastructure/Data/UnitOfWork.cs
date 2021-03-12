@@ -13,7 +13,6 @@ namespace SIGO.Autenticacao.Infrastructure.Data
         private readonly IDapperDbConnection _dapperDbConnection;
 
         public IRepositoryUsuario Usuarios { get; set; }
-        public IRepositoryAutenticacao Autenticacao { get; set; }
 
         public UnitOfWork(MySqlContext context, IDapperDbConnection dapperDbConnection)
         {
@@ -21,7 +20,6 @@ namespace SIGO.Autenticacao.Infrastructure.Data
             _dapperDbConnection = dapperDbConnection;
 
             Usuarios = new UsuarioRepository(_context, _dapperDbConnection);
-            Autenticacao = new AutenticacaoRepository(_context, _dapperDbConnection);
         }
 
         public int Commit()

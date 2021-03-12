@@ -16,8 +16,6 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Context
 
         public DbSet<Usuario> Usuarios { get; set; }
 
-        public DbSet<Autenticacao> Autenticacao { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -26,52 +24,21 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Context
                 mutableForeignKey.DeleteBehavior = DeleteBehavior.Restrict;
 
             modelBuilder.ApplyConfiguration(new UsuarioMapping());
-            modelBuilder.ApplyConfiguration(new AutenticacaoMapping());
-
-            modelBuilder.Entity<Autenticacao>().HasData(
-               new Autenticacao
-               {
-                   Id = 1,
-                   DataCriacao = DateTime.Now,
-                   Nome = "Autenticacao 1",
-                   Descricao = "Descrição Cosnsultoria 1"
-               },
-               new Autenticacao
-               {
-                   Id = 2,
-                   DataCriacao = DateTime.Now,
-                   Nome = "Autenticacao 2",
-                   Descricao = "Descrição Cosnsultoria 2"
-               }
-            );
 
             modelBuilder.Entity<Usuario>().HasData(
                new Usuario
                {
                    Id = 1,
-                   DataCriacao = DateTime.Now,
-                   Tipo = TipoUsuario.Assessoria,
                    Nome = "Usuario 1",
-                   Descricao = "Descrição Usuario 1",
-                   AutenticacaoID = 1
+                   Email = "usuario1@sigo.com.br",
+                   Status = StatusUsuario.Ativo
                },
                new Usuario
                {
                    Id = 2,
-                   DataCriacao = DateTime.Now,
-                   Tipo = TipoUsuario.Autenticacao,
                    Nome = "Usuario 2",
-                   Descricao = "Descrição Usuario 2",
-                   AutenticacaoID = 2
-               },
-               new Usuario
-               {
-                   Id = 3,
-                   DataCriacao = DateTime.Now,
-                   Tipo = TipoUsuario.Outro,
-                   Nome = "Usuario 3",
-                   Descricao = "Descrição Usuario 3",
-                   AutenticacaoID = 2
+                   Email = "usuario2@sigo.com.br",
+                   Status = StatusUsuario.Ativo
                }
             );
         }

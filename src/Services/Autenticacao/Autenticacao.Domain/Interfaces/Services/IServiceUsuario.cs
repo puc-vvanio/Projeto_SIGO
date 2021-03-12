@@ -6,9 +6,11 @@ namespace SIGO.Autenticacao.Domain.Interfaces.Services
 {
     public interface IServiceUsuario
     {
-        Task<Usuario> Salvar(Usuario usuario);
+        Task<Usuario> Autenticar(string email, string senha);
 
-        Task Atualizar(Usuario usuario);
+        Task<Usuario> Salvar(Usuario usuario, string senha);
+
+        Task Atualizar(Usuario usuario, string senha = null);
 
         Task Excluir(int id);
 

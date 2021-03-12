@@ -31,18 +31,21 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Mapping
                    .HasColumnType("datetime")
                    .IsRequired(false);
 
-            modelBuilder.Property(ug => ug.Tipo)
-                  .HasColumnType("int")
-                  .IsRequired();
             modelBuilder.Property(ug => ug.Nome)
-                   .HasColumnType("nvarchar(50)")
+                   .HasColumnType("nvarchar(100)")
                    .IsRequired();
-            modelBuilder.Property(ug => ug.Descricao)
+            modelBuilder.Property(ug => ug.Email)
+                   .HasColumnType("nvarchar(100)")
+                   .IsRequired();
+            modelBuilder.Property(ug => ug.SenhaHash)
                    .HasColumnType("text")
                    .IsRequired();
-            modelBuilder.Property(ug => ug.AutenticacaoID)
+            modelBuilder.Property(ug => ug.SenhaSalt)
                    .HasColumnType("int")
                    .IsRequired();
+            modelBuilder.Property(ug => ug.Status)
+                  .HasColumnType("int")
+                  .IsRequired();
 
             // Configure Primary Keys  
             modelBuilder.HasKey(ug => ug.Id)

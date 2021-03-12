@@ -10,6 +10,5 @@ namespace SIGO.Autenticacao.Domain.Interfaces
         Task<int> CommitAsync();
 
         IRepositoryUsuario Usuarios { get; }
-        IRepositoryAutenticacao Autenticacao { get; }
     }
 }

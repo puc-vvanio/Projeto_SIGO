@@ -74,6 +74,30 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Repository
             }
         }
 
+        public async Task<Usuario> ObterUsuarioPorEmail(string email)
+        {
+            try
+            {
+                return await _context.Usuarios.SingleOrDefaultAsync(x => x.Email.ToString().Equals(email) && x.DataExclusao == null);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> VerificarExisteUsuario(string email)
+        {
+            try
+            {
+                return await _context.Usuarios.AnyAsync(x => x.Email == email);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public async Task<List<Usuario>> ObterUsuarios()
         {
             try
