@@ -58,18 +58,14 @@ namespace SIGO.Normas.Service.Services
 
         public async Task<Norma> ObterNorma(int id)
         {
-            var norma = new Norma();
-
             try
             {
-                norma = await _unitOfWork.Normas.ObterNorma(id);
+                return await _unitOfWork.Normas.ObterNorma(id);
             }
             catch
             {
                 throw;
             }
-
-            return norma;
         }
 
         public async Task<List<Norma>> ObterNormas()
