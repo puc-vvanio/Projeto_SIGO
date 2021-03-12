@@ -1,18 +1,17 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using SIGO.Autenticacao.Domain.Entities;
 using SIGO.Autenticacao.Domain.Interfaces.Services;
+using SIGO.Autenticacao.Domain.Models.Users;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SIGO.Autenticacao.Service.Services
 {
     public class TokenService : IServiceToken
     {
-        public string GerarToken(Usuario usuario)
+        public string GerarToken(UsuarioAutenticar usuario)
         {
             //
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -24,7 +23,6 @@ namespace SIGO.Autenticacao.Service.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, usuario.Nome.ToString()),
                     new Claim(ClaimTypes.Email, usuario.Email.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),

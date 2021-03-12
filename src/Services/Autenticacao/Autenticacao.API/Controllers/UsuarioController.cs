@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SIGO.Autenticacao.Domain.DTO.Users;
-using SIGO.Autenticacao.Domain.Entities;
 using SIGO.Autenticacao.Domain.Interfaces.Services;
 using SIGO.Autenticacao.Domain.Models.Users;
 using System;
@@ -19,13 +17,11 @@ namespace SIGO.Autenticacao.API.Controllers
     {
         private readonly IServiceUsuario _usuarioService;
         private readonly IServiceToken _tokenService;
-        private readonly IMapper _mapper;
 
-        public UsuarioController(IServiceUsuario usuarioService, IServiceToken tokenService, IMapper mapper)
+        public UsuarioController(IServiceUsuario usuarioService, IServiceToken tokenService)
         {
             _usuarioService = usuarioService;
             _tokenService = tokenService;
-            _mapper = mapper;
         }
 
         // GET: api/<UsuarioController>
@@ -35,19 +31,18 @@ namespace SIGO.Autenticacao.API.Controllers
         {
             try
             {
-                var usuario = _usuarioService.Autenticar(usuarioAutenticar.Email, usuarioAutenticar.Senha);
+                var usuarioAutenticado = _usuarioService.Autenticar(usuarioAutenticar.Email, usuarioAutenticar.Senha);
 
                 // usuario não autenticado
-                if (usuarioAutenticar == null)
+                if (usuarioAutenticado == null)
                     return BadRequest("Email e/ou Senha não está(ão) correto(s)");
 
                 // TODO: no retorno, deve trazer os dados de autorização do usuário
-                var usuarioAutenticado = _mapper.Map<Usuario>(usuario);
-                var token = _tokenService.GerarToken(usuarioAutenticado);
+                var token = _tokenService.GerarToken(usuarioAutenticar);
 
                 TokenDTO tokenDTO = new TokenDTO()
                 {
-                    Usuario = usuarioAutenticado.Email,
+                    Usuario = usuarioAutenticar.Email,
                     Token = token
                 };
 
@@ -71,8 +66,7 @@ namespace SIGO.Autenticacao.API.Controllers
 
                 if (usuario != null)
                 {
-                    var usuarioExibir = _mapper.Map<UsuarioExibir>(usuario); 
-                    return Ok(usuarioExibir);
+                    return Ok(usuario);
                 }
                 else
                 {

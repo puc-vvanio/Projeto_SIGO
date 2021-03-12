@@ -38,6 +38,7 @@ namespace SIGO.Autenticacao.API
             services.AddScoped<IDapperDbConnection, DapperDbConnection>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IServiceUsuario, UsuarioService>();
+            services.AddScoped<IServiceToken, TokenService>();
 
             services.AddCors(options =>
             {

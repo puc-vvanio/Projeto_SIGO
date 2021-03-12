@@ -1,10 +1,9 @@
-﻿using SIGO.Autenticacao.Domain.Entities;
-using System.Threading.Tasks;
+﻿using SIGO.Autenticacao.Domain.Models.Users;
 
 namespace SIGO.Autenticacao.Domain.Interfaces.Services
 {
     public interface IServiceToken
     {
-        string GerarToken(Usuario usuario);
+        string GerarToken(UsuarioAutenticar usuario);
     }
 }
