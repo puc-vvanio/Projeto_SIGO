@@ -12,14 +12,16 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data
         private readonly MySqlContext _context;
         private readonly IDapperDbConnection _dapperDbConnection;
 
-        //public IRepositoryProcessoIndustrial ProcessoIndustrial { get; set; }
+        public IRepositoryEvento Eventos { get; set; }
+        public IRepositoryTipoEvento TiposEventos { get; set; }
 
         public UnitOfWork(MySqlContext context, IDapperDbConnection dapperDbConnection)
         {
             _context = context;
             _dapperDbConnection = dapperDbConnection;
 
-            //ProcessoIndustrial = new ProcessoIndustrialRepository(_context, _dapperDbConnection);
+            Eventos = new EventoRepository(_context, _dapperDbConnection);
+            TiposEventos = new TipoEventoRepository(_context, _dapperDbConnection);
         }
 
         public int Commit()

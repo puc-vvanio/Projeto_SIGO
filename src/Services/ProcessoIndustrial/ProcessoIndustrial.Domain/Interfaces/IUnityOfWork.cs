@@ -9,5 +9,7 @@ namespace SIGO.ProcessoIndustrial.Domain.Interfaces
         int Commit();
         Task<int> CommitAsync();
 
+        IRepositoryEvento Eventos { get; }
+        IRepositoryTipoEvento TiposEventos { get; }
     }
 }

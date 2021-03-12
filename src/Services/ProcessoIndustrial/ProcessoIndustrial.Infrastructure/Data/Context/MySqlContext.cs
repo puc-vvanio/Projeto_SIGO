@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SIGO.ProcessoIndustrial.Domain.Entities;
-using SIGO.ProcessoIndustrial.Domain.Enums;
 using SIGO.ProcessoIndustrial.Infrastructure.Data.Mapping;
 using System;
 using System.Linq;
@@ -14,7 +13,8 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data.Context
         {
         }
 
-        //public DbSet<ProcessoIndustrial> ProcessoIndustrial { get; set; }
+        public DbSet<Evento> Eventos { get; set; }
+        public DbSet<TipoEvento> TiposEventos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,8 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data.Context
             foreach (var mutableForeignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                 mutableForeignKey.DeleteBehavior = DeleteBehavior.Restrict;
 
-            //modelBuilder.ApplyConfiguration(new ProcessoIndustrialMapping());
+            modelBuilder.ApplyConfiguration(new EventoMapping());
+            modelBuilder.ApplyConfiguration(new TipoEventoMapping());
 
         }
 
