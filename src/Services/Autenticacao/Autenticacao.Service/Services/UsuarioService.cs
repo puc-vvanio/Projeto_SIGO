@@ -19,28 +19,26 @@ namespace SIGO.Autenticacao.Service.Services
 
         public async Task<Usuario> Autenticar(string email, string senha)
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
-                return null;
-
-            var usuario = new Usuario();
-
             try
             {
-                usuario = await _unitOfWork.Usuarios.ObterUsuarioPorEmail(email);
+                var usuario = await _unitOfWork.Usuarios.ObterUsuarioPorEmail(email);
+
+                if ((usuario.SenhaHash != null && usuario.SenhaHash?.Length > 0) && ((usuario.SenhaSalt != null && usuario.SenhaSalt?.Length > 0))
+                {
+                    // verificar se a senha está correta
+                    if (VerificarSenhaHash(senha, usuario.SenhaHash, usuario.SenhaSalt))
+                    {
+                        // Usuário autenticado
+                        return usuario;
+                    }
+                }
+
+                return null;
             }
             catch
             {
                 throw;
             }
-
-            // verificar se a senha está correta
-            if (!VerificarSenhaHash(senha, usuario.SenhaHash, usuario.SenhaSalt))
-            {
-                return null;
-            }
-
-            // Usuário autenticado
-            return usuario;
         }
 
         public async Task<Usuario> Salvar(Usuario usuario, string senha)

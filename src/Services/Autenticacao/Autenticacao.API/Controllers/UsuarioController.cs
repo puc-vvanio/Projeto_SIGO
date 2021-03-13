@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SIGO.Autenticacao.Domain.DTO.Users;
+using SIGO.Autenticacao.Domain.Entities;
 using SIGO.Autenticacao.Domain.Interfaces.Services;
 using SIGO.Autenticacao.Domain.Models.Users;
 using System;
@@ -27,18 +28,25 @@ namespace SIGO.Autenticacao.API.Controllers
         // GET: api/<UsuarioController>
         [AllowAnonymous]
         [HttpPost("autenticar")]
-        public IActionResult Autenticar([FromBody] UsuarioAutenticar usuarioAutenticar)
+        public async Task<IActionResult> AutenticarAsync([FromBody] UsuarioAutenticar usuarioAutenticar)
         {
             try
             {
-                var usuarioAutenticado = _usuarioService.Autenticar(usuarioAutenticar.Email, usuarioAutenticar.Senha);
+                if (string.IsNullOrEmpty(usuarioAutenticar.Email) || string.IsNullOrEmpty(usuarioAutenticar.Senha))
+                {
+                    return BadRequest("Email e/ou Senha não está(ão) correto(s)");
+                }
+                
+                var usuarioAutenticado = await _usuarioService.Autenticar(usuarioAutenticar.Email, usuarioAutenticar.Senha);
 
                 // usuario não autenticado
                 if (usuarioAutenticado == null)
+                {
                     return BadRequest("Email e/ou Senha não está(ão) correto(s)");
+                }
 
                 // TODO: no retorno, deve trazer os dados de autorização do usuário
-                var token = _tokenService.GerarToken(usuarioAutenticar);
+                var token = _tokenService.GerarToken(usuarioAutenticado);
 
                 TokenDTO tokenDTO = new TokenDTO()
                 {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using SIGO.Autenticacao.Domain.Entities;
 using SIGO.Autenticacao.Domain.Interfaces.Services;
 using SIGO.Autenticacao.Domain.Models.Users;
 using System;
@@ -11,7 +12,7 @@ namespace SIGO.Autenticacao.Service.Services
 {
     public class TokenService : IServiceToken
     {
-        public string GerarToken(UsuarioAutenticar usuario)
+        public string GerarToken(Usuario usuario)
         {
             //
             var tokenHandler = new JwtSecurityTokenHandler();
