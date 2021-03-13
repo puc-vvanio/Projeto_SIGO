@@ -2,7 +2,6 @@
 using Microsoft.IdentityModel.Tokens;
 using SIGO.Autenticacao.Domain.Entities;
 using SIGO.Autenticacao.Domain.Interfaces.Services;
-using SIGO.Autenticacao.Domain.Models.Users;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -24,7 +23,8 @@ namespace SIGO.Autenticacao.Service.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, usuario.Email.ToString())
+                    new Claim(ClaimTypes.Email, usuario.Email.ToString()),
+                    new Claim(ClaimTypes.Role, usuario.Perfil.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

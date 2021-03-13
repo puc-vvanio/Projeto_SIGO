@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SIGO.Autenticacao.Domain.Entities;
 using SIGO.Autenticacao.Domain.Enums;
+using SIGO.Autenticacao.Infrastructure.CrossCutting.Security;
 using SIGO.Autenticacao.Infrastructure.Data.Mapping;
 using System;
 using System.Linq;
@@ -25,19 +26,38 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Context
 
             modelBuilder.ApplyConfiguration(new UsuarioMapping());
 
+            // Hash da senha
+            SenhaHelper.CriarSenhaHash("1234", out byte[] senhaHash, out byte[] senhaSalt);
+
             modelBuilder.Entity<Usuario>().HasData(
                new Usuario
                {
                    Id = 1,
                    Nome = "Usuario 1",
-                   Email = "usuario1@sigo.com.br",
+                   Email = "admin@sigo.com.br",
+                   SenhaHash = senhaHash,
+                   SenhaSalt = senhaSalt,
+                   Perfil = PerfilUsuario.Admin,
                    Status = StatusUsuario.Ativo
                },
                new Usuario
                {
                    Id = 2,
                    Nome = "Usuario 2",
-                   Email = "usuario2@sigo.com.br",
+                   Email = "gerente@sigo.com.br",
+                   SenhaHash = senhaHash,
+                   SenhaSalt = senhaSalt,
+                   Perfil = PerfilUsuario.Gerente,
+                   Status = StatusUsuario.Ativo
+               },
+               new Usuario
+               {
+                   Id = 3,
+                   Nome = "Usuario 3",
+                   Email = "colaborador@sigo.com.br",
+                   SenhaHash = senhaHash,
+                   SenhaSalt = senhaSalt,
+                   Perfil = PerfilUsuario.Colaborador,
                    Status = StatusUsuario.Ativo
                }
             );

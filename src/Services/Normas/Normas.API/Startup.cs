@@ -30,7 +30,6 @@ namespace SIGO.Normas.API
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
             //mySqlConnectionStr = "server=localhost;port=3306;userid=sysdba;password=dbapwd;database=normastecnicas;Persist Security Info=False;Connect Timeout=300;";
-            //string mySqlConnectionStr = Configuration.GetConnectionString("MigrationConnection");
             services.AddDbContextPool<MySqlContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddControllers();

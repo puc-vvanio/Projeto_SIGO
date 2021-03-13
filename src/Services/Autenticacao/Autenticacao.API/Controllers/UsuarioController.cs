@@ -33,29 +33,25 @@ namespace SIGO.Autenticacao.API.Controllers
             try
             {
                 if (string.IsNullOrEmpty(usuarioAutenticar.Email) || string.IsNullOrEmpty(usuarioAutenticar.Senha))
-                {
                     return BadRequest("Email e/ou Senha não está(ão) correto(s)");
-                }
-                
+
                 var usuarioAutenticado = await _usuarioService.Autenticar(usuarioAutenticar.Email, usuarioAutenticar.Senha);
 
                 // usuario não autenticado
                 if (usuarioAutenticado == null)
-                {
                     return BadRequest("Email e/ou Senha não está(ão) correto(s)");
-                }
 
-                // TODO: no retorno, deve trazer os dados de autorização do usuário
                 var token = _tokenService.GerarToken(usuarioAutenticado);
 
                 TokenDTO tokenDTO = new TokenDTO()
                 {
-                    Usuario = usuarioAutenticar.Email,
+                    Usuario = usuarioAutenticado.Email,
+                    Perfil = usuarioAutenticado.Perfil.ToString(),
                     Token = token
                 };
 
                 return Ok(tokenDTO);
-
+                
             }
             catch (Exception)
             {
@@ -74,7 +70,16 @@ namespace SIGO.Autenticacao.API.Controllers
 
                 if (usuario != null)
                 {
-                    return Ok(usuario);
+                    UsuarioExibir usuarioExibir = new UsuarioExibir()
+                    {
+                        Id = usuario.Id,
+                        Nome = usuario.Nome,
+                        Email = usuario.Email,
+                        Perfil = usuario.Perfil.ToString(),
+                        Status = usuario.Status.ToString()
+                    };
+
+                    return Ok(usuarioExibir);
                 }
                 else
                 {

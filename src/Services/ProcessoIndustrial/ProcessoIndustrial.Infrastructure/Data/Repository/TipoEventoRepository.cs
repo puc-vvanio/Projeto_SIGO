@@ -66,7 +66,7 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data.Repository
         {
             try
             {
-                return await _context.TiposEventos.SingleOrDefaultAsync(x => x.Id.ToString().Equals(id) && x.DataExclusao == null);
+                return await _context.TiposEventos.SingleOrDefaultAsync(x => x.Id.ToString().Equals(id.ToString()) && x.DataExclusao == null);
             }
             catch
             {

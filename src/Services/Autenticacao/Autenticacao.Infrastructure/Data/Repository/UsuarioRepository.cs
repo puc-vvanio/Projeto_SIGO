@@ -66,7 +66,7 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Repository
         {
             try
             {
-                return await _context.Usuarios.SingleOrDefaultAsync(x => x.Id.ToString().Equals(id) && x.DataExclusao == null);
+                return await _context.Usuarios.SingleOrDefaultAsync(x => x.Id.ToString().Equals(id.ToString()) && x.DataExclusao == null);
             }
             catch
             {
@@ -78,7 +78,7 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Repository
         {
             try
             {
-                return await _context.Usuarios.SingleOrDefaultAsync(x => x.Email.ToString().Equals(email) && x.DataExclusao == null);
+                return await _context.Usuarios.SingleOrDefaultAsync(x => x.Email == email && x.DataExclusao == null);
             }
             catch
             {
@@ -90,7 +90,7 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Repository
         {
             try
             {
-                return await _context.Usuarios.AnyAsync(x => x.Email == email);
+                return await _context.Usuarios.AnyAsync(x => x.Email.ToString().Equals(email));
             }
             catch
             {

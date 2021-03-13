@@ -66,7 +66,7 @@ namespace SIGO.Consultorias.Infrastructure.Data.Repository
         {
             try
             {
-                return await _context.Consultorias.SingleOrDefaultAsync(x => x.Id.ToString().Equals(id) && x.DataExclusao == null);
+                return await _context.Consultorias.SingleOrDefaultAsync(x => x.Id.ToString().Equals(id.ToString()) && x.DataExclusao == null);
             }
             catch
             {

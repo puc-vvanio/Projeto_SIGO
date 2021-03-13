@@ -38,10 +38,10 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Mapping
                    .HasColumnType("nvarchar(100)")
                    .IsRequired();
             modelBuilder.Property(ug => ug.SenhaHash)
-                   .HasColumnType("text")
+                   .HasColumnType("varbinary(64)")
                    .IsRequired();
             modelBuilder.Property(ug => ug.SenhaSalt)
-                   .HasColumnType("int")
+                   .HasColumnType("varbinary(128)")
                    .IsRequired();
             modelBuilder.Property(ug => ug.Status)
                   .HasColumnType("int")

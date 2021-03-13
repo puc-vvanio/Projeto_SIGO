@@ -29,8 +29,7 @@ namespace SIGO.Consultorias.API
         public void ConfigureServices(IServiceCollection services)
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
-            //string mySqlConnectionStr = "server=localhost;port=3306;userid=sysdba;password=dbapwd;database=consultorias;Persist Security Info=False;Connect Timeout=300;";
-            //string mySqlConnectionStr = Configuration.GetConnectionString("MigrationConnection");
+            //mySqlConnectionStr = "server=localhost;port=3306;userid=sysdba;password=dbapwd;database=consultorias;Persist Security Info=False;Connect Timeout=300;";
             services.AddDbContextPool<MySqlContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddControllers();

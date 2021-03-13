@@ -10,6 +10,8 @@ namespace SIGO.Autenticacao.Domain.Models.Users
 
         public string Email { get; set; }
 
-        public StatusUsuario Status { get; set; }
+        public string Perfil { get; set; }
+
+        public string Status { get; set; }
     }
 }
