@@ -11,10 +11,10 @@
           "DownstreamScheme": "https",
           // Endereço de serviço e porta (se for um cluster, definir vários)
           "DownstreamHostAndPorts": [
-              {
-                  "Host": "autenticacao.api",
-                  "Port": 5101
-              }
+            {
+              "Host": "autenticacao.api",
+              "Port": 44398
+            }
           ]
       },
       {
