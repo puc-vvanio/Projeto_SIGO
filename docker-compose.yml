@@ -31,46 +31,34 @@ services:
     networks:
       - sigo.dmz
 
+  gateway.api:
+    image: ${DOCKER_REGISTRY-}apigateway
+    container_name: apigateway
+    build:
+      context: .
+      dockerfile: src/ApiGateways/APIGateway/Dockerfile
+    ports:
+      - 5000:80
+      - 5001:443
+    links:
+      - autenticacao.api
+      - processoindustrial.api
+      - normas.api
+      - consultorias.api
+    networks:
+      - sigo.dmz
+
   autenticacao.api:
     image: ${DOCKER_REGISTRY-}autenticacaoapi
+    container_name: autenticacao
     build:
       context: .
       dockerfile: src/Services/Autenticacao/Autenticacao.API/Dockerfile
     depends_on:
       - sqldata
     ports:
-      - 5000:80
-      - 5001:443
-    links:
-      - sqldata
-    networks:
-      - sigo.dmz
-
-  normas.api:
-    image: ${DOCKER_REGISTRY-}normasapi
-    build:
-      context: .
-      dockerfile: src/Services/Normas/Normas.API/Dockerfile
-    depends_on:
-      - sqldata
-    ports:
-      - 6000:80
-      - 6001:443
-    links:
-      - sqldata
-    networks:
-      - sigo.dmz
-
-  consultorias.api:
-    image: ${DOCKER_REGISTRY-}consultoriasapi
-    build:
-      context: .
-      dockerfile: src/Services/Consultorias/Consultorias.API/Dockerfile
-    depends_on:
-      - sqldata
-    ports:
-      - 7000:80
-      - 7001:443
+      - 5100:80
+      - 5101:443
     links:
       - sqldata
     networks:
@@ -78,14 +66,47 @@ services:
       
   processoindustrial.api:
     image: ${DOCKER_REGISTRY-}processoindustrialapi
+    container_name: processoindustrial
     build:
       context: .
       dockerfile: src/Services/ProcessoIndustrial/ProcessoIndustrial.API/Dockerfile
     depends_on:
       - sqldata
     ports:
-      - 9000:80
-      - 9001:443
+      - 5200:80
+      - 5201:443
+    links:
+      - sqldata
+    networks:
+      - sigo.dmz
+
+  normas.api:
+    image: ${DOCKER_REGISTRY-}normasapi
+    container_name: normas
+    build:
+      context: .
+      dockerfile: src/Services/Normas/Normas.API/Dockerfile
+    depends_on:
+      - sqldata
+    ports:
+      - 5300:80
+      - 5301:443
+    links:
+      - sqldata
+    networks:
+      - sigo.dmz
+
+  consultorias.api:
+    image: ${DOCKER_REGISTRY-}consultoriasapi
+    container_name: consultorias
+    build:
+      context: .
+      dockerfile: src/Services/Consultorias/Consultorias.API/Dockerfile
+    depends_on:
+      - sqldata
+    ports:
+      - 5400:80
+      - 5401:443
     links:
       - sqldata
     networks:

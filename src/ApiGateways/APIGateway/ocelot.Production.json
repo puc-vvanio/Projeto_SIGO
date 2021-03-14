@@ -1,0 +1,86 @@
+{
+  "Routes": [
+    {
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/usuario/{everything}",
+      "DownstreamPathTemplate": "/api/Usuario/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 403
+        }
+      ],
+      "RouteIsCaseSensitive": true
+    },
+    {
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/processoindustrial/{everything}",
+      "DownstreamPathTemplate": "/api/Processoindustrial/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhostt",
+          "Port": 403
+        }
+      ],
+      "RouteIsCaseSensitive": true
+    },
+    {
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/norma/{everything}",
+      "DownstreamPathTemplate": "/api/Norma/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 403
+        }
+      ],
+      "RouteIsCaseSensitive": true
+    },
+    {
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/repositorio/{everything}",
+      "DownstreamPathTemplate": "/api/Repositorio/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 403
+        }
+      ],
+      "RouteIsCaseSensitive": true
+    },
+    {
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/consultoria/{everything}",
+      "DownstreamPathTemplate": "/api/Consultoria/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 403
+        }
+      ],
+      "RouteIsCaseSensitive": true
+    },
+    {
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/contrato/{everything}",
+      "DownstreamPathTemplate": "/api/Contrato/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 403
+        }
+      ],
+      "RouteIsCaseSensitive": true
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "BaseUrl": "https://localhost:5001"
+  }
+}

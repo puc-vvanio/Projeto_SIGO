@@ -64,13 +64,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.Autenticacao.API", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcessoIndustrial", "ProcessoIndustrial", "{48F4B296-14FA-4FB0-B014-9293AD17286C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.ProcessoIndustrial.API", "src\Services\ProcessoIndustrial\ProcessoIndustrial.API\SIGO.ProcessoIndustrial.API.csproj", "{87C5D20E-99EF-44BD-A831-7787E180CA15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.ProcessoIndustrial.API", "src\Services\ProcessoIndustrial\ProcessoIndustrial.API\SIGO.ProcessoIndustrial.API.csproj", "{87C5D20E-99EF-44BD-A831-7787E180CA15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.ProcessoIndustrial.Domain", "src\Services\ProcessoIndustrial\ProcessoIndustrial.Domain\SIGO.ProcessoIndustrial.Domain.csproj", "{216B60FC-54EE-4F3A-8C7C-302518B9D793}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.ProcessoIndustrial.Domain", "src\Services\ProcessoIndustrial\ProcessoIndustrial.Domain\SIGO.ProcessoIndustrial.Domain.csproj", "{216B60FC-54EE-4F3A-8C7C-302518B9D793}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.ProcessoIndustrial.Infrastructure", "src\Services\ProcessoIndustrial\ProcessoIndustrial.Infrastructure\SIGO.ProcessoIndustrial.Infrastructure.csproj", "{2C8E20FF-AF06-43A5-A833-4628B1D51B4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.ProcessoIndustrial.Infrastructure", "src\Services\ProcessoIndustrial\ProcessoIndustrial.Infrastructure\SIGO.ProcessoIndustrial.Infrastructure.csproj", "{2C8E20FF-AF06-43A5-A833-4628B1D51B4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.ProcessoIndustrial.Service", "src\Services\ProcessoIndustrial\ProcessoIndustrial.Service\SIGO.ProcessoIndustrial.Service.csproj", "{25801EA9-8CAA-42AE-B852-8383FB5DAC9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.ProcessoIndustrial.Service", "src\Services\ProcessoIndustrial\ProcessoIndustrial.Service\SIGO.ProcessoIndustrial.Service.csproj", "{25801EA9-8CAA-42AE-B852-8383FB5DAC9A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.APIGateway", "src\ApiGateways\APIGateway\SIGO.APIGateway.csproj", "{DD838B68-CA3B-4403-BF9F-19D3CF6E45EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -150,6 +152,10 @@ Global
 		{25801EA9-8CAA-42AE-B852-8383FB5DAC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25801EA9-8CAA-42AE-B852-8383FB5DAC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25801EA9-8CAA-42AE-B852-8383FB5DAC9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD838B68-CA3B-4403-BF9F-19D3CF6E45EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD838B68-CA3B-4403-BF9F-19D3CF6E45EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD838B68-CA3B-4403-BF9F-19D3CF6E45EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD838B68-CA3B-4403-BF9F-19D3CF6E45EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,6 +186,7 @@ Global
 		{216B60FC-54EE-4F3A-8C7C-302518B9D793} = {48F4B296-14FA-4FB0-B014-9293AD17286C}
 		{2C8E20FF-AF06-43A5-A833-4628B1D51B4A} = {48F4B296-14FA-4FB0-B014-9293AD17286C}
 		{25801EA9-8CAA-42AE-B852-8383FB5DAC9A} = {48F4B296-14FA-4FB0-B014-9293AD17286C}
+		{DD838B68-CA3B-4403-BF9F-19D3CF6E45EC} = {C6F5DCD2-2CAD-4155-9886-4A324482C6F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1FB1089-A465-41D3-9A19-91775B8D01C5}

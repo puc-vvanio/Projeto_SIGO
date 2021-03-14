@@ -18,7 +18,7 @@ namespace SIGO.Autenticacao.API
     {
         private readonly string SIGO_API = "SIGO_API";
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
