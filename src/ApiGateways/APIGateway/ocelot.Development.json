@@ -1,137 +1,148 @@
 {
-  "ReRoutes": [
-      {
-          // Métodos de solicitação HTTP permitidos
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          // Modelo de roteamento de solicitação de serviço
-          "UpstreamPathTemplate": "/usuario/{everything}",
-          // Modelo de roteamento de provimento de serviço
-          "DownstreamPathTemplate": "/api/Usuario/{everything}",
-          // Esquema Uri: http, https
-          "DownstreamScheme": "https",
-          // Endereço de serviço e porta (se for um cluster, definir vários)
-          "DownstreamHostAndPorts": [
-            {
-              "Host": "autenticacao.api",
-              "Port": 44398
-            }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/processoindustrial/{everything}",
-          "DownstreamPathTemplate": "/api/Processoindustrial/{everything}",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "processoindustrial.api",
-                  "Port": 5201
-              }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/norma",
-          "DownstreamPathTemplate": "/api/Norma",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "normas.api",
-                  "Port": 5301
-              }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/norma/{everything}",
-          "DownstreamPathTemplate": "/api/Norma/{everything}",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "normas.api",
-                  "Port": 5301
-              }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/repositorio",
-          "DownstreamPathTemplate": "/api/Repositorio",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "normas.api",
-                  "Port": 5301
-              }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/repositorio/{everything}",
-          "DownstreamPathTemplate": "/api/Repositorio/{everything}",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "normas.api",
-                  "Port": 5301
-              }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/consultoria",
-          "DownstreamPathTemplate": "/api/Consultoria",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "consultorias.api",
-                  "Port": 5401
-              }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/consultoria/{everything}",
-          "DownstreamPathTemplate": "/api/Consultoria/{everything}",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "consultorias.api",
-                  "Port": 5401
-              }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/contrato",
-          "DownstreamPathTemplate": "/api/Contrato",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "consultorias.api",
-                  "Port": 5401
-              }
-          ]
-      },
-      {
-          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-          "UpstreamPathTemplate": "/contrato/{everything}",
-          "DownstreamPathTemplate": "/api/Contrato/{everything}",
-          "DownstreamScheme": "https",
-          "DownstreamHostAndPorts": [
-              {
-                  "Host": "consultorias.api",
-                  "Port": 5401
-              }
-          ]
-      }
-  ],
-  "GlobalConfiguration": {
-      // 
-      "RequestIdKey": "OcRequestId",
-      // Endereço externo do gaeway
-      "BaseUrl": "https://gateway.api:5001",
-      // O roteamento diferencia maiúsculas de minúsculas
-      "ReRouteIsCaseSensitive": true
-  }
+    "ReRoutes": [
+        {
+            // bypass de certificado ssl
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            // Métodos de solicitação HTTP permitidos
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            // Modelo de roteamento de solicitação de serviço
+            "UpstreamPathTemplate": "/usuario/{everything}",
+            // Modelo de roteamento de provimento de serviço
+            "DownstreamPathTemplate": "/api/Usuario/{everything}",
+            // Esquema Uri: http, https
+            "DownstreamScheme": "https",
+            // Endereço de serviço e porta (se for um cluster, definir vários)
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "autenticacao.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/processoindustrial/{everything}",
+            "DownstreamPathTemplate": "/api/Processoindustrial/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "processoindustrial.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/norma",
+            "DownstreamPathTemplate": "/api/Norma",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "normas.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/norma/{everything}",
+            "DownstreamPathTemplate": "/api/Norma/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "normas.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/repositorio",
+            "DownstreamPathTemplate": "/api/Repositorio",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "normas.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/repositorio/{everything}",
+            "DownstreamPathTemplate": "/api/Repositorio/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "normas.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/consultoria",
+            "DownstreamPathTemplate": "/api/Consultoria",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "consultorias.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/consultoria/{everything}",
+            "DownstreamPathTemplate": "/api/Consultoria/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "consultorias.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/contrato",
+            "DownstreamPathTemplate": "/api/Contrato",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "consultorias.api",
+                    "Port": 443
+                }
+            ]
+        },
+        {
+            "DangerousAcceptAnyServerCertificateValidator": true,
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamPathTemplate": "/contrato/{everything}",
+            "DownstreamPathTemplate": "/api/Contrato/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "consultorias.api",
+                    "Port": 443
+                }
+            ]
+        }
+    ],
+    "GlobalConfiguration": {
+        // 
+        "RequestIdKey": "OcRequestId",
+        // Endereço externo do gaeway
+        //"BaseUrl": "https://gateway.api:5001",
+        // O roteamento diferencia maiúsculas de minúsculas
+        "ReRouteIsCaseSensitive": true
+    }
 }

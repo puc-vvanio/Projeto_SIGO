@@ -117,4 +117,3 @@ volumes:
 
 networks:
   sigo.dmz:
-    driver: bridge
