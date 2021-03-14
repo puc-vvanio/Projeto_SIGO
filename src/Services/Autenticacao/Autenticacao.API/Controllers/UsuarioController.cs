@@ -5,15 +5,14 @@ using SIGO.Autenticacao.Domain.Entities;
 using SIGO.Autenticacao.Domain.Interfaces.Services;
 using SIGO.Autenticacao.Domain.Models.Users;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SIGO.Autenticacao.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //    [Authorize(Roles = Autorizacao.Grupo.ADMIN)]
+   // [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly IServiceUsuario _usuarioService;
@@ -24,42 +23,7 @@ namespace SIGO.Autenticacao.API.Controllers
             _usuarioService = usuarioService;
             _tokenService = tokenService;
         }
-
-        // GET: api/<UsuarioController>
-        [AllowAnonymous]
-        [HttpPost("autenticar")]
-        public async Task<IActionResult> AutenticarAsync([FromBody] UsuarioAutenticar usuarioAutenticar)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(usuarioAutenticar.Email) || string.IsNullOrEmpty(usuarioAutenticar.Senha))
-                    return BadRequest("Email e/ou Senha não está(ão) correto(s)");
-
-                var usuarioAutenticado = await _usuarioService.Autenticar(usuarioAutenticar.Email, usuarioAutenticar.Senha);
-
-                // usuario não autenticado
-                if (usuarioAutenticado == null)
-                    return BadRequest("Email e/ou Senha não está(ão) correto(s)");
-
-                var token = _tokenService.GerarToken(usuarioAutenticado);
-
-                TokenDTO tokenDTO = new TokenDTO()
-                {
-                    Usuario = usuarioAutenticado.Email,
-                    Perfil = usuarioAutenticado.Perfil.ToString(),
-                    Token = token
-                };
-
-                return Ok(tokenDTO);
-                
-            }
-            catch (Exception)
-            {
-                return StatusCode(500, "Erro ao comunicar com a base de dados!");
-            }
-        }
-
-        
+       
         // GET api/<UsuarioController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
@@ -84,6 +48,46 @@ namespace SIGO.Autenticacao.API.Controllers
                 else
                 {
                     return Ok("Usuario não encontrado!");
+                }
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erro ao comunicar com a base de dados!");
+            }
+        }
+
+        // GET api/<UsuarioController>
+        [HttpGet()]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var usuarios = await _usuarioService.ObterUsuarios();
+
+                if (usuarios != null)
+                {
+                    List<UsuarioExibir> usuariosList = new List<UsuarioExibir>();
+
+                    foreach (Usuario usuario in usuarios)
+                    {
+                        UsuarioExibir usuarioExibir = new UsuarioExibir()
+                        {
+                            Id = usuario.Id,
+                            Nome = usuario.Nome,
+                            Email = usuario.Email,
+                            Perfil = usuario.Perfil.ToString(),
+                            Status = usuario.Status.ToString()
+                        };
+
+                        usuariosList.Add(usuarioExibir);
+                    }
+                    
+                    return Ok(usuariosList);
+                }
+                else
+                {
+                    return Ok("Nenhum usuario não encontrado!");
                 }
 
             }
