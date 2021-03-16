@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SIGO.Autenticacao.Domain.DTO.Users;
 using SIGO.Autenticacao.Domain.Entities;
 using SIGO.Autenticacao.Domain.Interfaces.Services;
 using SIGO.Autenticacao.Domain.Models.Users;
@@ -11,8 +10,7 @@ using System.Threading.Tasks;
 namespace SIGO.Autenticacao.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-   // [Authorize]
+    [ApiController]   
     public class UsuarioController : ControllerBase
     {
         private readonly IServiceUsuario _usuarioService;
@@ -23,9 +21,12 @@ namespace SIGO.Autenticacao.API.Controllers
             _usuarioService = usuarioService;
             _tokenService = tokenService;
         }
-       
+
         // GET api/<UsuarioController>/5
+        
         [HttpGet("{id}")]
+        [Authorize]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Get(int id)
         {
             try
@@ -59,6 +60,7 @@ namespace SIGO.Autenticacao.API.Controllers
 
         // GET api/<UsuarioController>
         [HttpGet()]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Get()
         {
             try
