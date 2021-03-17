@@ -144,7 +144,6 @@ namespace SIGO.Autenticacao.API
             app.UseCors(SIGO_API);
 
             app.UseRouting();
-
                        
             app.UseAuthentication();
             app.UseAuthorization();            

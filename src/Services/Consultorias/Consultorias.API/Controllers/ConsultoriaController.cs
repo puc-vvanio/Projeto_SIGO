@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SIGO.Consultorias.Domain.Interfaces.Services;
 using System;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace SIGO.Consultorias.API.Controllers
 
         // GET: api/<ConsultoriaController>
         [HttpGet]
+        [Authorize(Roles = "Gerente")]
         public async Task<IActionResult> Get()
         {
             try

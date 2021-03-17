@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SIGO.Consultorias.Domain.Interfaces;
 using SIGO.Consultorias.Domain.Interfaces.Services;
@@ -11,6 +13,8 @@ using SIGO.Consultorias.Infrastructure.CrossCutting;
 using SIGO.Consultorias.Infrastructure.Data;
 using SIGO.Consultorias.Infrastructure.Data.Context;
 using SIGO.Consultorias.Service.Services;
+using System.Collections.Generic;
+using System.Text;
 
 namespace SIGO.Consultorias.API
 {
@@ -58,18 +62,18 @@ namespace SIGO.Consultorias.API
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
-                        Title = "SIGO.Consultorias.API",
-                        Description = "API de Consultorias e Acessorias do Sistema Integrado de Gestão e Operação",
+                        Title = "SIGO.Autenticacao.API",
+                        Description = "API de consultoria e contrato, necessário Autenticação",
                         Version = "v1"
                     }
                 );
-                /*
+
                 // 
                 c.AddSecurityDefinition("Bearer",
                     new OpenApiSecurityScheme
                     {
                         Description = "Cabeçalho de autorização JWT usando o esquema Bearer.. \r\n\r\n " +
-                                      "Enter 'Bearer' [spaço] e o token gerado na entrada de texto abaixo. \r\n\r\n " +
+                                      "Enter 'Bearer' [espaço] e o token gerado na entrada de texto abaixo. \r\n\r\n " +
                                       "Example: \"Bearer TOKEN GERADO\"",
                         Name = "Authorization",
                         In = ParameterLocation.Header,
@@ -97,9 +101,28 @@ namespace SIGO.Consultorias.API
                         }
                     }
                 );
-                */
             });
 
+            var chavetoken = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Chavedeacesso");
+            var key = Encoding.ASCII.GetBytes(chavetoken.ToString());
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -118,6 +141,7 @@ namespace SIGO.Consultorias.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

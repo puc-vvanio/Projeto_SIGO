@@ -26,7 +26,7 @@ namespace SIGO.Autenticacao.API.Controllers
         
         [HttpGet("{id}")]
         [Authorize]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Get(int id)
         {
             try
