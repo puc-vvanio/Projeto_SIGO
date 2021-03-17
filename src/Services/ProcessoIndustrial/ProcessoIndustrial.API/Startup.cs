@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SIGO.ProcessoIndustrial.Domain.Interfaces;
 using SIGO.ProcessoIndustrial.Domain.Interfaces.Services;
@@ -11,6 +13,8 @@ using SIGO.ProcessoIndustrial.Infrastructure.CrossCutting;
 using SIGO.ProcessoIndustrial.Infrastructure.Data;
 using SIGO.ProcessoIndustrial.Infrastructure.Data.Context;
 using SIGO.ProcessoIndustrial.Service.Services;
+using System.Collections.Generic;
+using System.Text;
 
 namespace SIGO.ProcessoIndustrial.API
 {
@@ -64,7 +68,6 @@ namespace SIGO.ProcessoIndustrial.API
                         Version = "v1"
                     }
                 );
-                /*
                 // 
                 c.AddSecurityDefinition("Bearer",
                     new OpenApiSecurityScheme
@@ -98,7 +101,27 @@ namespace SIGO.ProcessoIndustrial.API
                         }
                     }
                 );
-                */
+            });
+
+            var chavetoken = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Chavedeacesso");
+            var key = Encoding.ASCII.GetBytes(chavetoken.ToString());
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
 
         }
@@ -119,6 +142,7 @@ namespace SIGO.ProcessoIndustrial.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

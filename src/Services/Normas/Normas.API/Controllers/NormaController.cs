@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SIGO.Normas.Domain.Interfaces.Services;
 using System;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace SIGO.Normas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //    [Authorize(Roles = Autorizacao.Grupo.ADMIN)]
+   
     public class NormaController : ControllerBase
     {
         private readonly IServiceNorma _normaService;
@@ -21,6 +22,7 @@ namespace SIGO.Normas.API.Controllers
 
         // GET: api/<NormaController>
         [HttpGet]
+        [Authorize(Roles = "Admin,Gerente,Colaborador")]
         public async Task<IActionResult> Get()
         {
             try
@@ -45,6 +47,7 @@ namespace SIGO.Normas.API.Controllers
         /*
         // GET api/<NormaController>/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Gerente,Colaborador")]
         public string Get(int id)
         {
             return "value";
@@ -52,18 +55,21 @@ namespace SIGO.Normas.API.Controllers
 
         // POST api/<NormaController>
         [HttpPost]
+        [Authorize(Roles = "Admin,Gerente,Colaborador")]
         public void Post([FromBody] string value)
         {
         }
 
         // PUT api/<NormaController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Gerente,Colaborador")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/<NormaController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Gerente,Colaborador")]
         public void Delete(int id)
         {
         }

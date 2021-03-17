@@ -10,7 +10,6 @@ namespace SIGO.Consultorias.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //    [Authorize(Roles = Autorizacao.Grupo.ADMIN)]
     public class ConsultoriaController : ControllerBase
     {
         private readonly IServiceConsultoria _consultoriaService;
@@ -22,7 +21,7 @@ namespace SIGO.Consultorias.API.Controllers
 
         // GET: api/<ConsultoriaController>
         [HttpGet]
-        [Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "Admin,Gerente")]
         public async Task<IActionResult> Get()
         {
             try
@@ -47,6 +46,7 @@ namespace SIGO.Consultorias.API.Controllers
         /*
         // GET api/<ConsultoriaController>/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Gerente")]
         public string Get(int id)
         {
             return "value";
@@ -54,18 +54,21 @@ namespace SIGO.Consultorias.API.Controllers
 
         // POST api/<ConsultoriaController>
         [HttpPost]
+        [Authorize(Roles = "Admin,Gerente")]
         public void Post([FromBody] string value)
         {
         }
 
         // PUT api/<ConsultoriaController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Gerente")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/<ConsultoriaController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Gerente")]
         public void Delete(int id)
         {
         }

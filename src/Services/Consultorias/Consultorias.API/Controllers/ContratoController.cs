@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SIGO.Consultorias.Domain.Interfaces.Services;
 using System;
 using System.Threading.Tasks;
@@ -9,7 +10,6 @@ namespace SIGO.Consultorias.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //    [Authorize(Roles = Autorizacao.Grupo.ADMIN)]
     public class ContratoController : ControllerBase
     {
         private readonly IServiceContrato _contratoService;
@@ -21,6 +21,7 @@ namespace SIGO.Consultorias.API.Controllers
 
         // GET: api/<ContratoController>
         [HttpGet]
+        [Authorize(Roles = "Admin,Gerente")]
         public async Task<IActionResult> Get()
         {
             try
@@ -45,6 +46,7 @@ namespace SIGO.Consultorias.API.Controllers
         /*
         // GET api/<ContratoController>/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Gerente")]
         public string Get(int id)
         {
             return "value";
@@ -52,18 +54,21 @@ namespace SIGO.Consultorias.API.Controllers
 
         // POST api/<ContratoController>
         [HttpPost]
+        [Authorize(Roles = "Admin,Gerente")]
         public void Post([FromBody] string value)
         {
         }
 
         // PUT api/<ContratoController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Gerente")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/<ContratoController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Gerente")]
         public void Delete(int id)
         {
         }

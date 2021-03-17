@@ -16,6 +16,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{0C65EAA8-9F54-4656-A93F-16DBA2249022}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BCA880B3-A3DC-4210-94B7-0BBDDD5D6B86}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\OneDrive\Área de Trabalho\SIGO - Testes Unitarios.postman_collection.json = ..\..\..\OneDrive\Área de Trabalho\SIGO - Testes Unitarios.postman_collection.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{1E90B300-55D3-4AA2-B590-40B2652E994B}"
 EndProject

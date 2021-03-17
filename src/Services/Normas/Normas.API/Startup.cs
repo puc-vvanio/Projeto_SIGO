@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SIGO.Normas.Domain.Interfaces;
 using SIGO.Normas.Domain.Interfaces.Services;
@@ -11,6 +13,8 @@ using SIGO.Normas.Infrastructure.CrossCutting;
 using SIGO.Normas.Infrastructure.Data;
 using SIGO.Normas.Infrastructure.Data.Context;
 using SIGO.Normas.Service.Services;
+using System.Collections.Generic;
+using System.Text;
 
 namespace SIGO.Normas.API
 {
@@ -63,7 +67,6 @@ namespace SIGO.Normas.API
                         Version = "v1"
                     }
                 );
-                /*
                 // 
                 c.AddSecurityDefinition("Bearer",
                     new OpenApiSecurityScheme
@@ -97,7 +100,27 @@ namespace SIGO.Normas.API
                         }
                     }
                 );
-                */
+            });
+
+            var chavetoken = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Chavedeacesso");
+            var key = Encoding.ASCII.GetBytes(chavetoken.ToString());
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
 
         }
@@ -118,6 +141,7 @@ namespace SIGO.Normas.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
