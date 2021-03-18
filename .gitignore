@@ -341,3 +341,4 @@ healthchecksdb
 
 # docker
 .docker/mysql/mysqldata
+.docker/rabbitmq/mq_data

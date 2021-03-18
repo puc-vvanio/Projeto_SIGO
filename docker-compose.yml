@@ -31,6 +31,21 @@ services:
     networks:
       - sigo.dmz
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    volumes:
+      - ./.docker/rabbitmq/mq_data:/var/lib/rabbitmq/mnesia
+    ports:
+      - "15672:15672"
+      - "5672:5672" 
+    networks:
+      - sigo.dmz
+    environment:
+      RABBITMQ_DEFAULT_USER: loguser
+      RABBITMQ_DEFAULT_PASS: logpwd
+      RABBITMQ_DEFAULT_VHOST: SIGOLog
+
   gateway.api:
     image: ${DOCKER_REGISTRY-}apigateway
     container_name: apigateway
@@ -114,6 +129,7 @@ services:
 
 volumes:
   mysqldata:
+  mq_data:
 
 networks:
   sigo.dmz:
