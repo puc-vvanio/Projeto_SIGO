@@ -62,8 +62,8 @@ namespace SIGO.Consultorias.API
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
-                        Title = "SIGO.Autenticacao.API",
-                        Description = "API de consultoria e contrato, necessário Autenticação",
+                        Title = "SIGO.Consultorias.API",
+                        Description = "API de Consultorisa e Contratos do Sistema Integrado de Gestão e Operação",
                         Version = "v1"
                     }
                 );
