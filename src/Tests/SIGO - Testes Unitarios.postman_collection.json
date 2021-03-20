@@ -1,0 +1,275 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SIGO - Testes Unitarios",
+		"_postman_id": "bf23fa22-2343-4333-9b6b-4f4cecae25ab",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Service",
+			"description": "",
+			"item": [
+				{
+					"name": "Autenticar",
+					"request": {
+						"url": "https://localhost:5101/api/Autenticacao/autenticar",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@sigo.com.br\",\r\n  \"senha\": \"1234\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios",
+					"request": {
+						"url": "https://localhost:5101/api/usuario",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario Id",
+					"request": {
+						"url": "https://localhost:5101/api/usuario/1",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Consultoria",
+					"request": {
+						"url": "https://localhost:5401/api/Consultoria",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Contrato",
+					"request": {
+						"url": "https://localhost:5401/api/contrato",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Normas",
+					"request": {
+						"url": "https://localhost:5301/api/norma",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Repositorio",
+					"request": {
+						"url": "https://localhost:5301/api/repositorio",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gaytway",
+			"description": "",
+			"item": [
+				{
+					"name": "Autenticar",
+					"request": {
+						"url": "https://localhost:5001/autenticacao/autenticar",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@sigo.com.br\",\r\n  \"senha\": \"1234\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios",
+					"request": {
+						"url": "https://localhost:5001/usuario",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario Id",
+					"request": {
+						"url": "https://localhost:5001/usuario/1",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Consultoria",
+					"request": {
+						"url": "https://localhost:5001/consultoria",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Contrato",
+					"request": {
+						"url": "https://localhost:5001/contrato",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Normas",
+					"request": {
+						"url": "https://localhost:5001/norma",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Repositorio",
+					"request": {
+						"url": "https://localhost:5001/repositorio",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RabbitMQ",
+			"description": "",
+			"item": [
+				{
+					"name": "Send RabbitMQ Send Message",
+					"request": {
+						"url": "http://localhost:15672/api/exchanges/SIGOLog/sigo.normas/publish",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic bG9ndXNlcjpsb2dwd2Q=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"properties\":{\r\n\t\t\"content_type\": \"application/json\"\r\n\t},\r\n\t\"routing_key\":\"normas\",\r\n\t\"payload\":\"[{\\\"norma\\\":\\\"ISO 9001\\\", \\\"status\\\":\\\"atualizada\\\", \\\"data\\\":\\\"2021-02-17\\\"}]\",\r\n\t\"payload_encoding\":\"string\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Send RabbitMQ Get Message",
+					"request": {
+						"url": "http://localhost:15672/api/queues/SIGOLog/normas/get",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic bG9ndXNlcjpsb2dwd2Q=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"count\":5,\r\n\t\"ackmode\":\"ack_requeue_true\",\r\n\t\"encoding\":\"auto\",\r\n\t\"truncate\":50000\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
