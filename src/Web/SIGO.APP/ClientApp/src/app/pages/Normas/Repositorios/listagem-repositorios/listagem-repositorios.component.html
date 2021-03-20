@@ -1,0 +1,106 @@
+<app-nav-menu></app-nav-menu>
+
+<div class="container-fluid">
+	<div class="row">
+
+		<nav id="sidebarMenu" 
+			class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+			style="">
+			<div class="sidebar-sticky pt-3">
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" 
+							(click)="onMenuClick('/Normas')">
+							Gestão de Normas
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link"
+							(click)="onMenuClick('/Normas/Normas')">
+							Normas
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link active" 
+                        	(click)="onMenuClick('/Normas/Repositorios')">
+							Repositórios <span class="sr-only">(current)</span>
+						</a>
+					</li>
+				</ul>
+
+				<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+					<span>Módulos</span>
+				</h6>
+
+				<ul class="nav flex-column mb-2">
+					<li class="nav-item">
+						<a class="nav-link modulos" 
+							(click)="onMenuClick('/Consultorias')">
+							<app-icon Title="Assessorias e Consultorias" 
+								ClassIcon="fa fa-briefcase"></app-icon>
+							<span>Assessorias e Consultorias</span>
+					</a></li>
+					<li class="nav-item">
+						<a class="nav-link modulos"
+							(click)="onMenuClick('/GestaoProcessoIndustrial')">
+							<app-icon Title="Gestão do Proceso Industrial" 
+								ClassIcon="fa fa-dashboard"></app-icon>
+							<span>Gestão do Proceso Industrial</span>
+					</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+			<div class="chartjs-size-monitor"
+				style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+				<div class="chartjs-size-monitor-expand"
+					style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+					<div style="position: absolute; width: 1000000px; height: 1000000px; left: 0; top: 0"></div>
+				</div>
+				<div class="chartjs-size-monitor-shrink"
+					style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+					<div style="position: absolute; width: 200%; height: 200%; left: 0; top: 0"></div>
+				</div>
+			</div>
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+				<h1 class="h2">Gestão de Normas</h1>
+
+				<div class="btn-toolbar mb-2 mb-md-0">
+					<button type="button" class="btn btn-success ml-2"
+						(click)="onMenuClick('/Normas/Repositorios/Novo')">
+						Adicionar Repositório
+					</button>
+				</div>
+			</div>
+
+			<h2>Repositórios</h2>
+			<div class="table-responsive">
+				<table datatable [dtOptions]="dtOptions" 
+					[dtTrigger]="dtTrigger"
+					class="table table-striped table-sm">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Descrição</th>
+							<th>URL</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let repositorio of repositorios">
+							<td>{{repositorio.id}}</td>
+							<td>{{repositorio.nome}}</td>
+							<td>{{repositorio.descricao}}</td>
+							<td>{{repositorio.url}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</main>
+		
+	</div>
+</div>

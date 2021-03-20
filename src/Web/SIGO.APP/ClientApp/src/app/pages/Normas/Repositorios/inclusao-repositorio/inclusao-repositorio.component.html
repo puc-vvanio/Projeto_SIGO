@@ -1,0 +1,122 @@
+<app-nav-menu></app-nav-menu>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <nav id="sidebarMenu" 
+            class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" 
+            style="">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                            (click)="onMenuClick('/Normas')">
+							Gestão de Normas
+						</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                            (click)="onMenuClick('/Normas/Normas')">
+							Normas
+						</a>
+                    </li>
+                    <li class="nav-item">
+						<a class="nav-link active" 
+                            (click)="onMenuClick('/Normas/Repositorios')">
+                            Repositórios <span class="sr-only">(current)</span>
+                        </a>
+					</li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Módulos</span>
+                </h6>
+
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link modulos" 
+                            (click)="onMenuClick('/Consultorias')">
+                            <app-icon Title="Assessorias e Consultorias" 
+                                ClassIcon="fa fa-briefcase"></app-icon>
+                            <span>Assessorias e Consultorias</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link modulos" 
+                            (click)="onMenuClick('/GestaoProcessoIndustrial')">
+                            <app-icon Title="Gestão do Proceso Industrial" 
+                                ClassIcon="fa fa-dashboard"></app-icon>
+                            <span>Gestão do Proceso Industrial</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div class="chartjs-size-monitor" 
+                style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand" 
+                    style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                    <div style="position: absolute; width: 1000000px; height: 1000000px; left: 0; top: 0"></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink" 
+                    style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                    <div style="position: absolute; width: 200%; height: 200%; left: 0; top: 0"></div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Gestão de Normas</h1>
+            </div>
+
+            <form [formGroup]="repositorioForm" 
+                (ngSubmit)="gravarRepositorio()">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nome</label>
+					<input class="form-control" 
+                        aria-describedby="nomeHelp" 
+                        placeholder="Nome do Repositório" 
+                        formControlName="nome">
+					<small id="nomeHelp" 
+                        class="form-text text-muted">
+                        Escreva aqui o nome do repositório
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">URL</label>
+					<input class="form-control" 
+                        aria-describedby="urlHelp" 
+                        placeholder="URL do Repositório" 
+                        formControlName="url">
+					<small id="urlHelp" 
+                        class="form-text text-muted">
+                        Escreva aqui o endereço (URL) do repositório
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Descrição</label>
+					<input class="form-control" 
+                        aria-describedby="descricaoHelp" 
+                        placeholder="Descrição" 
+                        formControlName="descricao">
+					<small id="descricaoHelp" 
+                        class="form-text text-muted">
+                        Escreva uma breve descrição do repositório
+                    </small>
+                </div>
+
+                <button type="submit" 
+                    class="btn btn-primary">
+                    Salvar
+                </button>
+                <button type="button" 
+                    class="btn btn-danger ml-2" 
+                    (click)="onMenuClick('/Normas/Repositorios/')">
+                    Cancelar
+                </button>
+            </form>
+        </main>
+
+    </div>
+</div>
