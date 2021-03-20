@@ -44,11 +44,10 @@ export class LoginPageComponent implements OnInit {
      * Navigates to main module
      */
     public autorizarUsuario() {
-        this.router.navigate(['/GestaoProcessoIndustrial']);
-        /*
+               
         let loginDTO = new LoginDTO();
-        loginDTO.Email = this.loginForm.value.email;
-        loginDTO.Senha = this.loginForm.value.senha;
+        loginDTO.email = this.loginForm.value.email;
+        loginDTO.senha = this.loginForm.value.senha;
 
         this.usuarioService.autorizar(loginDTO).subscribe(
 
@@ -66,7 +65,7 @@ export class LoginPageComponent implements OnInit {
             this.toastr.error("Erro", "Alerta");
           }
         );
-        */
+       
     }
 
     /**

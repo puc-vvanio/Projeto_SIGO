@@ -8,7 +8,7 @@ export class UsuarioService {
     /**
      * Endpoint to the service
      */
-    private readonly _endpoint: string = 'gestaoprocessoindustrial/api/usuario';
+     private readonly _endpoint: string = 'autenticacao/autenticar';
 
     /**
      * Creates an instance of UsuarioService.

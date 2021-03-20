@@ -7,7 +7,7 @@ export class NormaService {
     /**
      * Endpoint to the service
      */
-    private readonly _endpoint: string = 'normas/api/norma';
+     private readonly _endpoint: string = 'norma';
 
     /**
      * Creates an instance of NormaService.

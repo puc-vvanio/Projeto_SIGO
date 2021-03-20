@@ -7,7 +7,7 @@ export class EventoService {
     /**
      * Endpoint to the service
      */
-    private readonly _endpoint: string = 'gestaoprocessoindustrial/api/evento';
+    private readonly _endpoint: string = 'processoindustrial';
 
     /**
      * Creates an instance of EventoService.

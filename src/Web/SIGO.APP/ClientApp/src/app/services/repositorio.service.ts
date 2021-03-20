@@ -8,7 +8,7 @@ export class RepositorioService {
     /**
      * Endpoint to the service
      */
-    private readonly _endpoint: string = 'normas/api/repositorio';
+    private readonly _endpoint: string = 'repositorio';
 
     /**
      * Creates an instance of RepositorioService.

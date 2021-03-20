@@ -7,7 +7,7 @@ export class ConsultoriaService {
     /**
      * Endpoint to the service
      */
-  private readonly _endpoint: string = 'normas/api/norma';
+    private readonly _endpoint: string = 'consultoria';
 
     /**
      * Creates an instance of ConsultoriaService.

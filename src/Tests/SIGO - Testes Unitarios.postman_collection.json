@@ -1,111 +1,239 @@
 {
-	"variables": [],
 	"info": {
+		"_postman_id": "0dc41a06-2a0f-4f57-b072-b05caad8c972",
 		"name": "SIGO - Testes Unitarios",
-		"_postman_id": "bf23fa22-2343-4333-9b6b-4f4cecae25ab",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Service",
-			"description": "",
 			"item": [
 				{
 					"name": "Autenticar",
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followRedirects": true
+					},
 					"request": {
-						"url": "https://localhost:5101/api/Autenticacao/autenticar",
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"admin@sigo.com.br\",\r\n  \"senha\": \"1234\"\r\n}"
+							"raw": "{\r\n  \"email\": \"admin@sigo.com.br\",\r\n  \"senha\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5101/api/Autenticacao/autenticar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5101",
+							"path": [
+								"api",
+								"Autenticacao",
+								"autenticar"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Usuarios",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5101/api/usuario",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5101/api/usuario",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5101",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Usuario Id",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5101/api/usuario/1",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5101/api/usuario/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5101",
+							"path": [
+								"api",
+								"usuario",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Consultoria",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5401/api/Consultoria",
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5401/api/Consultoria",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5401",
+							"path": [
+								"api",
+								"Consultoria"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Contrato",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5401/api/contrato",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5401/api/contrato",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5401",
+							"path": [
+								"api",
+								"contrato"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Normas",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5301/api/norma",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5301/api/norma",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5301",
+							"path": [
+								"api",
+								"norma"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Repositorio",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5301/api/repositorio",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5301/api/repositorio",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5301",
+							"path": [
+								"api",
+								"repositorio"
+							]
+						}
 					},
 					"response": []
 				}
@@ -113,159 +241,335 @@
 		},
 		{
 			"name": "Gaytway",
-			"description": "",
 			"item": [
 				{
 					"name": "Autenticar",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5001/autenticacao/autenticar",
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"admin@sigo.com.br\",\r\n  \"senha\": \"1234\"\r\n}"
+							"raw": "{\r\n  \"email\": \"admin@sigo.com.br\",\r\n  \"senha\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5001/autenticacao/autenticar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"autenticacao",
+								"autenticar"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Usuarios",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5001/usuario",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5001/usuario",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"usuario"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Usuario Id",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5001/usuario/1",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5001/usuario/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"usuario",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Consultoria",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5001/consultoria",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5001/consultoria",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"consultoria"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Contrato",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5001/contrato",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5001/contrato",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"contrato"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Normas",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5001/norma",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5001/norma",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"norma"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Repositorio",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"strictSSL": false
+					},
 					"request": {
-						"url": "https://localhost:5001/repositorio",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNpZ28uY29tLmJyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjE2MDIwNjIxLCJleHAiOjE2MTYwMjc4MjEsImlhdCI6MTYxNjAyMDYyMX0.t80-1K7J0hBDc5xliJnP30Fnw_nZO_fudc167Vxn6cE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
+						"url": {
+							"raw": "https://localhost:5001/repositorio",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"repositorio"
+							]
+						}
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "RabbitMQ",
-			"description": "",
+			"name": "Rabbitmq",
 			"item": [
 				{
-					"name": "Send RabbitMQ Send Message",
+					"name": "Publicando em normas",
 					"request": {
-						"url": "http://localhost:15672/api/exchanges/SIGOLog/sigo.normas/publish",
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "logpwd",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "loguser",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic bG9ndXNlcjpsb2dwd2Q=",
-								"description": ""
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"properties\":{\r\n\t\t\"content_type\": \"application/json\"\r\n\t},\r\n\t\"routing_key\":\"normas\",\r\n\t\"payload\":\"[{\\\"norma\\\":\\\"ISO 9001\\\", \\\"status\\\":\\\"atualizada\\\", \\\"data\\\":\\\"2021-02-17\\\"}]\",\r\n\t\"payload_encoding\":\"string\"\r\n}"
+							"raw": "{\r\n\t\"routing_key\":\"normas\",\r\n\t\"properties\":{\r\n\t\t\"content_type\": \"application/json\"\r\n\t},\r\n\t\"payload\":\"[{\\\"norma\\\":\\\"ISO 9001\\\", \\\"status\\\":\\\"atualizada\\\", \\\"data\\\":\\\"2021-02-17\\\"}]\",\r\n\t\"payload_encoding\":\"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"description": ""
+						"url": {
+							"raw": "http://localhost:15672/api/exchanges/SIGOLog/sigo.normas/publish",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "15672",
+							"path": [
+								"api",
+								"exchanges",
+								"SIGOLog",
+								"sigo.normas",
+								"publish"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "Send RabbitMQ Get Message",
+					"name": "Busca em normas",
 					"request": {
-						"url": "http://localhost:15672/api/queues/SIGOLog/normas/get",
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "logpwd",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "loguser",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic bG9ndXNlcjpsb2dwd2Q=",
-								"description": ""
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"count\":5,\r\n\t\"ackmode\":\"ack_requeue_true\",\r\n\t\"encoding\":\"auto\",\r\n\t\"truncate\":50000\r\n}"
+							"raw": "{\r\n\t\"count\":5,\r\n\t\"ackmode\":\"ack_requeue_true\",\r\n\t\"encoding\":\"auto\",\r\n\t\"truncate\":50000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"description": ""
+						"url": {
+							"raw": "http://localhost:15672/api/queues/SIGOLog/normas/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "15672",
+							"path": [
+								"api",
+								"queues",
+								"SIGOLog",
+								"normas",
+								"get"
+							]
+						}
 					},
 					"response": []
 				}
