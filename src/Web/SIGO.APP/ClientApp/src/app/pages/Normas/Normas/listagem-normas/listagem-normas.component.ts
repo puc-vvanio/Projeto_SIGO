@@ -62,10 +62,13 @@ export class ListagemNormasComponent implements OnInit {
                     this.normas = result;
                     this.dtTrigger.next();
                 } else
-                    this.toastr.error("Erro", "Alerta");
+                  this.toastr.warning("Nenhum registro localizado!", "Alerta");
             },
             error => {
-                this.toastr.error("Erro", "Alerta");
+                if (error.error != null)
+                    this.toastr.error(error.error, "Alerta");
+                else
+                    this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
             }
         );
     }

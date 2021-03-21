@@ -51,21 +51,22 @@ export class LoginPageComponent implements OnInit {
 
         this.usuarioService.autorizar(loginDTO).subscribe(
 
-          result => {
-
-            if (result != null) {
-              localStorage.setItem("TOKEN", result.token);
-
-              this.router.navigate(['/GestaoProcessoIndustrial']);
+            result => {
+            
+                if (result != null) {
+                    localStorage.setItem("TOKEN", result.token);                
+                    this.router.navigate(['/GestaoProcessoIndustrial']);
+                }
+                else
+                    this.toastr.warning("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
+            },
+            error => {
+                if (error.error != null)
+                    this.toastr.error(error.error, "Alerta");
+                else
+                    this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
             }
-            else
-              this.toastr.error("Erro", "Alerta");
-          },
-          error => {
-            this.toastr.error("Erro", "Alerta");
-          }
-        );
-       
+        );       
     }
 
     /**
@@ -77,14 +78,14 @@ export class LoginPageComponent implements OnInit {
         if (control.dirty) {
             if (control.value == null) {
                 result = {
-                    TextError: "Não pode estar vazio"
+                    TextError: "Campo não pode estar vazio!"
                 };
             } else {
                 let regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
                 if (!regexp.test(control.value)) {
                     result = {
-                        TextError: "Email inválido"
+                        TextError: "Email informado é inválido!"
                     };
                 }
             }
@@ -102,7 +103,7 @@ export class LoginPageComponent implements OnInit {
         if (control.dirty) {
             if (control.value == null) {
                 result = {
-                    TextError: "Não pode estar vazio"
+                    TextError: "campo não pode estar vazio!"
                 };
             }
         }

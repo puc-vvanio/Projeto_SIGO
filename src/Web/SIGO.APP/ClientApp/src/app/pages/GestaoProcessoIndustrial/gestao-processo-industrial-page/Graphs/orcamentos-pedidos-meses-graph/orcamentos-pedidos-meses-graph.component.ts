@@ -65,7 +65,7 @@ export class OrcamentosPedidosMesesGraphComponent implements OnInit {
      */
     ngOnChanges(Changes: SimpleChanges) {
         if (Changes.BarChartDataBind != undefined && Changes.BarChartDataBind.currentValue != undefined){
-            debugger;
+            //debugger;
             this.BarChartData = [
                 { data: [6511, 5648, 5486, 4533, 6132, 7445, 7431, 8431, 5012, 7464, 8313, Changes.BarChartDataBind.currentValue[0].data[0]], label: 'Orçamentos' },
                 { data: [3501, 3608, 3489, 2583, 4102, 4945, 6531, 5314, 4232, 7300, 6001, Changes.BarChartDataBind.currentValue[0].data[1]], label: 'Vendas' }

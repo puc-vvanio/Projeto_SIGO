@@ -55,10 +55,13 @@ export class NormasPageComponent implements OnInit {
                 if (result != null) {
                     this.quantNormas = result["length"];
                 } else
-                    this.toastr.error("Erro", "Alerta");
+                    this.toastr.warning("Nenhum registro localizado!", "Alerta");
             },
             error => {
-                this.toastr.error("Erro", "Alerta");
+                if (error.error != null)
+                    this.toastr.error(error.error, "Alerta");
+                else
+                    this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
             }
         );
     }
@@ -72,10 +75,13 @@ export class NormasPageComponent implements OnInit {
                 if (result != null) {
                     this.quantRepositorios = result["length"];
                 } else
-                    this.toastr.error("Erro", "Alerta");
+                    this.toastr.warning("Nenhum registro localizado!", "Alerta");
             },
             error => {
-                this.toastr.error("Erro", "Alerta");
+                if (error.error != null)
+                    this.toastr.error(error.error, "Alerta");
+                else
+                    this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
             }
         );
     }

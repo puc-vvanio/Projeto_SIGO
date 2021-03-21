@@ -53,17 +53,20 @@ export class ListagemConsultoriasComponent implements OnInit {
      * Get Consultorias List
      */
      obterListagemConsultorias() {
-        this.consultoriaService.obterConsultorias().subscribe(
-            result => {
-                if (result != null) {
-                    this.consultorias = result;
-                    this.dtTrigger.next();
-                } else
-                    this.toastr.error("Erro", "Alerta");
-            },
-            error => {
-                this.toastr.error("Erro", "Alerta");
-            }
-        );
+         this.consultoriaService.obterConsultorias().subscribe(
+             result => {
+                 if (result != null) {
+                     this.consultorias = result;
+                     this.dtTrigger.next();
+                 } else
+                     this.toastr.warning("Nenhum registro localizado!", "Alerta");
+             },
+             error => {
+                 if (error.error != null)
+                     this.toastr.error(error.error, "Alerta");
+                 else
+                     this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
+             }
+         );
     }
 }
