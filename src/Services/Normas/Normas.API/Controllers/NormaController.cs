@@ -1,11 +1,13 @@
 ﻿using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+using SIGO.Normas.Domain.DTO.Normas;
+using SIGO.Normas.Domain.Entities;
 using SIGO.Normas.API.Helpers;
 using SIGO.Normas.API.Messages;
 using SIGO.Normas.Domain.Interfaces.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -50,7 +52,28 @@ namespace SIGO.Normas.API.Controllers
 
                 if (normas != null)
                 {
-                    return Ok(normas);
+                    List<NormasExibir> normaslist = new List<NormasExibir>();
+
+                    foreach (Norma normaitem in normas)
+                    {
+
+                        NormasExibir contratoExibir = new NormasExibir()
+                        {
+                            Id = normaitem.Id,
+                            Nome = normaitem.Nome,
+                            Descricao = normaitem.Descricao,
+                            NomeArquivo = normaitem.NomeArquivo,
+                            Tipo = normaitem.Tipo.ToString(),
+                            Status = normaitem.Status.ToString(),
+                            DataCriacao = normaitem.DataCriacao,
+                            DataAtualizacao = normaitem.DataAtualizacao
+                        };
+
+                        normaslist.Add(contratoExibir);
+                    }
+
+                    return Ok(normaslist);
+                    //return Ok(normas);
                 }
                 else
                 {

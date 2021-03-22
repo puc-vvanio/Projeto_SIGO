@@ -61,7 +61,7 @@ export class LoginPageComponent implements OnInit {
                     this.toastr.warning("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
             },
             error => {
-                if (error.error != null)
+              if (error.error != null && error.status > 0)
                     this.toastr.error(error.error, "Alerta");
                 else
                     this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");

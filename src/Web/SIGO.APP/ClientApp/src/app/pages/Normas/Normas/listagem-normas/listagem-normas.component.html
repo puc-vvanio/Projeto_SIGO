@@ -79,6 +79,8 @@
 						<tr>
 							<th>#</th>
 							<th>Titulo</th>
+							<th>Tipo</th>
+							<th>Status</th>
 							<th>Descrição</th>
 							<th>URL</th>
 						</tr>
@@ -87,6 +89,8 @@
 						<tr *ngFor="let norma of normas">
 							<td>{{norma.id}}</td>
 							<td>{{norma.nome}}</td>
+							<td>{{norma.tipo}}</td>
+							<td>{{norma.status}}</td>
 							<td>{{norma.descricao}}</td>
 							<td>
 								<a href="{{norma.nomeArquivo}}" target="_blank">

@@ -2,9 +2,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginPageComponent } from "./pages/Acesso/login-page.component";
 import { GestaoProcessoIndustrialPageComponent } from "./pages/GestaoProcessoIndustrial/gestao-processo-industrial-page/gestao-processo-industrial-page.component";
 import { ConsultoriasPageComponent } from "./pages/Consultorias/Home/consultorias-page/consultorias-page.component";
-import { ListagemConsultoriasComponent } from "./pages/Consultorias/Consultorias/listagem-consultorias/listagem-consultorias.component"
-import { NormasPageComponent } from "./pages/Normas/Home/normas-page/normas-page.component"
-import { ListagemNormasComponent } from "./pages/Normas/Normas/listagem-normas/listagem-normas.component"
+import { ListagemConsultoriasComponent } from "./pages/Consultorias/Consultorias/listagem-consultorias/listagem-consultorias.component";
+import { ListagemContratosComponent } from "./pages/Consultorias/Contratos/listagem-contratos/listagem-contratos.component";
+import { NormasPageComponent } from "./pages/Normas/Home/normas-page/normas-page.component";
+import { ListagemNormasComponent } from "./pages/Normas/Normas/listagem-normas/listagem-normas.component";
 import { ListagemRepositoriosComponent } from "./pages/Normas/Repositorios/listagem-repositorios/listagem-repositorios.component";
 import { InclusaoRepositorioComponent } from "./pages/Normas/Repositorios/inclusao-repositorio/inclusao-repositorio.component";
 
@@ -29,6 +30,11 @@ const appRoutes: Routes = [
   {
     path: "Consultorias/Consultorias",
     component: ListagemConsultoriasComponent,
+    canActivate: [NavigationGuardService]
+  },
+  {
+    path: "Consultorias/Contratos",
+    component: ListagemContratosComponent,
     canActivate: [NavigationGuardService]
   },
   {

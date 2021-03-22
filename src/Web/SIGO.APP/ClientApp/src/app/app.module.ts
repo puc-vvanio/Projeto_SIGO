@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { BaseService } from './services/base.service'
 import { ConsultoriaService } from './services/consultoria.service'
+import { ContratoService } from './services/contrato.service'
 import { NormaService } from './services/norma.service'
 import { UsuarioService } from './services/usuario.service'
 import { RepositorioService } from './services/repositorio.service'
@@ -29,6 +30,7 @@ import { NavMenuComponent } from './controls/nav-menu/nav-menu.component';
 import { CardsConsultoriasComponent } from './pages/Consultorias/Home/CardsConsultorias/cards-consultorias/cards-consultorias.component';
 import { DataTablesModule } from 'angular-datatables';
 import { ListagemConsultoriasComponent } from './pages/Consultorias/Consultorias/listagem-consultorias/listagem-consultorias.component';
+import { ListagemContratosComponent } from './pages/Consultorias/Contratos/listagem-contratos/listagem-contratos.component';
 import { NormasPageComponent } from './pages/Normas/Home/normas-page/normas-page.component';
 import { ListagemNormasComponent } from './pages/Normas/Normas/listagem-normas/listagem-normas.component';
 import { ListagemRepositoriosComponent } from './pages/Normas/Repositorios/listagem-repositorios/listagem-repositorios.component';
@@ -50,6 +52,7 @@ import { from } from 'rxjs';
     NavMenuComponent,
     CardsConsultoriasComponent,
     ListagemConsultoriasComponent,
+    ListagemContratosComponent,
     NormasPageComponent,
     ListagemNormasComponent,
     ListagemRepositoriosComponent,
@@ -70,6 +73,7 @@ import { from } from 'rxjs';
   providers: [
     BaseService,
     ConsultoriaService,
+    ContratoService,
     NormaService,
     RepositorioService,
     UsuarioService,

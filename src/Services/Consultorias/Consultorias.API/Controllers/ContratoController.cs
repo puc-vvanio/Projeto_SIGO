@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SIGO.Consultorias.Domain.Interfaces.Services;
+using SIGO.Consultorias.Domain.DTO.Contratos;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using SIGO.Consultorias.Domain.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,11 +16,14 @@ namespace SIGO.Consultorias.API.Controllers
     public class ContratoController : ControllerBase
     {
         private readonly IServiceContrato _contratoService;
+         private readonly IServiceConsultoria _consultoriaService;
 
-        public ContratoController(IServiceContrato contratoService)
+        public ContratoController(IServiceContrato contratoService, IServiceConsultoria consultoriaService)
         {
             _contratoService = contratoService;
-        }
+            _consultoriaService = consultoriaService;
+        }       
+
 
         // GET: api/<ContratoController>
         [HttpGet]
@@ -30,7 +36,34 @@ namespace SIGO.Consultorias.API.Controllers
 
                 if (contratos != null)
                 {
-                    return Ok(contratos);
+
+                    List<ContratoExibir> contratolist = new List<ContratoExibir>();
+
+                    foreach (Contrato contrato in contratos)
+                    {
+
+                        var consultorianome = await _consultoriaService.ObterConsultoria(contrato.ConsultoriaID);
+                        var nomeconsultorias = "";
+                        if (consultorianome != null)
+                            nomeconsultorias = consultorianome.Nome;
+
+                        ContratoExibir contratoExibir = new ContratoExibir()
+                        {
+                            Id = contrato.Id,
+                            Nome = contrato.Nome,
+                            Descricao = contrato.Descricao,
+                            Tipo = contrato.Tipo.ToString(),
+                            ConsultoriaID = contrato.ConsultoriaID,
+                            Consultoria = nomeconsultorias,
+                            dataCriacao = contrato.DataCriacao,
+                            dataAtualizacao = contrato.DataAtualizacao
+                        };
+
+                        contratolist.Add(contratoExibir);
+                    }
+
+                    //return Ok(contratos);
+                    return Ok(contratolist);
                 }
                 else
                 {
