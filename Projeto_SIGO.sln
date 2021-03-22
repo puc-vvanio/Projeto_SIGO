@@ -75,7 +75,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.ProcessoIndustrial.Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.APIGateway", "src\ApiGateways\APIGateway\SIGO.APIGateway.csproj", "{DD838B68-CA3B-4403-BF9F-19D3CF6E45EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGO.APP", "src\Web\SIGO.APP\SIGO.APP.csproj", "{AC975638-E927-4363-BF32-FD0CAAC61B0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGO.APP", "src\Web\SIGO.APP\SIGO.APP.csproj", "{AC975638-E927-4363-BF32-FD0CAAC61B0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

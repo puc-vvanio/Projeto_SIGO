@@ -1,18 +1,23 @@
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SIGO.ProcessoIndustrial.API.Consumers;
+using SIGO.ProcessoIndustrial.API.Helpers;
 using SIGO.ProcessoIndustrial.Domain.Interfaces;
 using SIGO.ProcessoIndustrial.Domain.Interfaces.Services;
 using SIGO.ProcessoIndustrial.Infrastructure.CrossCutting;
 using SIGO.ProcessoIndustrial.Infrastructure.Data;
 using SIGO.ProcessoIndustrial.Infrastructure.Data.Context;
 using SIGO.ProcessoIndustrial.Service.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -36,7 +41,53 @@ namespace SIGO.ProcessoIndustrial.API
             //mySqlConnectionStr = "server=localhost;port=3306;userid=sysdba;password=dbapwd;database=normastecnicas;Persist Security Info=False;Connect Timeout=300;";
             //string mySqlConnectionStr = Configuration.GetConnectionString("MigrationConnection");
             services.AddDbContextPool<MySqlContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+            /*
+            // inicializar as configurações para rabbitmq e masstransit, configurar consumidores e iniciar o bus service
+            services.Configure<RabbitmqConfig>(Configuration.GetSection("RabbitMQConfigurations"));
 
+            services.AddMassTransit(x =>
+            {
+                var configSections = Configuration.GetSection("RabbitMQConfigurations");
+                var host = configSections["Host"];
+                var userName = configSections["UserName"];
+                var password = configSections["Password"];
+                var virtualHost = configSections["VirtualHost"];
+                var port = Convert.ToUInt16(configSections["Port"]);
+
+                x.AddConsumer<SubscriptionSuccessfulConsumer>();
+
+                x.AddBus(provider =>
+                {
+                    var bus = Bus.Factory.CreateUsingRabbitMq(cfg =>
+                    {
+                        cfg.Host(host, port, virtualHost, host =>
+                        {
+                            host.Username(userName);
+                            host.Password(password);
+                        });
+
+                        cfg.ReceiveEndpoint(configSections["Endpoint"], ep =>
+                        {
+                            ep.PrefetchCount = Convert.ToUInt16(configSections["PrefetchCount"]);
+
+                            ep.ConfigureConsumer<SubscriptionSuccessfulConsumer>(provider);
+                        });
+                    });
+
+                    bus.Start();
+
+                    return bus;
+                });
+            });
+
+            services.Configure<HealthCheckPublisherOptions>(options =>
+            {
+                options.Delay = TimeSpan.FromSeconds(2);
+                options.Predicate = (check) => check.Tags.Contains("ready");
+            });
+
+            services.AddMassTransitHostedService();
+            */
             services.AddControllers();
 
             services.AddScoped<IDapperDbConnection, DapperDbConnection>();
@@ -51,7 +102,6 @@ namespace SIGO.ProcessoIndustrial.API
                     builder =>
                     {
                         builder
-                        //.WithOrigins("http://localhost:4200")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                     });

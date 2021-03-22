@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using SIGO.Normas.API.Helpers;
+using SIGO.Normas.API.Messages;
 using SIGO.Normas.Domain.Interfaces.Services;
 using System;
 using System.Threading.Tasks;
@@ -14,10 +18,25 @@ namespace SIGO.Normas.API.Controllers
     public class NormaController : ControllerBase
     {
         private readonly IServiceNorma _normaService;
+        private readonly IServiceRepositorioExterno _repositorioExternoService;
 
-        public NormaController(IServiceNorma normaService)
+        private RabbitmqConfig _rabbitConfig;
+        private ISendEndpointProvider _sendEndpoint;
+        private IPublishEndpoint _publishEndPoint;
+
+        public NormaController(IServiceNorma normaService,
+                               IServiceRepositorioExterno repositorioExternoService
+                               //IOptions<RabbitmqConfig> rabbitConfig,
+                               //ISendEndpointProvider sendEndpoint,
+                               //IPublishEndpoint publish
+                               )
         {
             _normaService = normaService;
+            _repositorioExternoService = repositorioExternoService;
+
+            //_rabbitConfig = rabbitConfig.Value;
+            //_sendEndpoint = sendEndpoint;
+            //_publishEndPoint = publish;
         }
 
         // GET: api/<NormaController>
@@ -43,6 +62,49 @@ namespace SIGO.Normas.API.Controllers
                 return StatusCode(500, "Erro ao comunicar com a base de dados!");
             }
         }
+
+        // GET: api/<NormaController>
+        [HttpGet("verificar")]
+        [Authorize(Roles = "Admin,Gerente,Colaborador")]
+        public async Task<IActionResult> Get(string id)
+        {
+            try
+            {
+                var norma = await _repositorioExternoService.GetNormaInfo(id, "http://162.243.37.75/normas");
+
+                if (norma != null)
+                {
+                    if (norma.Nome == null)
+                        norma.Nome = id;
+                    /*
+                    await SendMessage(new SubscribeToNormasCommand
+                    {
+                        Norma = norma.Nome,
+                        Status = norma.Status,
+                        Data = norma.Data
+                    }, "normasService");
+                    */
+                    return Ok(norma);
+                }
+                else
+                {
+                    return Ok("Nenhuma informação encontrada!");
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erro ao comunicar com o repositório externo!");
+            }
+        }
+
+        /*
+        public async Task SendMessage<T>(T message, string targetEndPoint)
+        {
+            var endpoint = $"rabbitmq://{_rabbitConfig.Host}:{_rabbitConfig.Port}/{targetEndPoint}?durable={_rabbitConfig.DurableQueue}";
+            var finalEndpoint = await _sendEndpoint.GetSendEndpoint(new Uri(endpoint));
+            await finalEndpoint.Send(message);
+        }
+        */
 
         /*
         // GET api/<NormaController>/5

@@ -82,15 +82,6 @@ namespace SIGO.Normas.Infrastructure.Data.Context
                    Tipo = TipoNorma.Nacional,
                    Status = StatusNorma.Vigor,
                    NomeArquivo = "NR7.pdf"
-               },
-               new Norma
-               {
-                   Id = 7,
-                   Nome = "ISO 9001",
-                   Descricao = "Sistema de Gestao da Qualidade",
-                   Tipo = TipoNorma.Nacional,
-                   Status = StatusNorma.Vigor,
-                   NomeArquivo = "ISO9001.pdf"
                }
             );
 
