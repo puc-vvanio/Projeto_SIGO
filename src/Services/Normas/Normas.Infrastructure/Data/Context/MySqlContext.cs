@@ -32,6 +32,7 @@ namespace SIGO.Normas.Infrastructure.Data.Context
                new Norma
                {
                    Id = 1,
+                   DataCriacao = DateTime.Now,
                    Nome = "ISO 9001",
                    Descricao = "Sistema de Gestao da Qualidade",
                    Tipo = TipoNorma.Nacional,
@@ -41,6 +42,7 @@ namespace SIGO.Normas.Infrastructure.Data.Context
                new Norma
                {
                    Id = 2,
+                   DataCriacao = DateTime.Now,
                    Nome = "ISO 14001",
                    Descricao = "Sistema de Gestao Ambiental",
                    Tipo = TipoNorma.Nacional,
@@ -50,6 +52,7 @@ namespace SIGO.Normas.Infrastructure.Data.Context
                new Norma
                {
                    Id = 3,
+                   DataCriacao = DateTime.Now,
                    Nome = "ISO 27001",
                    Descricao = "Sistema de Gestao de Seguranca da Informacao",
                    Tipo = TipoNorma.Nacional,
@@ -59,6 +62,7 @@ namespace SIGO.Normas.Infrastructure.Data.Context
                new Norma
                {
                    Id = 4,
+                   DataCriacao = DateTime.Now,
                    Nome = "NR 4",
                    Descricao = "Servicos Especializados em Eng. de Seguranca e em Medicina do Trabalho",
                    Tipo = TipoNorma.Nacional,
@@ -68,6 +72,7 @@ namespace SIGO.Normas.Infrastructure.Data.Context
                new Norma
                {
                    Id = 5,
+                   DataCriacao = DateTime.Now,
                    Nome = "NR 6",
                    Descricao = "Equipamentos de Protecao Individual - EPI",
                    Tipo = TipoNorma.Nacional,
@@ -77,6 +82,7 @@ namespace SIGO.Normas.Infrastructure.Data.Context
                new Norma
                {
                    Id = 6,
+                   DataCriacao = DateTime.Now,
                    Nome = "NR 7",
                    Descricao = "Programas de Controle Medico de Saude Ocupacional - PCMSO",
                    Tipo = TipoNorma.Nacional,
@@ -89,29 +95,12 @@ namespace SIGO.Normas.Infrastructure.Data.Context
                new Repositorio
                {
                    Id = 1,
+                   DataCriacao = DateTime.Now,
                    Nome = "Repositorio 1",
-                   Descricao = "Descrição Repositorio 1",
-                   URL_API = "http://api.repositorio1.com.br",
-                   Usuario = "sigo1",
-                   Senha = "sigo1",
-               },
-               new Repositorio
-               {
-                   Id = 2,
-                   Nome = "Repositorio 2",
-                   Descricao = "Descrição Repositorio 2",
-                   URL_API = "http://api.repositorio2.com.br",
-                   Usuario = "sigo2",
-                   Senha = "sigo2",
-               },
-               new Repositorio
-               {
-                   Id =31,
-                   Nome = "Repositorio 3",
-                   Descricao = "Descrição Repositorio 3",
-                   URL_API = "http://api.repositorio3.com.br",
-                   Usuario = "sigo3",
-                   Senha = "sigo3",
+                   Descricao = "Repositorio de Normas Fake 1",
+                   URL_API = "http://162.243.37.75/normas",
+                   Usuario = "sigo",
+                   Senha = "sigo",
                }
             );
         }

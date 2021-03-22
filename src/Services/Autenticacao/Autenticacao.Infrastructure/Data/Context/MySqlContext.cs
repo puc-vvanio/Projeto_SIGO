@@ -33,6 +33,7 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Context
                new Usuario
                {
                    Id = 1,
+                   DataCriacao = DateTime.Now,
                    Nome = "Usuario 1",
                    Email = "admin@sigo.com.br",
                    SenhaHash = senhaHash,
@@ -43,6 +44,7 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Context
                new Usuario
                {
                    Id = 2,
+                   DataCriacao = DateTime.Now,
                    Nome = "Usuario 2",
                    Email = "gerente@sigo.com.br",
                    SenhaHash = senhaHash,
@@ -53,6 +55,7 @@ namespace SIGO.Autenticacao.Infrastructure.Data.Context
                new Usuario
                {
                    Id = 3,
+                   DataCriacao = DateTime.Now,
                    Nome = "Usuario 3",
                    Email = "colaborador@sigo.com.br",
                    SenhaHash = senhaHash,
