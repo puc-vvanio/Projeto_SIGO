@@ -53,6 +53,8 @@ namespace SIGO.Consultorias.Infrastructure.Data.Context
                    Tipo = TipoContrato.Assessoria,
                    Nome = "Contrato 1",
                    Descricao = "Descrição Contrato 1",
+                   DataInicio = new DateTime(2020, 10, 5, 0, 0, 0),
+                   DataTermino = new DateTime(2021, 10, 5, 0, 0, 0),
                    ConsultoriaID = 1
                },
                new Contrato
@@ -62,6 +64,8 @@ namespace SIGO.Consultorias.Infrastructure.Data.Context
                    Tipo = TipoContrato.Consultoria,
                    Nome = "Contrato 2",
                    Descricao = "Descrição Contrato 2",
+                   DataInicio = new DateTime(2020, 3, 2, 0, 0, 0),
+                   DataTermino = new DateTime(2021, 3, 2, 0, 0, 0),
                    ConsultoriaID = 2
                },
                new Contrato
@@ -71,6 +75,8 @@ namespace SIGO.Consultorias.Infrastructure.Data.Context
                    Tipo = TipoContrato.Outro,
                    Nome = "Contrato 3",
                    Descricao = "Descrição Contrato 3",
+                   DataInicio = new DateTime(2021, 3, 2, 0, 0, 0),
+                   DataTermino = new DateTime(2022, 3, 2, 0, 0, 0),
                    ConsultoriaID = 2
                }
             );

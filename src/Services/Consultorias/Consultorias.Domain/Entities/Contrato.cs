@@ -1,4 +1,5 @@
 ﻿using SIGO.Consultorias.Domain.Enums;
+using System;
 
 namespace SIGO.Consultorias.Domain.Entities
 {
@@ -9,6 +10,10 @@ namespace SIGO.Consultorias.Domain.Entities
         public string Nome { get; set; }
 
         public string Descricao { get; set; }
+
+        public DateTime? DataInicio { get; set; }
+
+        public DateTime? DataTermino { get; set; }
 
         public int ConsultoriaID { get; set; }
 

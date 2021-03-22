@@ -40,6 +40,12 @@ namespace SIGO.Consultorias.Infrastructure.Data.Mapping
             modelBuilder.Property(ug => ug.Descricao)
                    .HasColumnType("text")
                    .IsRequired();
+            modelBuilder.Property(ug => ug.DataInicio)
+                   .HasColumnType("datetime")
+                   .IsRequired();
+            modelBuilder.Property(ug => ug.DataTermino)
+                   .HasColumnType("datetime")
+                   .IsRequired();
             modelBuilder.Property(ug => ug.ConsultoriaID)
                    .HasColumnType("int")
                    .IsRequired();
