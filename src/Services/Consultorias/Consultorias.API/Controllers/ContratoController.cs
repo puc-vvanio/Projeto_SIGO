@@ -15,7 +15,7 @@ namespace SIGO.Consultorias.API.Controllers
     [ApiController]
     public class ContratoController : ControllerBase
     {
-        private readonly IServiceContrato _contratoService;
+         private readonly IServiceContrato _contratoService;
          private readonly IServiceConsultoria _consultoriaService;
 
         public ContratoController(IServiceContrato contratoService, IServiceConsultoria consultoriaService)
@@ -42,10 +42,7 @@ namespace SIGO.Consultorias.API.Controllers
                     foreach (Contrato contrato in contratos)
                     {
 
-                        var consultorianome = await _consultoriaService.ObterConsultoria(contrato.ConsultoriaID);
-                        var nomeconsultorias = "";
-                        if (consultorianome != null)
-                            nomeconsultorias = consultorianome.Nome;
+                        var consultoria = await _consultoriaService.ObterConsultoria(contrato.ConsultoriaID);
 
                         ContratoExibir contratoExibir = new ContratoExibir()
                         {
@@ -54,7 +51,7 @@ namespace SIGO.Consultorias.API.Controllers
                             Descricao = contrato.Descricao,
                             Tipo = contrato.Tipo.ToString(),
                             ConsultoriaID = contrato.ConsultoriaID,
-                            Consultoria = nomeconsultorias,
+                            Consultoria = consultoria.Nome,
                             dataCriacao = contrato.DataCriacao,
                             dataAtualizacao = contrato.DataAtualizacao
                         };
@@ -80,7 +77,7 @@ namespace SIGO.Consultorias.API.Controllers
         [HttpGet()]
         [Route("Resume")]
         [Authorize(Roles = "Admin,Gerente")]
-        public async Task<IActionResult> ResumeAsync()
+        public async Task<IActionResult> Resume()
         {
             try
             {

@@ -68,6 +68,18 @@ namespace SIGO.ProcessoIndustrial.Service.Services
             }
         }
 
+        public async Task<Evento> ObterUltimoEvento(int tipoEventoId)
+        {
+            try
+            {
+                return await _unitOfWork.Eventos.ObterUltimoEvento(tipoEventoId);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public async Task<List<Evento>> ObterEventos()
         {
             try

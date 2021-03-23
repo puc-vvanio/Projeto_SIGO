@@ -14,6 +14,8 @@ namespace SIGO.ProcessoIndustrial.Domain.Interfaces.Services
 
         Task<Evento> ObterEvento(int id);
 
+        Task<Evento> ObterUltimoEvento(int tipoEventoId);
+
         Task<List<Evento>> ObterEventos();
     }
 }

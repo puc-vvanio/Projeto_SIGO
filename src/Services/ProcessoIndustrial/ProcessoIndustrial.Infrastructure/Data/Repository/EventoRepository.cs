@@ -74,6 +74,18 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data.Repository
             }
         }
 
+        public async Task<Evento> ObterUltimoEvento(int tipoEventoId)
+        {
+            try
+            {
+                return await _context.Eventos.Where(x => x.DataExclusao == null && x.TipoEventoID == tipoEventoId).OrderByDescending(x => x.DataCriacao).FirstAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public async Task<List<Evento>> ObterEventos()
         {
             try

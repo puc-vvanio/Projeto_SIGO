@@ -1,40 +1,40 @@
 ﻿using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SIGO.Normas.Domain.DTO.Normas;
-using SIGO.Normas.Domain.Entities;
-using SIGO.Normas.API.Helpers;
-using SIGO.Normas.API.Messages;
-using SIGO.Normas.Domain.Interfaces.Services;
+using SIGO.ProcessoIndustrial.Domain.DTO.Eventos;
+using SIGO.ProcessoIndustrial.Domain.Entities;
+using SIGO.ProcessoIndustrial.API.Helpers;
+using SIGO.ProcessoIndustrial.API.Messages;
+using SIGO.ProcessoIndustrial.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SIGO.Normas.API.Controllers
+namespace SIGO.ProcessoIndustrial.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
    
-    public class NormaController : ControllerBase
+    public class EventoController : ControllerBase
     {
-        private readonly IServiceNorma _normaService;
-        private readonly IServiceRepositorioExterno _repositorioExternoService;
+        private readonly IServiceEvento _eventoService;
+        private readonly IServiceTipoEvento _tipoEventoService;
 
         private RabbitmqConfig _rabbitConfig;
         private ISendEndpointProvider _sendEndpoint;
         private IPublishEndpoint _publishEndPoint;
 
-        public NormaController(IServiceNorma normaService,
-                               IServiceRepositorioExterno repositorioExternoService
+        public EventoController(IServiceEvento eventoService,
+                                IServiceTipoEvento tipoEventoService
                                //IOptions<RabbitmqConfig> rabbitConfig,
                                //ISendEndpointProvider sendEndpoint,
                                //IPublishEndpoint publish
                                )
         {
-            _normaService = normaService;
-            _repositorioExternoService = repositorioExternoService;
+            _eventoService = eventoService;
+            _tipoEventoService = tipoEventoService;
 
             //_rabbitConfig = rabbitConfig.Value;
             //_sendEndpoint = sendEndpoint;
@@ -48,35 +48,36 @@ namespace SIGO.Normas.API.Controllers
         {
             try
             {
-                var normas = await _normaService.ObterNormas();
+                var eventos = await _eventoService.ObterEventos();
 
-                if (normas != null)
+                if (eventos != null)
                 {
-                    List<NormasExibir> normaslist = new List<NormasExibir>();
+                    List<EventoExibir> eventoslist = new List<EventoExibir>();
 
-                    foreach (Norma normaitem in normas)
+                    foreach (Evento evento in eventos)
                     {
+                        var tipoEvento = await _tipoEventoService.ObterTipoEvento(evento.TipoEventoID);
 
-                        NormasExibir norma = new NormasExibir()
+                        EventoExibir eventoExibir = new EventoExibir()
                         {
-                            Id = normaitem.Id,
-                            Nome = normaitem.Nome,
-                            Descricao = normaitem.Descricao,
-                            NomeArquivo = normaitem.NomeArquivo,
-                            Tipo = normaitem.Tipo.ToString(),
-                            Status = normaitem.Status.ToString(),
-                            DataCriacao = normaitem.DataCriacao,
-                            DataAtualizacao = normaitem.DataAtualizacao
+                            Id = evento.Id,
+                            Nome = evento.Nome,
+                            Descricao = evento.Descricao,
+                            Sistema = evento.Sistema.ToString(),
+                            TipoEventoID = evento.TipoEventoID,
+                            TipoEvento = tipoEvento.Nome,
+                            DataCriacao = evento.DataCriacao,
+                            DataAtualizacao = evento.DataAtualizacao
                         };
 
-                        normaslist.Add(norma);
+                        eventoslist.Add(eventoExibir);
                     }
 
-                    return Ok(normaslist);
+                    return Ok(eventoslist);
                 }
                 else
                 {
-                    return Ok("Nenhuma norma cadastrada!");
+                    return Ok("Nenhum evento cadastrado!");
                 }
             }
             catch (Exception)
@@ -86,36 +87,41 @@ namespace SIGO.Normas.API.Controllers
         }
 
         // GET: api/<NormaController>
-        [HttpGet("verificar")]
+        [HttpGet]
         [Authorize(Roles = "Admin,Gerente,Colaborador")]
-        public async Task<IActionResult> Get(string id)
+        [Route("TipoEvento/Ultimo/{tipoEventoId}")]
+        public async Task<IActionResult> Get_UltimoEvento(int tipoEventoId)
         {
             try
             {
-                var norma = await _repositorioExternoService.GetNormaInfo(id, "http://162.243.37.75/normas");
+                var evento = await _eventoService.ObterUltimoEvento(tipoEventoId);
 
-                if (norma != null)
+                if (evento != null)
                 {
-                    if (norma.Nome == null)
-                        norma.Nome = id;
-                    /*
-                    await SendMessage(new SubscribeToNormasCommand
+                    var tipoEvento = await _tipoEventoService.ObterTipoEvento(evento.TipoEventoID);
+
+                    EventoExibir eventoExibir = new EventoExibir()
                     {
-                        Norma = norma.Nome,
-                        Status = norma.Status,
-                        Data = norma.Data
-                    }, "normasService");
-                    */
-                    return Ok(norma);
+                        Id = evento.Id,
+                        Nome = evento.Nome,
+                        Descricao = evento.Descricao,
+                        Sistema = evento.Sistema.ToString(),
+                        TipoEventoID = evento.TipoEventoID,
+                        TipoEvento = tipoEvento.Nome,
+                        DataCriacao = evento.DataCriacao,
+                        DataAtualizacao = evento.DataAtualizacao
+                    };
+
+                    return Ok(eventoExibir);
                 }
                 else
                 {
-                    return Ok("Nenhuma informação encontrada!");
+                    return Ok("Nenhum evento encontrado !");
                 }
             }
             catch (Exception)
             {
-                return StatusCode(500, "Erro ao comunicar com o repositório externo!");
+                return StatusCode(500, "Erro ao comunicar com a base de dados!");
             }
         }
 

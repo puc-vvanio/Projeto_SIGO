@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Sigo.Normas.API.Controllers
+namespace Sigo.ProcessoIndustrial.API.Controllers
 {
     public class HomeController : Controller
     {
