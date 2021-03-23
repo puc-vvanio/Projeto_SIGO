@@ -14,22 +14,22 @@ import { Subject } from 'rxjs';
 export class GestaoProcessoIndustrialPageComponent implements OnInit {
 
     /**
-     * 
+     *
      */
     public eventos;
 
     /**
-     * 
+     *
      */
     public listagemOrcamentosVendas;
-    
+
     /**
-     * 
+     *
      */
     dtOptions: any;
-    
+
     /**
-     * 
+     *
      */
     public dtTrigger: Subject < any > = new Subject < any > ();
 
@@ -37,9 +37,9 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
      * Creates an instance of class GestaoProcessoIndustrialPageComponent
      */
     constructor(
-        private eventoService: EventoService, 
-        private router: Router, 
-        private route: ActivatedRoute, 
+        private eventoService: EventoService,
+        private router: Router,
+        private route: ActivatedRoute,
         private toastr: ToastrService) {}
 
     /**
@@ -47,11 +47,12 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
      */
     ngOnInit(): void {
         this.dtOptions = DataTablesOptions.PortuguesBrasil;
+
+        this.obterListagemEventos();
         // Remover para fazer a chamada ao procedimento remoto de messageria
         /*
-        this.obterListagemEventos();
         this.obterListagemEventosOrcamentosVendas();
-        
+
         this.iniciarTimerObterListagemEventosOrcamentosVendas();
         */
         this.listagemOrcamentosVendas = [{
@@ -108,7 +109,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
     }
 
     /**
-     * Timer to get 
+     * Timer to get
      */
     iniciarTimerObterListagemEventosOrcamentosVendas() {
         setInterval(() => {
@@ -118,7 +119,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
 }
 
 /**
- * Data Interface 
+ * Data Interface
  */
 interface ListagemOrcamentosVendas {
     Orcamentos: string;

@@ -13,7 +13,7 @@ import { UsuarioService } from '../../services/usuario.service';
 export class LoginPageComponent implements OnInit {
 
     /**
-     * 
+     *
      */
     public loginForm;
 
@@ -21,9 +21,9 @@ export class LoginPageComponent implements OnInit {
      * Creates an instance of LoginPageComponent.
      */
     constructor(
-        private usuarioService: UsuarioService, 
-        private router: Router, 
-        private route: ActivatedRoute, 
+        private usuarioService: UsuarioService,
+        private router: Router,
+        private route: ActivatedRoute,
         private toastr: ToastrService) {}
 
     /**
@@ -44,7 +44,6 @@ export class LoginPageComponent implements OnInit {
      * Navigates to main module
      */
     public autorizarUsuario() {
-               
         let loginDTO = new LoginDTO();
         loginDTO.email = this.loginForm.value.email;
         loginDTO.senha = this.loginForm.value.senha;
@@ -52,9 +51,9 @@ export class LoginPageComponent implements OnInit {
         this.usuarioService.autorizar(loginDTO).subscribe(
 
             result => {
-            
+
                 if (result != null) {
-                    localStorage.setItem("TOKEN", result.token);                
+                    localStorage.setItem("TOKEN", result.token);
                     this.router.navigate(['/GestaoProcessoIndustrial']);
                 }
                 else
@@ -66,7 +65,7 @@ export class LoginPageComponent implements OnInit {
                 else
                     this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
             }
-        );       
+        );
     }
 
     /**
@@ -103,7 +102,7 @@ export class LoginPageComponent implements OnInit {
         if (control.dirty) {
             if (control.value == null) {
                 result = {
-                    TextError: "campo não pode estar vazio!"
+                    TextError: "Campo não pode estar vazio!"
                 };
             }
         }

@@ -70,7 +70,7 @@
                                 </div>
                         </div>
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                                <h1 class="h2">Painel de Controle</h1>
+                                <h1 class="h2">Gestão do Processo Industrial - Painel de Controle</h1>
                                 <div class="btn-toolbar mb-2 mb-md-0">
                                         <div class="btn-toolbar mb-2 mb-md-0">
                                                 <button type="button"
@@ -118,17 +118,17 @@
                                                         <th>#</th>
                                                         <th>Nome</th>
                                                         <th>Descrição</th>
-                                                        <th>Grau</th>
+                                                        <th>Sistema</th>
                                                         <th>Tipo de Evento</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
                                                 <tr *ngFor="let evento of eventos">
-                                                        <td>{{evento.guid}}</td>
+                                                        <td>{{evento.id}}</td>
                                                         <td>{{evento.nome}}</td>
                                                         <td>{{evento.descricao}}</td>
-                                                        <td>{{evento.grau}}</td>
-                                                        <td>{{evento.tipoEvento.nome}}</td>
+                                                        <td>{{evento.sistema}}</td>
+                                                        <td>{{evento.tipoEvento}}</td>
                                                 </tr>
                                         </tbody>
                                 </table>
