@@ -35,6 +35,8 @@ namespace SIGO.Consultorias.Infrastructure.Data.Migrations
                     Tipo = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     Descricao = table.Column<string>(type: "text", nullable: false),
+                    DataInicio = table.Column<DateTime>(type: "datetime", nullable: false),
+                    DataTermino = table.Column<DateTime>(type: "datetime", nullable: false),
                     ConsultoriaID = table.Column<int>(type: "int", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "datetime", nullable: false),
                     DataAtualizacao = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -55,27 +57,27 @@ namespace SIGO.Consultorias.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "consultorias",
                 columns: new[] { "Id", "DataAtualizacao", "DataCriacao", "DataExclusao", "Descricao", "Nome", "UltimoAcesso" },
-                values: new object[] { 1, null, new DateTime(2021, 3, 9, 13, 5, 55, 170, DateTimeKind.Local).AddTicks(4947), null, "Descrição Cosnsultoria 1", "Consultoria 1", null });
+                values: new object[] { 1, null, new DateTime(2021, 3, 23, 9, 20, 13, 251, DateTimeKind.Local).AddTicks(4246), null, "Descrição Cosnsultoria 1", "Consultoria 1", null });
 
             migrationBuilder.InsertData(
                 table: "consultorias",
                 columns: new[] { "Id", "DataAtualizacao", "DataCriacao", "DataExclusao", "Descricao", "Nome", "UltimoAcesso" },
-                values: new object[] { 2, null, new DateTime(2021, 3, 9, 13, 5, 55, 170, DateTimeKind.Local).AddTicks(6406), null, "Descrição Cosnsultoria 2", "Consultoria 2", null });
+                values: new object[] { 2, null, new DateTime(2021, 3, 23, 9, 20, 13, 251, DateTimeKind.Local).AddTicks(5664), null, "Descrição Cosnsultoria 2", "Consultoria 2", null });
 
             migrationBuilder.InsertData(
                 table: "contratos",
-                columns: new[] { "Id", "ConsultoriaID", "DataAtualizacao", "DataCriacao", "DataExclusao", "Descricao", "Nome", "Tipo", "UltimoAcesso" },
-                values: new object[] { 1, 1, null, new DateTime(2021, 3, 9, 13, 5, 55, 171, DateTimeKind.Local).AddTicks(9789), null, "Descrição Contrato 1", "Contrato 1", 0, null });
+                columns: new[] { "Id", "ConsultoriaID", "DataAtualizacao", "DataCriacao", "DataExclusao", "DataInicio", "DataTermino", "Descricao", "Nome", "Tipo", "UltimoAcesso" },
+                values: new object[] { 1, 1, null, new DateTime(2021, 3, 23, 9, 20, 13, 252, DateTimeKind.Local).AddTicks(9579), null, new DateTime(2020, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Descrição Contrato 1", "Contrato 1", 0, null });
 
             migrationBuilder.InsertData(
                 table: "contratos",
-                columns: new[] { "Id", "ConsultoriaID", "DataAtualizacao", "DataCriacao", "DataExclusao", "Descricao", "Nome", "Tipo", "UltimoAcesso" },
-                values: new object[] { 2, 2, null, new DateTime(2021, 3, 9, 13, 5, 55, 172, DateTimeKind.Local).AddTicks(1597), null, "Descrição Contrato 2", "Contrato 2", 1, null });
+                columns: new[] { "Id", "ConsultoriaID", "DataAtualizacao", "DataCriacao", "DataExclusao", "DataInicio", "DataTermino", "Descricao", "Nome", "Tipo", "UltimoAcesso" },
+                values: new object[] { 2, 2, null, new DateTime(2021, 3, 23, 9, 20, 13, 253, DateTimeKind.Local).AddTicks(3224), null, new DateTime(2020, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Descrição Contrato 2", "Contrato 2", 1, null });
 
             migrationBuilder.InsertData(
                 table: "contratos",
-                columns: new[] { "Id", "ConsultoriaID", "DataAtualizacao", "DataCriacao", "DataExclusao", "Descricao", "Nome", "Tipo", "UltimoAcesso" },
-                values: new object[] { 3, 2, null, new DateTime(2021, 3, 9, 13, 5, 55, 172, DateTimeKind.Local).AddTicks(1603), null, "Descrição Contrato 3", "Contrato 3", 32767, null });
+                columns: new[] { "Id", "ConsultoriaID", "DataAtualizacao", "DataCriacao", "DataExclusao", "DataInicio", "DataTermino", "Descricao", "Nome", "Tipo", "UltimoAcesso" },
+                values: new object[] { 3, 2, null, new DateTime(2021, 3, 23, 9, 20, 13, 253, DateTimeKind.Local).AddTicks(3234), null, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Descrição Contrato 3", "Contrato 3", 32767, null });
 
             migrationBuilder.CreateIndex(
                 name: "Idx_Nome",

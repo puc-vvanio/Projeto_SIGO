@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Consultorias.Domain\SIGO.Consultorias.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
 </Project>

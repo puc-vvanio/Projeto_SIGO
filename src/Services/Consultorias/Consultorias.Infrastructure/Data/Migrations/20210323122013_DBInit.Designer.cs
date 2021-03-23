@@ -10,7 +10,7 @@ using SIGO.Consultorias.Infrastructure.Data.Context;
 namespace SIGO.Consultorias.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20210309160555_DBInit")]
+    [Migration("20210323122013_DBInit")]
     partial class DBInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,14 +59,14 @@ namespace SIGO.Consultorias.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DataCriacao = new DateTime(2021, 3, 9, 13, 5, 55, 170, DateTimeKind.Local).AddTicks(4947),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 20, 13, 251, DateTimeKind.Local).AddTicks(4246),
                             Descricao = "Descrição Cosnsultoria 1",
                             Nome = "Consultoria 1"
                         },
                         new
                         {
                             Id = 2,
-                            DataCriacao = new DateTime(2021, 3, 9, 13, 5, 55, 170, DateTimeKind.Local).AddTicks(6406),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 20, 13, 251, DateTimeKind.Local).AddTicks(5664),
                             Descricao = "Descrição Cosnsultoria 2",
                             Nome = "Consultoria 2"
                         });
@@ -89,6 +89,14 @@ namespace SIGO.Consultorias.Infrastructure.Data.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<DateTime?>("DataExclusao")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataInicio")
+                        .IsRequired()
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataTermino")
+                        .IsRequired()
                         .HasColumnType("datetime");
 
                     b.Property<string>("Descricao")
@@ -120,7 +128,9 @@ namespace SIGO.Consultorias.Infrastructure.Data.Migrations
                         {
                             Id = 1,
                             ConsultoriaID = 1,
-                            DataCriacao = new DateTime(2021, 3, 9, 13, 5, 55, 171, DateTimeKind.Local).AddTicks(9789),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 20, 13, 252, DateTimeKind.Local).AddTicks(9579),
+                            DataInicio = new DateTime(2020, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataTermino = new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição Contrato 1",
                             Nome = "Contrato 1",
                             Tipo = 0
@@ -129,7 +139,9 @@ namespace SIGO.Consultorias.Infrastructure.Data.Migrations
                         {
                             Id = 2,
                             ConsultoriaID = 2,
-                            DataCriacao = new DateTime(2021, 3, 9, 13, 5, 55, 172, DateTimeKind.Local).AddTicks(1597),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 20, 13, 253, DateTimeKind.Local).AddTicks(3224),
+                            DataInicio = new DateTime(2020, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataTermino = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição Contrato 2",
                             Nome = "Contrato 2",
                             Tipo = 1
@@ -138,7 +150,9 @@ namespace SIGO.Consultorias.Infrastructure.Data.Migrations
                         {
                             Id = 3,
                             ConsultoriaID = 2,
-                            DataCriacao = new DateTime(2021, 3, 9, 13, 5, 55, 172, DateTimeKind.Local).AddTicks(1603),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 20, 13, 253, DateTimeKind.Local).AddTicks(3234),
+                            DataInicio = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataTermino = new DateTime(2022, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição Contrato 3",
                             Nome = "Contrato 3",
                             Tipo = 32767

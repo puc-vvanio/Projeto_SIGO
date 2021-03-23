@@ -67,7 +67,7 @@ namespace SIGO.Normas.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(1776),
                             Descricao = "Sistema de Gestao da Qualidade",
                             Nome = "ISO 9001",
                             NomeArquivo = "ISO9001.pdf",
@@ -77,7 +77,7 @@ namespace SIGO.Normas.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 2,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4363),
                             Descricao = "Sistema de Gestao Ambiental",
                             Nome = "ISO 14001",
                             NomeArquivo = "ISO14001.pdf",
@@ -87,7 +87,7 @@ namespace SIGO.Normas.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 3,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4370),
                             Descricao = "Sistema de Gestao de Seguranca da Informacao",
                             Nome = "ISO 27001",
                             NomeArquivo = "ISO27001.pdf",
@@ -97,7 +97,7 @@ namespace SIGO.Normas.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 4,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4372),
                             Descricao = "Servicos Especializados em Eng. de Seguranca e em Medicina do Trabalho",
                             Nome = "NR 4",
                             NomeArquivo = "NR4.pdf",
@@ -107,7 +107,7 @@ namespace SIGO.Normas.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 5,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4374),
                             Descricao = "Equipamentos de Protecao Individual - EPI",
                             Nome = "NR 6",
                             NomeArquivo = "NR6.pdf",
@@ -117,20 +117,10 @@ namespace SIGO.Normas.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 6,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4376),
                             Descricao = "Programas de Controle Medico de Saude Ocupacional - PCMSO",
                             Nome = "NR 7",
                             NomeArquivo = "NR7.pdf",
-                            Status = 0,
-                            Tipo = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "Sistema de Gestao da Qualidade",
-                            Nome = "ISO 9001",
-                            NomeArquivo = "ISO9001.pdf",
                             Status = 0,
                             Tipo = 2
                         });
@@ -187,32 +177,12 @@ namespace SIGO.Normas.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "Descrição Repositorio 1",
+                            DataCriacao = new DateTime(2021, 3, 23, 9, 29, 2, 511, DateTimeKind.Local).AddTicks(2915),
+                            Descricao = "Repositorio de Normas Fake 1",
                             Nome = "Repositorio 1",
-                            Senha = "sigo1",
-                            URL_API = "http://api.repositorio1.com.br",
-                            Usuario = "sigo1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "Descrição Repositorio 2",
-                            Nome = "Repositorio 2",
-                            Senha = "sigo2",
-                            URL_API = "http://api.repositorio2.com.br",
-                            Usuario = "sigo2"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            DataCriacao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "Descrição Repositorio 3",
-                            Nome = "Repositorio 3",
-                            Senha = "sigo3",
-                            URL_API = "http://api.repositorio3.com.br",
-                            Usuario = "sigo3"
+                            Senha = "sigo",
+                            URL_API = "http://162.243.37.75/normas",
+                            Usuario = "sigo"
                         });
                 });
 #pragma warning restore 612, 618

@@ -51,7 +51,7 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data.Context
                    Id = 4,
                    DataCriacao = DateTime.Now,
                    Nome = "Atraso de Matéria Prima"
-               }
+               },
                new TipoEvento
                {
                    Id = 5,

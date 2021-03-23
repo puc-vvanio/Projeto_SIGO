@@ -55,24 +55,18 @@ namespace SIGO.Normas.Infrastructure.Data.Migrations
                 columns: new[] { "Id", "DataAtualizacao", "DataCriacao", "DataExclusao", "Descricao", "Nome", "NomeArquivo", "Status", "Tipo", "UltimoAcesso" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Sistema de Gestao da Qualidade", "ISO 9001", "ISO9001.pdf", 0, 2, null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Sistema de Gestao Ambiental", "ISO 14001", "ISO14001.pdf", 0, 2, null },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Sistema de Gestao de Seguranca da Informacao", "ISO 27001", "ISO27001.pdf", 0, 2, null },
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Servicos Especializados em Eng. de Seguranca e em Medicina do Trabalho", "NR 4", "NR4.pdf", 0, 2, null },
-                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Equipamentos de Protecao Individual - EPI", "NR 6", "NR6.pdf", 0, 2, null },
-                    { 6, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Programas de Controle Medico de Saude Ocupacional - PCMSO", "NR 7", "NR7.pdf", 0, 2, null },
-                    { 7, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Sistema de Gestao da Qualidade", "ISO 9001", "ISO9001.pdf", 0, 2, null }
+                    { 1, null, new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(1776), null, "Sistema de Gestao da Qualidade", "ISO 9001", "ISO9001.pdf", 0, 2, null },
+                    { 2, null, new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4363), null, "Sistema de Gestao Ambiental", "ISO 14001", "ISO14001.pdf", 0, 2, null },
+                    { 3, null, new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4370), null, "Sistema de Gestao de Seguranca da Informacao", "ISO 27001", "ISO27001.pdf", 0, 2, null },
+                    { 4, null, new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4372), null, "Servicos Especializados em Eng. de Seguranca e em Medicina do Trabalho", "NR 4", "NR4.pdf", 0, 2, null },
+                    { 5, null, new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4374), null, "Equipamentos de Protecao Individual - EPI", "NR 6", "NR6.pdf", 0, 2, null },
+                    { 6, null, new DateTime(2021, 3, 23, 9, 29, 2, 508, DateTimeKind.Local).AddTicks(4376), null, "Programas de Controle Medico de Saude Ocupacional - PCMSO", "NR 7", "NR7.pdf", 0, 2, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "repositorios",
                 columns: new[] { "Id", "DataAtualizacao", "DataCriacao", "DataExclusao", "Descricao", "Nome", "Senha", "URL_API", "UltimoAcesso", "Usuario" },
-                values: new object[,]
-                {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Descrição Repositorio 1", "Repositorio 1", "sigo1", "http://api.repositorio1.com.br", null, "sigo1" },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Descrição Repositorio 2", "Repositorio 2", "sigo2", "http://api.repositorio2.com.br", null, "sigo2" },
-                    { 31, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Descrição Repositorio 3", "Repositorio 3", "sigo3", "http://api.repositorio3.com.br", null, "sigo3" }
-                });
+                values: new object[] { 1, null, new DateTime(2021, 3, 23, 9, 29, 2, 511, DateTimeKind.Local).AddTicks(2915), null, "Repositorio de Normas Fake 1", "Repositorio 1", "sigo", "http://162.243.37.75/normas", null, "sigo" });
 
             migrationBuilder.CreateIndex(
                 name: "Idx_Nome",
