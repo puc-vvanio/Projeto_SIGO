@@ -84,20 +84,57 @@ namespace SIGO.Normas.API.Controllers
                 return StatusCode(500, "Erro ao comunicar com a base de dados!");
             }
         }
-
+        
         // GET: api/<NormaController>
-        [HttpGet("verificar")]
+        [HttpGet]
+        [Route("{normaId}")]
         [Authorize(Roles = "Admin,Gerente,Colaborador")]
-        public async Task<IActionResult> Get(string id)
+        public async Task<IActionResult> Get(int normaId)
         {
             try
             {
-                var norma = await _repositorioExternoService.GetNormaInfo(id, "http://162.243.37.75/normas");
+                var norma = await _normaService.ObterNorma(normaId);
 
                 if (norma != null)
                 {
-                    if (norma.Nome == null)
-                        norma.Nome = id;
+                    NormasExibir normaExibir = new NormasExibir()
+                    {
+                        Id = norma.Id,
+                        Nome = norma.Nome,
+                        Descricao = norma.Descricao,
+                        NomeArquivo = norma.NomeArquivo,
+                        Tipo = norma.Tipo.ToString(),
+                        Status = norma.Status.ToString(),
+                        DataCriacao = norma.DataCriacao,
+                        DataAtualizacao = norma.DataAtualizacao
+                    };
+
+                    return Ok(normaExibir);
+                }
+                else
+                {
+                    return Ok("Norma não encontrada!");
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Erro ao comunicar com a base de dados!");
+            }
+        }
+
+        // GET: api/<NormaController>
+        [HttpGet("verificar/{norma}")]
+        [Authorize(Roles = "Admin,Gerente,Colaborador")]
+        public async Task<IActionResult> Get(string norma)
+        {
+            try
+            {
+                var normaVerificada = await _repositorioExternoService.GetNormaInfo(norma, "http://162.243.37.75/normas");
+
+                if (normaVerificada != null)
+                {
+                    if (normaVerificada.Nome == null)
+                        normaVerificada.Nome = norma;
                     /*
                     await SendMessage(new SubscribeToNormasCommand
                     {
@@ -106,7 +143,7 @@ namespace SIGO.Normas.API.Controllers
                         Data = norma.Data
                     }, "normasService");
                     */
-                    return Ok(norma);
+                    return Ok(normaVerificada);
                 }
                 else
                 {
