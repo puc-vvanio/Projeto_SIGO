@@ -24,4 +24,18 @@ namespace SIGO.Consultorias.Domain.DTO.Contratos
 
         public DateTime ?dataAtualizacao { get; set; }
     }
+
+
+    public class ContratoResumo
+    {
+        public string VigentesTitulo { get; set; }
+        public string VigentesDescricao { get; set; }
+
+        public string VencerTitulo { get; set; }
+        public string VencerDescricao { get; set; }
+
+        public string VencidosTitulo { get; set; }
+        public string VencidosDescricao { get; set; }
+    }
+
 }
