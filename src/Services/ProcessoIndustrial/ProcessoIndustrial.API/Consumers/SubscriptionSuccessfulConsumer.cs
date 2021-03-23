@@ -1,9 +1,6 @@
 ﻿using MassTransit;
 using SIGO.ProcessoIndustrial.API.Messages;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SIGO.ProcessoIndustrial.API.Consumers

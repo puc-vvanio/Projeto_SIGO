@@ -34,13 +34,10 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data.Mapping
             modelBuilder.Property(ug => ug.Nome)
                    .HasColumnType("nvarchar(255)")
                    .IsRequired();
-            modelBuilder.Property(ug => ug.Descricao)
-                   .HasColumnType("text")
-                   .IsRequired();
 
             // Configure Primary Keys  
             modelBuilder.HasKey(ug => ug.Id)
-                   .HasName("PK_Normas");
+                   .HasName("PK_TiposEventos");
 
             // Configure indexes  
             modelBuilder.HasIndex(p => p.Nome)

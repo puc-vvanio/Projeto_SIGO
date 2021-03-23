@@ -37,13 +37,16 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data.Mapping
             modelBuilder.Property(ug => ug.Descricao)
                    .HasColumnType("text")
                    .IsRequired();
+            modelBuilder.Property(ug => ug.Sistema)
+                  .HasColumnType("int")
+                  .IsRequired();
             modelBuilder.Property(ug => ug.TipoEventoID)
                   .HasColumnType("int")
                   .IsRequired();
 
             // Configure Primary Keys  
             modelBuilder.HasKey(ug => ug.Id)
-                   .HasName("PK_Normas");
+                   .HasName("PK_Eventos");
 
             // Configure indexes  
             modelBuilder.HasIndex(p => p.Nome)

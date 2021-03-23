@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SIGO.ProcessoIndustrial.Domain.Entities;
+using SIGO.ProcessoIndustrial.Domain.Enums;
 using SIGO.ProcessoIndustrial.Infrastructure.Data.Mapping;
 using System;
 using System.Linq;
@@ -26,6 +27,68 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.Data.Context
             modelBuilder.ApplyConfiguration(new EventoMapping());
             modelBuilder.ApplyConfiguration(new TipoEventoMapping());
 
+            modelBuilder.Entity<TipoEvento>().HasData(
+               new TipoEvento
+               {
+                   Id = 1,
+                   DataCriacao = DateTime.Now,
+                   Nome = "Norma Atualizada"
+               },
+               new TipoEvento
+               {
+                   Id = 2,
+                   DataCriacao = DateTime.Now,
+                   Nome = "Norma Cancelada"
+               },
+               new TipoEvento
+               {
+                   Id = 3,
+                   DataCriacao = DateTime.Now,
+                   Nome = "Equipamento em Manutenção"
+               },
+               new TipoEvento
+               {
+                   Id = 4,
+                   DataCriacao = DateTime.Now,
+                   Nome = "Atraso de Matéria Prima"
+               }
+               new TipoEvento
+               {
+                   Id = 5,
+                   DataCriacao = DateTime.Now,
+                   Nome = "Estoque de Produto Acabado"
+               }
+            );
+
+            modelBuilder.Entity<Evento>().HasData(
+               new Evento
+               {
+                   Id = 1,
+                   DataCriacao = DateTime.Now,
+                   Nome = "ISO 9001",
+                   Descricao = "Atualização de versão",
+                   Sistema = Sistema.Normas,
+                   TipoEventoID = 1
+               },
+               new Evento
+               {
+                   Id = 2,
+                   DataCriacao = DateTime.Now,
+                   Nome = "Rebobinadeira longitudinal",
+                   Descricao = "Precisa realizar manutenção prenventiva",
+                   Sistema = Sistema.Processos_Industriais,
+                   TipoEventoID = 3
+               },
+               new Evento
+               {
+                   Id = 3,
+                   DataCriacao = DateTime.Now,
+                   Nome = "Liberação de produto",
+                   Descricao = "1000 metros do tecido AX2001 liberado para venda",
+                   Sistema = Sistema.Vendas,
+                   TipoEventoID = 5
+               }
+            );
         }
 
         public async Task<int> SaveChangesAsync()
