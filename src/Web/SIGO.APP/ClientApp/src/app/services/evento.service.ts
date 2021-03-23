@@ -7,7 +7,7 @@ export class EventoService {
     /**
      * Endpoint to the service
      */
-    private readonly _endpoint: string = 'processoindustrial';
+    private readonly _endpoint: string = 'evento';
 
     /**
      * Creates an instance of EventoService.
@@ -26,6 +26,6 @@ export class EventoService {
      * Call to GET specific list endpoint
      */
     public obterEventosOrcamentosVendas() {
-        return this.baseService.get(this._endpoint + '/tipoEvento/maisRecente/' + 4);
+        return this.baseService.get(this._endpoint + '/tipoEvento/Ultimo/' + 4);
     }
 }

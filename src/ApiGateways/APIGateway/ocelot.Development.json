@@ -22,8 +22,34 @@
     {
       "DangerousAcceptAnyServerCertificateValidator": true,
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/evento",
+      "DownstreamPathTemplate": "/api/Evento/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "processoindustrial.api",
+          "Port": 443
+        }
+      ]
+    },
+    {
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/evento/{everything}",
+      "DownstreamPathTemplate": "/api/Evento/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "processoindustrial.api",
+          "Port": 443
+        }
+      ]
+    },
+    {
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
       "UpstreamPathTemplate": "/processoindustrial/{everything}",
-      "DownstreamPathTemplate": "/api/Processoindustrial/{everything}",
+      "DownstreamPathTemplate": "/api/Evento/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {

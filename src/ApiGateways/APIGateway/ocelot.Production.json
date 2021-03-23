@@ -14,17 +14,30 @@
       "RouteIsCaseSensitive": true
     },
     {
+      "DangerousAcceptAnyServerCertificateValidator": true,
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-      "UpstreamPathTemplate": "/processoindustrial/{everything}",
-      "DownstreamPathTemplate": "/api/Processoindustrial/{everything}",
+      "UpstreamPathTemplate": "/Evento",
+      "DownstreamPathTemplate": "/api/Evento",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhostt",
-          "Port": 403
+          "Host": "processoindustrial.api",
+          "Port": 443
         }
-      ],
-      "RouteIsCaseSensitive": true
+      ]
+    },
+    {
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamPathTemplate": "/Evento/{everything}",
+      "DownstreamPathTemplate": "/api/Evento/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "processoindustrial.api",
+          "Port": 443
+        }
+      ]
     },
     {
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
