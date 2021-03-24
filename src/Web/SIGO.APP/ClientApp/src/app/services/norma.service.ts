@@ -21,4 +21,11 @@ export class NormaService {
     public obterNormas() {
         return this.baseService.get(this._endpoint);
     }
+
+    /**
+     * Call to GET list endpoint
+     */
+    public obterNorma(normaId) {
+        return this.baseService.get(this._endpoint + '/' + normaId);
+    }
 }

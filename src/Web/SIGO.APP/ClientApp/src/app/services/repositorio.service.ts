@@ -1,6 +1,5 @@
 import { BaseService } from "./base.service";
 import { Injectable } from "@angular/core";
-import { RepositorioDTO } from "../DTO/repositorio.dto";
 
 @Injectable()
 export class RepositorioService {
@@ -21,12 +20,5 @@ export class RepositorioService {
      */
     public obterRepositorios() {
         return this.baseService.get(this._endpoint);
-    }
-
-    /**
-     * Call to POST item endpoint
-     */
-    public criarRepositorio(repositorioDTO : RepositorioDTO) {
-        return this.baseService.post(this._endpoint, repositorioDTO);
     }
 }

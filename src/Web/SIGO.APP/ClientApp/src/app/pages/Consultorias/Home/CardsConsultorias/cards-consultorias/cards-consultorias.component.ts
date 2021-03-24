@@ -5,25 +5,26 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './cards-consultorias.component.html',
   styleUrls: ['./cards-consultorias.component.css']
 })
+
 export class CardsConsultoriasComponent implements OnInit {
 
     /**
-     * 
+     *
      */
     @Input() CardStyle: string;
-    
+
     /**
-     * 
+     *
      */
     @Input() Title: string;
 
     /**
-     * 
+     *
      */
     @Input() SubTitle: string;
 
     /**
-     * 
+     *
      */
     @Input() Description: string;
 

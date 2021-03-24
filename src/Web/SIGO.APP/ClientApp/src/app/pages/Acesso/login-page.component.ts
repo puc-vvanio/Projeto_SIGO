@@ -10,6 +10,7 @@ import { UsuarioService } from '../../services/usuario.service';
     templateUrl: './login-page.component.html',
     styleUrls: ['./login-page.component.css']
 })
+
 export class LoginPageComponent implements OnInit {
 
     /**
@@ -77,14 +78,14 @@ export class LoginPageComponent implements OnInit {
         if (control.dirty) {
             if (control.value == null) {
                 result = {
-                    TextError: "Campo não pode estar vazio!"
+                    TextError: "O campo não pode estar vazio!"
                 };
             } else {
                 let regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
                 if (!regexp.test(control.value)) {
                     result = {
-                        TextError: "Email informado é inválido!"
+                        TextError: "O Email informado não tem formato válido!"
                     };
                 }
             }
@@ -102,7 +103,7 @@ export class LoginPageComponent implements OnInit {
         if (control.dirty) {
             if (control.value == null) {
                 result = {
-                    TextError: "Campo não pode estar vazio!"
+                    TextError: "O campo não pode estar vazio!"
                 };
             }
         }

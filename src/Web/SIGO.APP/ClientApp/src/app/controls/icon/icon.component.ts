@@ -5,25 +5,26 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.css']
 })
+
 export class IconComponent implements OnInit {
 
     /**
-     * 
+     *
      */
-	@Input() Title: string;
+        @Input() Title: string;
 
     /**
-     * 
+     *
      */
-	@Input() ClassIcon: string;
-	
-	/**
-	 * Creates an instance of IconComponent.
-	 */
-	constructor() {}
+        @Input() ClassIcon: string;
 
-	/**
-	 * Initializes the component
-	 */
-	ngOnInit(): void {}
+        /**
+         * Creates an instance of IconComponent.
+         */
+        constructor() {}
+
+        /**
+         * Initializes the component
+         */
+        ngOnInit(): void {}
 }

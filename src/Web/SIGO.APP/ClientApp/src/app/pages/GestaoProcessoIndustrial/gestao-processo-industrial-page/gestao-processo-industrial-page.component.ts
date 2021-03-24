@@ -21,7 +21,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
     /**
      *
      */
-    public listagemOrcamentosVendas;
+    public listagemEventos;
 
     /**
      *
@@ -51,11 +51,11 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
         this.obterListagemEventos();
         // Remover para fazer a chamada ao procedimento remoto de messageria
         /*
-        this.obterListagemEventosOrcamentosVendas();
+        this.obterListagemEventos();
 
-        this.iniciarTimerObterListagemEventosOrcamentosVendas();
+        this.iniciarTimerObterListagemEventos();
         */
-        this.listagemOrcamentosVendas = [{
+        this.listagemEventos = [{
             data: [50, 50]
         }];
     }
@@ -86,24 +86,27 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
     }
 
     /**
-     * Get Eventos Orcamento Vendas List
+     * Get Ultimos Eventos List
      */
-    obterListagemEventosOrcamentosVendas() {
-        this.eventoService.obterEventosOrcamentosVendas().subscribe(
+    obterListagemUltimosEventos() {
+        this.eventoService.obterUltimosEventos().subscribe(
             result => {
                 if (result != null) {
-                    let listagemOrcamentosVendas: ListagemOrcamentosVendas = JSON.parse(result["descricao"]);
+                    let listagemEventos: ListagemEventos = JSON.parse(result["descricao"]);
 
-                    if (listagemOrcamentosVendas.Orcamentos != this.listagemOrcamentosVendas[0].data[0]) {
-                        this.listagemOrcamentosVendas = [{
-                            data: [listagemOrcamentosVendas.Orcamentos, listagemOrcamentosVendas.Vendas]
+                    if (listagemEventos.Eventos != this.listagemEventos[0].data[0]) {
+                        this.listagemEventos = [{
+                            data: [listagemEventos.Eventos, listagemEventos.Resolucoes]
                         }];
                     }
                 } else
-                    this.toastr.error("Erro", "Alerta");
+                    this.toastr.warning("Nenhum registro localizado!", "Alerta");
             },
             error => {
-                this.toastr.error("Erro", "Alerta");
+                if (error.error != null)
+                    this.toastr.error(error.error, "Alerta");
+                else
+                    this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
             }
         );
     }
@@ -111,9 +114,9 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
     /**
      * Timer to get
      */
-    iniciarTimerObterListagemEventosOrcamentosVendas() {
+    iniciarTimerObterListagemEventos() {
         setInterval(() => {
-            this.obterListagemEventosOrcamentosVendas();
+            this.obterListagemEventos();
         }, 10000)
     }
 }
@@ -121,7 +124,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
 /**
  * Data Interface
  */
-interface ListagemOrcamentosVendas {
-    Orcamentos: string;
-    Vendas: string;
+interface ListagemEventos {
+    Eventos: string;
+    Resolucoes: string;
 }

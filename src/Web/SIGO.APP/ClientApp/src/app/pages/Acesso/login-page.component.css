@@ -21,18 +21,6 @@ p {
     align-items: center;
 }
 
-footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-}
-
-footer a {
-    display: flex;
-    align-items: center;
-}
-
 @media screen and (max-width: 767px) {
 
     .card-container>*:not(.circle-link),

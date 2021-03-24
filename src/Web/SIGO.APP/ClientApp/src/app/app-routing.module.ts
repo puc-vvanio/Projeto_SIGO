@@ -6,8 +6,9 @@ import { ListagemConsultoriasComponent } from "./pages/Consultorias/Consultorias
 import { ListagemContratosComponent } from "./pages/Consultorias/Contratos/listagem-contratos/listagem-contratos.component";
 import { NormasPageComponent } from "./pages/Normas/Home/normas-page/normas-page.component";
 import { ListagemNormasComponent } from "./pages/Normas/Normas/listagem-normas/listagem-normas.component";
+import { VisualizarNormaComponent } from "./pages/Normas/Normas/visualizar-norma/visualizar-norma.component";
 import { ListagemRepositoriosComponent } from "./pages/Normas/Repositorios/listagem-repositorios/listagem-repositorios.component";
-import { InclusaoRepositorioComponent } from "./pages/Normas/Repositorios/inclusao-repositorio/inclusao-repositorio.component";
+
 
 import { NgModule } from "@angular/core";
 import { NavigationGuardService } from "./security/navigation.guard.service";
@@ -48,22 +49,22 @@ const appRoutes: Routes = [
     canActivate: [NavigationGuardService]
   },
   {
+    path: "Normas/Norma/:normaId",
+    component: VisualizarNormaComponent,
+    canActivate: [NavigationGuardService]
+  },
+  {
     path: "Normas/Repositorios",
     component: ListagemRepositoriosComponent,
     canActivate: [NavigationGuardService]
   },
-  {
-    path: "Normas/Repositorios/Novo",
-    component: InclusaoRepositorioComponent,
-    canActivate: [NavigationGuardService]
-  }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { 
+      {
         enableTracing: false
       }
     )

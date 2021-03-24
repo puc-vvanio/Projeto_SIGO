@@ -1,56 +1,52 @@
 <div class="content" role="main">
 
-	<form class="form-signin" 
-		[formGroup]="loginForm"
-		(ngSubmit)="autorizarUsuario()">
+    <form class="form-signin"
+        [formGroup]="loginForm"
+        (ngSubmit)="autorizarUsuario()">
 
-		<img class="mb-4 mt-4 text-center" 
-			src="/assets/logo-sigo.png" 
-			alt=""
-			width="72">
+        <img class="mb-4 mt-4 text-center"
+            src="/assets/logo-sigo.png"
+            alt=""
+            width="72">
 
-		<h1 class="h3 mb-3 font-weight-normal text-center">
-			Sistema Integrado de Gestão e Operação
-		</h1>
+        <h1 class="h4 mb-3 font-weight-normal text-center">
+            <span>Sistema Integrado de Gestão e Operação</span>
+        </h1>
 
-		<div class="form-group">
-			<label for="username" 
-				class="text-info">Email:</label>
-			<br>
-			<input type="email"
-				name="username" 
-				id="username" 
-				class="form-control"
-				placeholder="" 
-				required="" 
-				autofocus="" 
-				formControlName="email">
-		</div>
+        <div class="form-group">
+            <label for="username"
+                class="text-info">Email:</label>
+            <br>
+            <input type="email"
+                name="username"
+                id="username"
+                class="form-control"
+                placeholder=""
+                required=""
+                autofocus=""
+                formControlName="email">
+        </div>
 
-		<div class="form-group">
-			<label for="password" 
-				class="text-info">Senha:</label>
-				<br>
-				<input type="password" 
-					name="password" 
-					id="password" 
-					class="form-control"
-					placeholder="" 
-					required="" 
-					formControlName="senha">
-		</div>
+        <div class="form-group">
+            <label for="password"
+                class="text-info">Senha:</label>
+            <br>
+            <input type="password"
+                    name="password"
+                    id="password"
+                    class="form-control"
+                    placeholder=""
+                    required=""
+                    formControlName="senha">
+        </div>
 
-		<div class="form-group">
-			<button type="submit"
-				class="btn btn-lg btn-dark btn-block"
-				[disabled]="!loginForm.valid">Acessar</button>
-		</div>
-	</form>
+        <div class="form-group">
+            <button type="submit"
+                class="btn btn-lg btn-dark btn-block"
+                [disabled]="!loginForm.valid">Acessar</button>
+        </div>
+
+    </form>
 
 </div>
 
-<footer>
-	<div class="navbar fixed-bottom justify-content-center">
-		POC - IndTextBR (2021)
-	</div>
-</footer>

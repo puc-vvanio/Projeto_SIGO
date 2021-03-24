@@ -7,14 +7,15 @@ import { ToastrService } from 'ngx-toastr';
     templateUrl: './nav-menu.component.html',
     styleUrls: ['./nav-menu.component.css']
 })
+
 export class NavMenuComponent implements OnInit {
 
     /**
      * Creates an instance of NavMenuComponent.
      */
     constructor(
-        private router: Router, 
-        private route: ActivatedRoute, 
+        private router: Router,
+        private route: ActivatedRoute,
         private toastr: ToastrService) {}
 
     /**

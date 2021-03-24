@@ -15,6 +15,6 @@ namespace SIGO.ProcessoIndustrial.Domain.Enums
         Qualidade,
         Inteligencia,
         Relatorios,
-        SIGO = short.MaxValue
+        SIGO_Processo_Industrial = short.MaxValue
     }
 }

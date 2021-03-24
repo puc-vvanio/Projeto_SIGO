@@ -1,35 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, AbstractControl  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
 import { NormaService } from '../../../../services/norma.service';
-import { DataTablesOptions } from '../../../../utils/data-tables-utils';
 
 @Component({
-  selector: 'app-listagem-normas',
-  templateUrl: './listagem-normas.component.html',
-  styleUrls: ['./listagem-normas.component.css']
+  selector: 'app-visualizar-norma',
+  templateUrl: './visualizar-norma.component.html',
+  styleUrls: ['./visualizar-norma.component.css']
 })
 
-export class ListagemNormasComponent implements OnInit {
+export class VisualizarNormaComponent implements OnInit {
 
     /**
      *
      */
-    public normas;
+    public norma;
 
     /**
-     *
-     */
-    dtOptions: any;
-
-    /**
-     *
-     */
-    public dtTrigger: Subject < any > = new Subject < any > ();
-
-    /**
-     * Creates an instance of class ListagemNormasComponent
+     * Creates an instance of class NormasPageComponent
      */
     constructor(
         private normaService: NormaService,
@@ -41,29 +30,29 @@ export class ListagemNormasComponent implements OnInit {
      * Initializes the component
      */
     ngOnInit(): void {
-        this.dtOptions = DataTablesOptions.PortuguesBrasil;
+        const routeParams = this.route.snapshot.paramMap;
+        const normaId = Number(routeParams.get('normaId'));
 
-        this.obterListagemNormas();
+        this.obterNorma(normaId);
     }
 
     /**
      * Handle Menu Click
      */
-    public onMenuClick(modulo) {
-        this.router.navigate([modulo]);
+    public onMenuClick(menu) {
+        this.router.navigate([menu]);
     }
 
     /**
      * Get Normas List
      */
-    obterListagemNormas() {
-        this.normaService.obterNormas().subscribe(
+    obterNorma(normaId) {
+        this.normaService.obterNorma(normaId).subscribe(
             result => {
                 if (result != null) {
-                    this.normas = result;
-                    this.dtTrigger.next();
+                    this.norma = result;
                 } else
-                  this.toastr.warning("Nenhum registro localizado!", "Alerta");
+                  this.toastr.warning("Registro não localizado!", "Alerta");
             },
             error => {
                 if (error.error != null)
@@ -73,4 +62,5 @@ export class ListagemNormasComponent implements OnInit {
             }
         );
     }
+
 }

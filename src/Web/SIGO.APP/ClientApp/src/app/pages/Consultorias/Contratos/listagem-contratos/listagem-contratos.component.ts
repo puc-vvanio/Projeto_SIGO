@@ -10,20 +10,21 @@ import { DataTablesOptions } from '../../../../utils/data-tables-utils';
     templateUrl: './listagem-contratos.component.html',
     styleUrls: ['./listagem-contratos.component.css']
 })
+
 export class ListagemContratosComponent implements OnInit {
 
     /**
-     * 
+     *
      */
     dtOptions: any;
 
     /**
-     * 
+     *
      */
     public dtTrigger: Subject < any > = new Subject < any > ();
 
     /**
-     * 
+     *
      */
     public contratos;
 
@@ -31,9 +32,9 @@ export class ListagemContratosComponent implements OnInit {
      * Creates an instance of ListagemContratoServiceComponent.
      */
     constructor(
-        private ContratoService: ContratoService, 
-        private router: Router, 
-        private route: ActivatedRoute, 
+        private ContratoService: ContratoService,
+        private router: Router,
+        private route: ActivatedRoute,
         private toastr: ToastrService) {}
 
     ngOnInit(): void {

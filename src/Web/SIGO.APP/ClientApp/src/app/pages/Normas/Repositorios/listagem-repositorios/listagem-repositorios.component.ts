@@ -10,20 +10,21 @@ import { DataTablesOptions } from '../../../../utils/data-tables-utils';
   templateUrl: './listagem-repositorios.component.html',
   styleUrls: ['./listagem-repositorios.component.css']
 })
+
 export class ListagemRepositoriosComponent implements OnInit {
 
     /**
-     * 
+     *
      */
     public repositorios;
 
     /**
-     * 
+     *
      */
     dtOptions: any;
 
     /**
-     * 
+     *
      */
     public dtTrigger: Subject < any > = new Subject < any > ();
 
@@ -31,11 +32,11 @@ export class ListagemRepositoriosComponent implements OnInit {
      * Creates an instance of class ListagemRepositoriosComponent
      */
     constructor(
-        private repositorioService: RepositorioService, 
-        private router: Router, 
+        private repositorioService: RepositorioService,
+        private router: Router,
         private route: ActivatedRoute,
         private toastr: ToastrService) {}
- 
+
     /**
      * Initializes the component
      */
@@ -61,10 +62,13 @@ export class ListagemRepositoriosComponent implements OnInit {
                     this.repositorios = result;
                     this.dtTrigger.next();
                 } else
-                    this.toastr.error("Erro", "Alerta");
+                  this.toastr.warning("Nenhum registro localizado!", "Alerta");
             },
             error => {
-                this.toastr.error("Erro", "Alerta");
+                if (error.error != null)
+                    this.toastr.error(error.error, "Alerta");
+                else
+                    this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
             }
         );
     }

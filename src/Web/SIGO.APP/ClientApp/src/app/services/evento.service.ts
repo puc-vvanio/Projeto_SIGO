@@ -25,7 +25,7 @@ export class EventoService {
     /**
      * Call to GET specific list endpoint
      */
-    public obterEventosOrcamentosVendas() {
-        return this.baseService.get(this._endpoint + '/tipoEvento/Ultimo/' + 4);
+    public obterUltimosEventos(tipoEvento = 3) {
+        return this.baseService.get(this._endpoint + '/tipoEvento/Ultimo/' + 3);
     }
 }
