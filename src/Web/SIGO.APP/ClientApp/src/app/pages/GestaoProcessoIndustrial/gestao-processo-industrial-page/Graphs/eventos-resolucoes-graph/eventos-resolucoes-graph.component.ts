@@ -65,7 +65,7 @@ export class EventosResolucoesGraphComponent implements OnInit {
      */
     ngOnChanges(Changes: SimpleChanges) {
         if (Changes.BarChartDataBind != undefined && Changes.BarChartDataBind.currentValue != undefined){
-            debugger;
+            //debugger;
             this.BarChartData = [
                 { data: [7, 9, 13, 17, 22, 27, 33, 32, 26, 21, 13, 9, Changes.BarChartDataBind.currentValue[0].data[0]], label: 'Eventos' },
                 { data: [5, 5, 7, 21, 23, 29, 30, 33, 24, 18, 11, 5, Changes.BarChartDataBind.currentValue[0].data[1]], label: 'Resoluções' }

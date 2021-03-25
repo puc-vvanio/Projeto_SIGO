@@ -28,4 +28,11 @@ export class NormaService {
     public obterNorma(normaId) {
         return this.baseService.get(this._endpoint + '/' + normaId);
     }
+
+    /**
+     * Call to GET list endpoint
+     */
+    public obterAtualizacaoNorma(normaId) {
+        return this.baseService.get(this._endpoint + '/verificar/' + normaId);
+    }
 }

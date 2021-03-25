@@ -53,7 +53,8 @@ namespace SIGO.Consultorias.API.Controllers
                             ConsultoriaID = contrato.ConsultoriaID,
                             Consultoria = consultoria.Nome,
                             dataCriacao = contrato.DataCriacao,
-                            dataAtualizacao = contrato.DataAtualizacao
+                            dataAtualizacao = contrato.DataAtualizacao,
+                            DataTermino = contrato.DataTermino
                         };
 
                         contratolist.Add(contratoExibir);
@@ -75,7 +76,7 @@ namespace SIGO.Consultorias.API.Controllers
 
         // GET api/<ContratoController>/Resumo
         [HttpGet()]
-        [Route("Resume")]
+        [Route("Resumo")]
         [Authorize(Roles = "Admin,Gerente")]
         public async Task<IActionResult> Resume()
         {
@@ -94,14 +95,14 @@ namespace SIGO.Consultorias.API.Controllers
 
                     foreach (Contrato contrato in contratos)
                     {
-                        if (contrato.DataAtualizacao is null)
+                        if (contrato.DataTermino is null)
                             vigentes++;
                         else {
-                            if (contrato.DataAtualizacao < DateTime.Now)
+                            if (contrato.DataTermino < DateTime.Now)
                                 vencidos++;
                             else
                             {
-                                if (contrato.DataAtualizacao < DateTime.Now.AddDays(-30))
+                                if (contrato.DataTermino < DateTime.Now.AddDays(-31))
                                     vencer++;
                                 else
                                     vigentes++;
@@ -113,17 +114,17 @@ namespace SIGO.Consultorias.API.Controllers
                     string vencidosvalor = "Nenhun contrato";
                     string vencervalor = "Nenhun contrato";
                     if (vigentes > 0)
-                        vigentesvalor = vigentes.ToString() + "contrato(s)";
+                        vigentesvalor = vigentes.ToString() + " contrato(s)";
                     if (vencidos > 0)
-                        vencidosvalor = vigentes.ToString() + "contrato(s)";
-                    if (vencidos > 0)
-                        vencervalor = vigentes.ToString() + "contrato(s)";
+                        vencidosvalor = vencidos.ToString() + " contrato(s)";
+                    if (vencer > 0)
+                        vencervalor = vencer.ToString() + " contrato(s)";
 
 
                     ContratoResumo contratoResumo = new ContratoResumo()
                     {
                             VigentesTitulo    = vigentesvalor + " vigente(s)",
-                            VigentesDescricao = vigentesvalor + " tem vencimento igual ou superior a três meses",
+                            VigentesDescricao = vigentesvalor + " tem vencimento superior a 30 dias",
                             VencerTitulo      = vencidosvalor + " próximo(s) do vencimento",
                             VencerDescricao   = vencidosvalor + " que vencerá(ão) nos próximos 30 dias",
                             VencidosTitulo    = vencervalor   + " vencido(s)",

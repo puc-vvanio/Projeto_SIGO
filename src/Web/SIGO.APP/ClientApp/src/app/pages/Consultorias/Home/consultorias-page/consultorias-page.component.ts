@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ConsultoriaService } from '../../../../services/consultoria.service'
 import { ContratoService } from '../../../../services/contrato.service';
 
 @Component({
@@ -10,12 +9,15 @@ import { ContratoService } from '../../../../services/contrato.service';
   styleUrls: ['./consultorias-page.component.css']
 })
 export class ConsultoriasPageComponent implements OnInit {
-
+    /**
+     *
+     */    
+     public resumo: any;    
+    
     /**
      * Creates an instance of ConsultoriasPageComponent.
      */
     constructor(
-        private consultoriaService: ConsultoriaService,
         private ContratoService: ContratoService,
         private router: Router,
         private route: ActivatedRoute,
@@ -24,7 +26,9 @@ export class ConsultoriasPageComponent implements OnInit {
     /**
      * Initializes the component
      */
-    ngOnInit(): void {}
+    ngOnInit(): void {
+      this.obterContratoResumo();
+    }
 
     /**
      * Handle Menu Click
@@ -32,4 +36,22 @@ export class ConsultoriasPageComponent implements OnInit {
     public onMenuClick(menu) {
         this.router.navigate([menu]);
     }
+
+    obterContratoResumo() {
+         this.ContratoService.obterContratoResumo().subscribe(
+               result => {
+             if (result != null) {
+                     this.resumo = result;                       
+                   } else
+                       this.toastr.warning("Nenhum registro localizado!", "Alerta");
+               },
+               error => {
+                   if (error.error != null)
+                       this.toastr.error(error.error, "Alerta");
+                   else
+                       this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
+               }
+           );
+      }
+
 }

@@ -4,13 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginDTO } from '../../DTO/login.dto';
 import { UsuarioService } from '../../services/usuario.service';
+//import * as jwt_decode from 'jwt-decode';
 
 @Component({
     selector: 'app-login-page',
     templateUrl: './login-page.component.html',
     styleUrls: ['./login-page.component.css']
 })
-
 export class LoginPageComponent implements OnInit {
 
     /**
@@ -55,6 +55,7 @@ export class LoginPageComponent implements OnInit {
 
                 if (result != null) {
                     localStorage.setItem("TOKEN", result.token);
+                    //var teste = jwt_decode(result.token);                      
                     this.router.navigate(['/GestaoProcessoIndustrial']);
                 }
                 else

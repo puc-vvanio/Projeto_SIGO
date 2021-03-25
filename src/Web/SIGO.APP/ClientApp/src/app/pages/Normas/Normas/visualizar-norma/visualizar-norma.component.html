@@ -106,13 +106,13 @@
                     <div class="form-group col-sm-6">
                         <label for="dataCriacao"><b>Data de Cadastro</b></label>
                         <input class="form-control"
-                            value="{{norma.dataCriacao}}"
+                            value='{{norma.dataCriacao  | date:"dd/MM/yyyy"}}'
                             readonly />
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="dataAtualizacao"><b>Data de Atualização</b></label>
                         <input class="form-control"
-                            value="{{norma.dataAtualizacao}}"
+                            value='{{norma.dataAtualizacao  | date:"dd/MM/yyyy" }}'
                             readonly />
                     </div>
                 </div>

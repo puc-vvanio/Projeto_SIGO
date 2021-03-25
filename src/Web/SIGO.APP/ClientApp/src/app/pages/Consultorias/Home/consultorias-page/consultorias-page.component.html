@@ -1,83 +1,82 @@
 <app-nav-menu></app-nav-menu>
 
 <div class="container-fluid">
-    <div class="row">
+        <div class="row">
 
-        <nav id="sidebarMenu"
-            class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
-            style="">
-            <div class="sidebar-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active"
-                            (click)="onMenuClick('/Consultorias')">
+                <nav id="sidebarMenu"
+                        class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+                        style="">
+                        <div class="sidebar-sticky pt-3">
+                                <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                                <a class="nav-link active"
+                                                        (click)="onMenuClick('/Consultorias')">
                             <span>Assessorias e Consultorias <span class="sr-only">(current)</span></span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            (click)="onMenuClick('/Consultorias/Consultorias')">
+                                                </a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a class="nav-link"
+                                                        (click)="onMenuClick('/Consultorias/Consultorias')">
                             <span>Consultorias</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           (click)="onMenuClick('/Consultorias/Contratos')">
+                                                </a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a class="nav-link"
+                                                       (click)="onMenuClick('/Consultorias/Contratos')">
                            <span>Contratos</span>
-                        </a>
-                    </li>
-                </ul>
+                                                </a>
+                                        </li>
+                                </ul>
 
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Módulos</span>
-                </h6>
+                                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                                        <span>Módulos</span>
+                                </h6>
 
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item">
-                        <a class="nav-link modulos"
-                            (click)="onMenuClick('/Normas')">
-                            <app-icon Title="Gestão de Normas"
-                                ClassIcon="fa fa-book"></app-icon>
-                            <span>Gestão de Normas</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link modulos"
-                            (click)="onMenuClick('/GestaoProcessoIndustrial')">
-                            <app-icon Title="Gestão do Proceso Industrial"
-                                ClassIcon="fa fa-dashboard"></app-icon>
-                            <span>Gestão do Proceso Industrial</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                                <ul class="nav flex-column mb-2">
+                                        <li class="nav-item">
+                                                <a class="nav-link modulos"
+                                                        (click)="onMenuClick('/Normas')">
+                                                        <app-icon Title="Gestão de Normas"
+                                                                ClassIcon="fa fa-book"></app-icon>
+                                                        <span>Gestão de Normas</span>
+                                                </a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a class="nav-link modulos"
+                                                        (click)="onMenuClick('/GestaoProcessoIndustrial')">
+                                                        <app-icon Title="Gestão do Proceso Industrial"
+                                                                ClassIcon="fa fa-dashboard"></app-icon>
+                                                        <span>Gestão do Proceso Industrial</span>
+                                                </a>
+                                        </li>
+                                </ul>
+                        </div>
+                </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Assessorias e Consultorias</h1>
-            </div>
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">Assessorias e Consultorias</h1>
+                        </div>
 
-            <div class="row h-100 justify-content-center align-items-center">
-                <app-cards-consultorias CardStyle='bg-success'
-                    Title='Contratos vigentes'
-                    SubTitle='27 contratos vigentes'
-                    Description='27 contratos tem vencimento igual ou superior a três meses'>
-                </app-cards-consultorias>
-                <app-cards-consultorias CardStyle='bg-warning'
-                    Title='Contratos a vencer'
-                    SubTitle='2 contratos próximos do vencimento'
-                    Description='2 contratos que vencerão nos próximos 30 dias'>
-                </app-cards-consultorias>
-                <app-cards-consultorias CardStyle='bg-danger'
-                    Title='Contratos vencidos'
-                    SubTitle='Nenhum contrato vencido'
-                    Description='Nenhum contrato está vencido'>
-                </app-cards-consultorias>
-            </div>
+                        <div class="row h-100 justify-content-center align-items-center">
+                                <app-cards-consultorias CardStyle='bg-success'
+                                        Title="Contratos vigêntes"
+                                        SubTitle='{{resumo.vigentesTitulo}}'
+                                        Description='{{resumo.vigentesDescricao}}'>
+                                </app-cards-consultorias>
+                                <app-cards-consultorias CardStyle='bg-warning'
+                                        Title='Contratos a vencer'
+                                        SubTitle='{{resumo.vencerTitulo}}'
+                                        Description='{{resumo.vencerDescricao}}'>
+                                </app-cards-consultorias>
+                                <app-cards-consultorias CardStyle='bg-danger'
+                                        Title='Contratos vencidos'
+                                        SubTitle='{{resumo.vencidosTitulo}}'
+                                        Description='{{resumo.vencidosDescricao}}'>
+                                </app-cards-consultorias>
+                        </div>
+                </main>
 
-        </main>
-
-    </div>
+        </div>
 </div>

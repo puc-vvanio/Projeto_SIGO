@@ -8,7 +8,7 @@ export class ContratoService {
      * Endpoint to the service
      */
     private readonly _endpoint: string = 'contrato';
-
+    
     /**
      * Creates an instance of ConsultoriaService.
      */
@@ -20,5 +20,11 @@ export class ContratoService {
      */
     public obterContratos() {
         return this.baseService.get(this._endpoint);
+    }
+    /**
+     * Call to a GET list endpoint.
+     */
+    public obterContratoResumo() {
+      return this.baseService.get(this._endpoint + "/resumo");
     }
 }

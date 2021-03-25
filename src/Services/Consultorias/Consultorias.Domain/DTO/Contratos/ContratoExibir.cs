@@ -23,6 +23,8 @@ namespace SIGO.Consultorias.Domain.DTO.Contratos
         public DateTime dataCriacao { get; set; }
 
         public DateTime ?dataAtualizacao { get; set; }
+
+        public DateTime? DataTermino { get; set; }
     }
 
 

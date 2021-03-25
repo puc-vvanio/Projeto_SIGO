@@ -1,5 +1,7 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl  } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+//import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NormaService } from '../../../../services/norma.service';
@@ -16,11 +18,13 @@ export class VisualizarNormaComponent implements OnInit {
      *
      */
     public norma;
+    public normaAtualizada;
 
     /**
      * Creates an instance of class NormasPageComponent
      */
-    constructor(
+  constructor(
+        //private datePipe: DatePipe,
         private normaService: NormaService,
         private router: Router,
         private route: ActivatedRoute,
@@ -51,8 +55,9 @@ export class VisualizarNormaComponent implements OnInit {
             result => {
                 if (result != null) {
                     this.norma = result;
+                    this.obterAtualizacaoNorma(this.norma.nome); 
                 } else
-                  this.toastr.warning("Registro não localizado!", "Alerta");
+                    this.toastr.warning("Registro não localizado!", "Alerta");
             },
             error => {
                 if (error.error != null)
@@ -63,4 +68,22 @@ export class VisualizarNormaComponent implements OnInit {
         );
     }
 
+    /**
+     * Get Normas List
+     */
+    obterAtualizacaoNorma(normaId) {
+        this.normaService.obterAtualizacaoNorma(normaId).subscribe(
+            result => {
+                if (result != null) {
+                    this.normaAtualizada = result;
+                    this.toastr.success("Norma: " + this.normaAtualizada.nome + "</br>" + "Status: " + this.normaAtualizada.status + "</br>" +
+                                        "Data Status: " + formatDate(this.normaAtualizada.data, 'dd/MM/yyy hh:mm', 'en-US'), 'Informação atualizada', {enableHtml: true}); //this.datePipe.transform( this.normaAtualizada.data,"dd/MM/yyy hh:mm"));                    
+                } else
+                     this.toastr.warning("Serviço verificação de norma não disponível!", "Alerta");
+            },
+            error => {
+                this.toastr.warning("Serviço verificação de norma não disponível!", "Alerta");
+            }
+        );
+    }
 }
