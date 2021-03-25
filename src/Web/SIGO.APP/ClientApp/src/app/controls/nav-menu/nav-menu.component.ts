@@ -26,7 +26,10 @@ export class NavMenuComponent implements OnInit {
     /**
      * Performs user logout
      */
-    public sigoLogout(){
+     public sigoLogout() {
+        // empty local storage
+        localStorage.clear();
+        // Navigate to login
         this.router.navigate(['']);
         this.toastr.success('Sessão encerrada!');
     }

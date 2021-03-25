@@ -10,7 +10,7 @@ export class NavigationGuardService {
 
     canActivate(routerStateSnapshot: RouterStateSnapshot) {
         let result = true;
-/*
+
         let token = localStorage.getItem("TOKEN");
 
         if (token != null && !this.router.navigated) {
@@ -25,7 +25,7 @@ export class NavigationGuardService {
             else
                 result = true;
         }
-*/
+
         return result;
     }
 }
