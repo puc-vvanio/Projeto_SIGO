@@ -1,11 +1,9 @@
-﻿using MassTransit;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SIGO.Normas.Domain.DTO.Normas;
 using SIGO.Normas.Domain.Entities;
-using SIGO.Normas.API.Helpers;
-using SIGO.Normas.API.Messages;
 using SIGO.Normas.Domain.Interfaces.Services;
+using SIGO.Normas.Infrastructure.CrossCutting.EventBus.Senders;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,29 +14,21 @@ namespace SIGO.Normas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+
     public class NormaController : ControllerBase
     {
         private readonly IServiceNorma _normaService;
         private readonly IServiceRepositorioExterno _repositorioExternoService;
-
-        private RabbitmqConfig _rabbitConfig;
-        private ISendEndpointProvider _sendEndpoint;
-        private IPublishEndpoint _publishEndPoint;
+        private readonly INormaUpdateSender _normaUpdateSender;
 
         public NormaController(IServiceNorma normaService,
-                               IServiceRepositorioExterno repositorioExternoService
-                               //IOptions<RabbitmqConfig> rabbitConfig,
-                               //ISendEndpointProvider sendEndpoint,
-                               //IPublishEndpoint publish
+                               IServiceRepositorioExterno repositorioExternoService,
+                               INormaUpdateSender normaUpdateSender
                                )
         {
             _normaService = normaService;
             _repositorioExternoService = repositorioExternoService;
-
-            //_rabbitConfig = rabbitConfig.Value;
-            //_sendEndpoint = sendEndpoint;
-            //_publishEndPoint = publish;
+            _normaUpdateSender = normaUpdateSender;
         }
 
         // GET: api/<NormaController>
@@ -84,7 +74,7 @@ namespace SIGO.Normas.API.Controllers
                 return StatusCode(500, "Erro ao comunicar com a base de dados!");
             }
         }
-        
+
         // GET: api/<NormaController>
         [HttpGet]
         [Route("{normaId}")]
@@ -133,16 +123,28 @@ namespace SIGO.Normas.API.Controllers
 
                 if (normaVerificada != null)
                 {
+                    Console.WriteLine($"Nome da Norma: {normaVerificada.Nome}");
+
                     if (normaVerificada.Nome == null)
                         normaVerificada.Nome = norma;
-                    /*
-                    await SendMessage(new SubscribeToNormasCommand
+
+                    var TipoEventoID = 0;
+                    if (normaVerificada.Status == "Atualizada")
+                        TipoEventoID = 1;
+                    if (normaVerificada.Status == "Cancelada")
+                        TipoEventoID = 2;
+
+                    NormaEvento normaEvento = new NormaEvento()
                     {
-                        Norma = norma.Nome,
-                        Status = norma.Status,
-                        Data = norma.Data
-                    }, "normasService");
-                    */
+                        Nome = string.Concat("Norma ", normaVerificada.Status),
+                        Descricao = string.Concat("Norma: ", normaVerificada.Nome, " - Status: ", normaVerificada.Status, " - Data: ", normaVerificada.Data),
+                        Sistema = 1,
+                        TipoEventoID = TipoEventoID
+
+                    };
+
+                    _normaUpdateSender.EnviarNormaAtualizada(normaEvento);
+
                     return Ok(normaVerificada);
                 }
                 else

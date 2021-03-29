@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SIGO.Normas.Domain.DTO.Normas;
-using SIGO.Normas.Infrastructure.CrossCutting;
 using SIGO.Normas.Domain.Interfaces.Services;
+using SIGO.Normas.Infrastructure.CrossCutting;
 using System.Threading.Tasks;
 
 namespace SIGO.Normas.Service.Services

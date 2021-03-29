@@ -12,9 +12,6 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
-    <PackageReference Include="MassTransit" Version="7.1.6" />
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.1.6" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -28,6 +25,12 @@
     <ProjectReference Include="..\Normas.Domain\SIGO.Normas.Domain.csproj" />
     <ProjectReference Include="..\Normas.Infrastructure\SIGO.Normas.Infrastructure.csproj" />
     <ProjectReference Include="..\Normas.Service\SIGO.Normas.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Consumers\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Messages\" />
   </ItemGroup>
 
 </Project>

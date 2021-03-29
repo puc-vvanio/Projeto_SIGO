@@ -10,7 +10,7 @@ namespace SIGO.Normas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+
     public class RepositorioController : ControllerBase
     {
         private readonly IServiceRepositorio _repositorioService;
