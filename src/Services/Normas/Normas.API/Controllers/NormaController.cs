@@ -134,17 +134,19 @@ namespace SIGO.Normas.API.Controllers
                     if (normaVerificada.Status == "Cancelada")
                         TipoEventoID = 2;
 
-                    NormaEvento normaEvento = new NormaEvento()
+                    if (TipoEventoID != 0)
                     {
-                        Nome = string.Concat("Norma ", normaVerificada.Status),
-                        Descricao = string.Concat("Norma: ", normaVerificada.Nome, " - Status: ", normaVerificada.Status, " - Data: ", normaVerificada.Data),
-                        Sistema = 1,
-                        TipoEventoID = TipoEventoID
+                        NormaEvento normaEvento = new NormaEvento()
+                        {
+                            Nome = string.Concat("Norma ", normaVerificada.Status),
+                            Descricao = string.Concat("Norma: ", normaVerificada.Nome, " - Status: ", normaVerificada.Status, " - Data: ", normaVerificada.Data),
+                            Sistema = 1,
+                            TipoEventoID = TipoEventoID
 
-                    };
+                        };
 
-                    _normaUpdateSender.EnviarNormaAtualizada(normaEvento);
-
+                        _normaUpdateSender.EnviarNormaAtualizada(normaEvento);
+                    }
                     return Ok(normaVerificada);
                 }
                 else

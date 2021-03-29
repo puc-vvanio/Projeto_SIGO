@@ -16,7 +16,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
     /**
      *
      */
-    public eventos;
+    public eventos: any;
 
     /**
      *
@@ -68,18 +68,21 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
      * Get Eventos List
      */
      obterListagemEventos() {
-        this.eventoService.obterEventos().subscribe(
-            result => {
-                if (result != null) {
-                    this.eventos = result;
-                    this.dtTrigger.next();
-                } else
-                    this.toastr.error("Erro", "Alerta");
-            },
-            error => {
-                this.toastr.error("Erro", "Alerta");
-            }
-        );
+         this.eventoService.obterEventos().subscribe(
+             result => {
+                 if (result != null) {
+                     this.eventos = result;
+                     //this.dtTrigger.next();
+                 } else
+                     this.toastr.warning("Nenhum registro localizado!", "Alerta");
+             },
+             error => {
+                 if (error.error != null)
+                     this.toastr.error(error.error, "Alerta");
+                 else
+                     this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
+             }
+         );
     }
 
     /**
