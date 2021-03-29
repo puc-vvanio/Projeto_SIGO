@@ -34,17 +34,18 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: loguser
+      RABBITMQ_DEFAULT_PASS: logpwd
+      RABBITMQ_DEFAULT_VHOST: SIGOLog
     volumes:
       - ./.docker/rabbitmq/mq_data:/var/lib/rabbitmq/mnesia
+    restart: always
     ports:
       - "15672:15672"
       - "5672:5672" 
     networks:
       - sigo.dmz
-    environment:
-      RABBITMQ_DEFAULT_USER: loguser
-      RABBITMQ_DEFAULT_PASS: logpwd
-      RABBITMQ_DEFAULT_VHOST: SIGOLog
 
   gateway.api:
     image: ${DOCKER_REGISTRY-}apigateway
@@ -87,6 +88,7 @@ services:
       dockerfile: src/Services/ProcessoIndustrial/ProcessoIndustrial.API/Dockerfile
     depends_on:
       - sqldata
+      - rabbitmq
     ports:
       - 5200:80
       - 5201:443

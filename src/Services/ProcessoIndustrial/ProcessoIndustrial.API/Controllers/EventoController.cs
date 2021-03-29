@@ -1,10 +1,7 @@
-﻿using MassTransit;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SIGO.ProcessoIndustrial.Domain.DTO.Eventos;
 using SIGO.ProcessoIndustrial.Domain.Entities;
-using SIGO.ProcessoIndustrial.API.Helpers;
-using SIGO.ProcessoIndustrial.API.Messages;
 using SIGO.ProcessoIndustrial.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -16,29 +13,18 @@ namespace SIGO.ProcessoIndustrial.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+
     public class EventoController : ControllerBase
     {
         private readonly IServiceEvento _eventoService;
         private readonly IServiceTipoEvento _tipoEventoService;
 
-        private RabbitmqConfig _rabbitConfig;
-        private ISendEndpointProvider _sendEndpoint;
-        private IPublishEndpoint _publishEndPoint;
-
         public EventoController(IServiceEvento eventoService,
                                 IServiceTipoEvento tipoEventoService
-                               //IOptions<RabbitmqConfig> rabbitConfig,
-                               //ISendEndpointProvider sendEndpoint,
-                               //IPublishEndpoint publish
                                )
         {
             _eventoService = eventoService;
             _tipoEventoService = tipoEventoService;
-
-            //_rabbitConfig = rabbitConfig.Value;
-            //_sendEndpoint = sendEndpoint;
-            //_publishEndPoint = publish;
         }
 
         // GET: api/<NormaController>
