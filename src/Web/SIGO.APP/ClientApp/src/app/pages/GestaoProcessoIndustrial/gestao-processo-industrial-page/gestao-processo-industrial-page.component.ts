@@ -49,12 +49,9 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
         this.dtOptions = DataTablesOptions.PortuguesBrasil;
 
         this.obterListagemEventos();
-        // Remover para fazer a chamada ao procedimento remoto de messageria
-        /*
-        this.obterListagemEventos();
 
         this.iniciarTimerObterListagemEventos();
-        */
+        
         this.listagemEventos = [{
             data: [50, 50]
         }];
@@ -86,32 +83,6 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
     }
 
     /**
-     * Get Ultimos Eventos List
-     */
-    obterListagemUltimosEventos() {
-        this.eventoService.obterUltimosEventos().subscribe(
-            result => {
-                if (result != null) {
-                    let listagemEventos: ListagemEventos = JSON.parse(result["descricao"]);
-
-                    if (listagemEventos.Eventos != this.listagemEventos[0].data[0]) {
-                        this.listagemEventos = [{
-                            data: [listagemEventos.Eventos, listagemEventos.Resolucoes]
-                        }];
-                    }
-                } else
-                    this.toastr.warning("Nenhum registro localizado!", "Alerta");
-            },
-            error => {
-                if (error.error != null)
-                    this.toastr.error(error.error, "Alerta");
-                else
-                    this.toastr.error("Problema ao executar o acesso. Tente novamente mais tarde!", "Alerta");
-            }
-        );
-    }
-
-    /**
      * Timer to get
      */
     iniciarTimerObterListagemEventos() {
@@ -119,12 +90,4 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
             this.obterListagemEventos();
         }, 10000)
     }
-}
-
-/**
- * Data Interface
- */
-interface ListagemEventos {
-    Eventos: string;
-    Resolucoes: string;
 }
