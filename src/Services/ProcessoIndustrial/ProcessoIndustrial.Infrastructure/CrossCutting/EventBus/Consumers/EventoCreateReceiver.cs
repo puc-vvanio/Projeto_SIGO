@@ -1,21 +1,24 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using SIGO.ProcessoIndustrial.Domain.Entities;
 using SIGO.ProcessoIndustrial.Domain.Interfaces.Services;
+using System;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SIGO.ProcessoIndustrial.Infrastructure.CrossCutting.EventBus.Consumers
 {
-    public class EventoUpdateReceiver : BackgroundService
+    public class EventoCreateReceiver : BackgroundService
     {
         private IModel _channel;
         private IConnection _connection;
         private readonly IServiceEvento _eventoService;
+
         private readonly string _hostname;
         private readonly int _port;
         private readonly string _password;
@@ -23,7 +26,8 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.CrossCutting.EventBus.Consumers
         private readonly string _queueName;
         private readonly string _virtualHost;
 
-        public EventoUpdateReceiver(IServiceEvento eventoService, IOptions<RabbitMqConfiguration> rabbitMqOptions)
+        public EventoCreateReceiver(IServiceProvider serviceProvider,
+                                    IOptions<RabbitMqConfiguration> rabbitMqOptions)
         {
             _hostname = rabbitMqOptions.Value.Hostname;
             _port = rabbitMqOptions.Value.Port;
@@ -32,9 +36,9 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.CrossCutting.EventBus.Consumers
             _queueName = rabbitMqOptions.Value.QueueName;
             _virtualHost = rabbitMqOptions.Value.VirtualHost;
 
-            _eventoService = eventoService;
-
             InitializeRabbitMqListener();
+
+            _eventoService = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IServiceEvento>();
         }
 
         private void InitializeRabbitMqListener()
@@ -79,9 +83,14 @@ namespace SIGO.ProcessoIndustrial.Infrastructure.CrossCutting.EventBus.Consumers
             return Task.CompletedTask;
         }
 
-        private void HandleMessage(Evento eventoMessage)
+        private async void HandleMessage(Evento eventoMessage)
         {
-            _eventoService.Salvar(eventoMessage);
+            Console.WriteLine($"Nome: {eventoMessage.Nome}");
+            Console.WriteLine($"Descricao: {eventoMessage.Descricao}");
+            Console.WriteLine($"Sistema: {eventoMessage.Sistema}");
+            Console.WriteLine($"TipoEventoID: {eventoMessage.TipoEventoID}");
+
+            await _eventoService.Salvar(eventoMessage);
         }
 
         private void OnConsumerCancelled(object sender, ConsumerEventArgs e)

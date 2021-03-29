@@ -49,9 +49,6 @@ namespace SIGO.ProcessoIndustrial.API
             services.AddScoped<IServiceEvento, EventoService>();
             services.AddScoped<IServiceTipoEvento, TipoEventoService>();
 
-            if (serviceEventBusSettings.Enabled)
-                services.AddHostedService<EventoUpdateReceiver>();
-
             services.AddCors(options =>
             {
                 options.AddPolicy(
@@ -131,6 +128,9 @@ namespace SIGO.ProcessoIndustrial.API
                 };
             });
 
+            // Iniciar job para monitorar o Rabbit
+            if (serviceEventBusSettings.Enabled)
+                services.AddHostedService<EventoCreateReceiver>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
