@@ -27,6 +27,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
      *
      */
     dtOptions: any;
+    polling: any;
 
     /**
      *
@@ -55,6 +56,10 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
         this.listagemEventos = [{
             data: [50, 50]
         }];
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.polling);
     }
 
     /**
@@ -89,7 +94,7 @@ export class GestaoProcessoIndustrialPageComponent implements OnInit {
      * Timer to get
      */
     iniciarTimerObterListagemEventos() {
-        setInterval(() => {
+        this.polling = setInterval(() => {
             this.obterListagemEventos();
         }, 10000)
     }
