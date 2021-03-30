@@ -27,7 +27,8 @@ export class ConsultoriasPageComponent implements OnInit {
      * Initializes the component
      */
     ngOnInit(): void {
-      this.obterContratoResumo();
+        this.resumo = "";
+        this.obterContratoResumo();
     }
 
     /**

@@ -108,7 +108,7 @@ namespace SIGO.ProcessoIndustrial.API
             });
 
             var chavetoken = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Chavedeacesso");
-            var key = Encoding.ASCII.GetBytes(chavetoken.ToString());
+            var key = Encoding.ASCII.GetBytes(chavetoken.Value);
 
             services.AddAuthentication(x =>
             {

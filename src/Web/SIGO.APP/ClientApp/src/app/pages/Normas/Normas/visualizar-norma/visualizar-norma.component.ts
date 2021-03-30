@@ -17,7 +17,7 @@ export class VisualizarNormaComponent implements OnInit {
     /**
      *
      */
-    public norma;
+    public norma: any;
     public normaAtualizada;
 
     /**
@@ -34,6 +34,7 @@ export class VisualizarNormaComponent implements OnInit {
      * Initializes the component
      */
     ngOnInit(): void {
+      this.norma = "";
         const routeParams = this.route.snapshot.paramMap;
         const normaId = Number(routeParams.get('normaId'));
 

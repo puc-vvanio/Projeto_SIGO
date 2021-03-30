@@ -16,8 +16,13 @@ namespace SIGO.Autenticacao.Service.Services
             //
             var tokenHandler = new JwtSecurityTokenHandler();
             //
-            var chavetoken = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Chavedeacesso");
-            var key = Encoding.ASCII.GetBytes(chavetoken.ToString());
+            var parametro = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var chavetoken = parametro.GetSection("Chavedeacesso");
+            var tempoExpiracao = parametro.GetSection("TempoExpiracaoTokenMinutos").Value;
+            int tempoExpiracaoTokenMinutos = Convert.ToInt32(tempoExpiracao);
+
+            //int tempoExpiracaoTokenMinutos = 2;
+            var key = Encoding.ASCII.GetBytes(chavetoken.Value);
             //
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -26,7 +31,7 @@ namespace SIGO.Autenticacao.Service.Services
                     new Claim(ClaimTypes.Email, usuario.Email.ToString()),
                     new Claim(ClaimTypes.Role, usuario.Perfil.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(2),
+                Expires = DateTime.UtcNow.AddMinutes(tempoExpiracaoTokenMinutos),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             //
