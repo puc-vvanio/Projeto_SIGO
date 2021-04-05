@@ -20,8 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BCA880B3
 		..\..\..\OneDrive\Área de Trabalho\SIGO - Testes Unitarios.postman_collection.json = ..\..\..\OneDrive\Área de Trabalho\SIGO - Testes Unitarios.postman_collection.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{1E90B300-55D3-4AA2-B590-40B2652E994B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{615FB2C0-CD72-445F-A7EE-AECC400A9C2D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A9FAFE00-DE7B-4EF4-AFFA-713CD63A9A57}"
