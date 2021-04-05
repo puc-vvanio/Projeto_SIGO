@@ -26,7 +26,7 @@ export class RequestInterceptor implements HttpInterceptor {
                 {
                     this.router.navigate(['']);
                     localStorage.removeItem("TOKEN");
-                    this.toastr.warning("Por favor, faça login novamente!", "Alerta");
+                    this.toastr.warning("Por favor, faça login novamente (Sessão Expirada)!", "Alerta");
                     return EMPTY;
                 }
 

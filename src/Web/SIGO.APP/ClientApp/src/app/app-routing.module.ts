@@ -21,42 +21,50 @@ const appRoutes: Routes = [
   {
     path: "GestaoProcessoIndustrial",
     component: GestaoProcessoIndustrialPageComponent,
-    canActivate: [NavigationGuardService]
+    canActivate: [NavigationGuardService],
+    data: { role: "Admin,Gerente,Colaborador", modulo: "Gestão do Proceso Industrial"} 
   },
   {
     path: "Consultorias",
     component: ConsultoriasPageComponent,
-    canActivate: [NavigationGuardService]
+    canActivate: [NavigationGuardService],
+    data: { role: "Admin,Gerente", modulo: "Assessorias e Consultorias" }
   },
   {
     path: "Consultorias/Consultorias",
     component: ListagemConsultoriasComponent,
-    canActivate: [NavigationGuardService]
+    canActivate: [NavigationGuardService],
+    data: { role: "Admin,Gerente", modulo: "Assessorias e Consultorias" }
   },
   {
     path: "Consultorias/Contratos",
     component: ListagemContratosComponent,
-    canActivate: [NavigationGuardService]
+    canActivate: [NavigationGuardService],
+    data: { role: "Admin,Gerente", modulo: "Assessorias e Consultorias" }
   },
   {
     path: "Normas",
     component: NormasPageComponent,
-    canActivate: [NavigationGuardService]
+    canActivate: [NavigationGuardService],
+    data: { role: "Admin,Gerente,Colaborador", modulo: "Gestão de Normas" } 
   },
   {
     path: "Normas/Normas",
     component: ListagemNormasComponent,
-    canActivate: [NavigationGuardService]
+    canActivate: [NavigationGuardService],
+    data: { role: "Admin,Gerente,Colaborador", modulo: "Gestão de Normas" }
   },
   {
     path: "Normas/Norma/:normaId",
     component: VisualizarNormaComponent,
-    canActivate: [NavigationGuardService]
+    canActivate: [NavigationGuardService],
+    data: { role: "Admin,Gerente,Colaborador", modulo: "Gestão de Normas" }
   },
   {
     path: "Normas/Repositorios",
     component: ListagemRepositoriosComponent,
-    canActivate: [NavigationGuardService]
+    canActivate: [NavigationGuardService],
+    data: { role: "Admin,Gerente,Colaborador", modulo: "Gestão de Normas" } 
   },
 ];
 
