@@ -129,17 +129,17 @@ services:
     networks:
       - sigo.dmz
 
-# sigo.app:
-#   image: ${DOCKER_REGISTRY-}sigoapp
-#   container_name: sigoapp
-#   build:
-#     context: .
-#     dockerfile: src/Web/SIGO.APP/Dockerfile
-#   ports:
-#     - 5500:80
-#     - 5501:443
-#   networks:
-#     - sigo.dmz
+  sigo.app:
+    image: ${DOCKER_REGISTRY-}sigoapp
+    container_name: sigoapp
+    build:
+     context: .
+     dockerfile: src/Web/SIGO.APP/Dockerfile
+    ports:
+     - 5500:80
+     - 5501:443
+    networks:
+     - sigo.dmz
 
 volumes:
   mysqldata:
